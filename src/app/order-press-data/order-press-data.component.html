@@ -1,0 +1,73 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>Pressdaten</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="exampleInputEmail1">Datum</label>
+      <input type="text"
+             class="form-control"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             #dp="bsDatepicker"
+             bsDatepicker [(bsValue)]="bsValue">
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="exampleInputEmail1">Auftraggeber</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Lager">
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+      <form>
+        <div class="form-group">
+          <label for="lam">Decklamellen</label>
+          <div class="combobox">
+            <select class="form-control" id="lam">
+              <option>Keine</option>
+              <option>Eine</option>
+              <option>Zwei</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form>
+      <div class="form-group">
+        <label for="press">Presse</label>
+        <div class="combobox">
+          <select class="form-control" id="press">
+            <option>24m</option>
+            <option>16m</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form>
+      <div class="form-group">
+        <label for="wood">Holzart</label>
+        <div class="combobox">
+          <select class="form-control" id="wood">
+            <option>Fichte</option>
+            <option>Lärche</option>
+            <option>Kiefer</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

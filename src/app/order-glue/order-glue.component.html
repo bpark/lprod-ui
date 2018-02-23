@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>Leim/Härter</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form>
+      <div class="form-group">
+        <label for="lam">Leimsorte</label>
+        <div class="combobox">
+          <select class="form-control" id="lam">
+            <option>BASF 683 flüssig</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="gluetype">Lieferdatum</label>
+      <input type="text"
+             id="gluetype"
+             class="form-control"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             #dp="bsDatepicker"
+             bsDatepicker [(bsValue)]="bsValue">
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form>
+      <div class="form-group">
+        <label for="hardtype">Härtersorte</label>
+        <div class="combobox">
+          <select class="form-control" id="hardtype">
+            <option>BASF 683 flüssig</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="htype">Lieferdatum</label>
+      <input type="text"
+             id="htype"
+             class="form-control"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             #dp="bsDatepicker"
+             bsDatepicker [(bsValue)]="bsValue">
+    </div>
+  </div>
+</div>
+

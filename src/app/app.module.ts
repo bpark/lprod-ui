@@ -3,14 +3,33 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import {FormsModule} from '@angular/forms';
+import {AlertModule, BsDatepickerModule} from 'ngx-bootstrap';
+import { OrderStepComponent } from './order-step/order-step.component';
+import { OrderScreenComponent } from './order-screen/order-screen.component';
+import { OrderPressDataComponent } from './order-press-data/order-press-data.component';
+import { OrderResultComponent } from './order-result/order-result.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { OrderGlueComponent } from './order-glue/order-glue.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OrderStepComponent,
+    OrderScreenComponent,
+    OrderPressDataComponent,
+    OrderResultComponent,
+    NavbarComponent,
+    OrderGlueComponent,
+    OrderDetailsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    AlertModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
