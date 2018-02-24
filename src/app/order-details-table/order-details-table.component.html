@@ -6,11 +6,22 @@
 
 <div class="row">
   <div class="col-md-20">
-    <ol class="list-items">
+    <ol class="list-items" id="accordion">
       <li class="list-items-row">
-        <div data-toggle="collapse" aria-expanded="false" data-target="#detail-line-1">
+        <div class="row text-t9">
+          <div class="col-md-3">Stück</div>
+          <div class="col-md-3">Höhe</div>
+          <div class="col-md-3">Länge</div>
+          <div class="col-md-4">Lamellen</div>
+          <div class="col-md-3">Fläche</div>
+          <div class="col-md-4">Fläche ges.</div>
+          <div class="col-md-4">Vol MQ</div>
+        </div>
+      </li>
+      <li class="list-items-row" *ngFor="let row of rows">
+        <div data-toggle="collapse" data-parent="#accordion" aria-expanded="false" [attr.data-target]="'#detail-line-' + row.id">
           <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
               0
             </div>
             <div class="col-md-3">
@@ -19,103 +30,59 @@
             <div class="col-md-3">
               0.00
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
               0
             </div>
             <div class="col-md-3">
               0.00
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               0.00
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               0.00
             </div>
           </div>
+
+          <div class="collapse" id="detail-line-{{row.id}}">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-24">
+                  <label for="stk">Stück</label>
+                  <input type="text" class="form-control" id="stk" placeholder="8.5">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-24">
+                  <label for="height">Höhe</label>
+                  <input type="email" class="form-control" id="height" placeholder="8.5">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-24">
+                  <label for="length">Länge</label>
+                  <input type="email" class="form-control" id="length" placeholder="8.5">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-24">
+                  <button class="btn btn-primary">Ok</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="collapse" id="detail-line-1">
-          <div class="form-group">
-          <div class="row">
-              <div class="col-md-24">
-                <label for="stk">Stück</label>
-                <input type="text" class="form-control" id="stk" placeholder="8.5">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-md-24">
-                <label for="height">Höhe</label>
-                <input type="email" class="form-control" id="height" placeholder="8.5">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-md-24">
-                <label for="length">Länge</label>
-                <input type="email" class="form-control" id="length" placeholder="8.5">
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-md-24 text-right">
-                <button class="btn btn-primary">Ok</button>
-              </div>
-          </div>
-          </div>
-
-          <!--<div class="row">
-            <div class="col-md-18 col-md-offset-2">
-              Lorem ipsum dolor sit amet.
-            </div>
-            <div class="col-md-4 text-right">
-              <button class="btn btn-primary btn-sm">Button</button>
-            </div>
-          </div>-->
-        </div>
       </li>
     </ol>
   </div>
 </div>
 
-<!--<div class="row">
-  <div class="col-md-20">
-
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>Stück</th>
-          <th>Höhe</th>
-          <th>Länge</th>
-          <th>Lamellen</th>
-          <th>Fläche</th>
-          <th>Fläche ges.</th>
-          <th>Vol MQ</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr data-toggle="collapse" aria-expanded="false" data-target="#detail-tr-1">
-          <td>0</td>
-          <td>0.00</td>
-          <td>0.00</td>
-          <td>0</td>
-          <td>0.00</td>
-          <td>0.00</td>
-          <td>0.00</td>
-        </tr>
-        <tr class="collapse" id="detail-tr-1">
-          <td colspan="7">
-            <div class="row">
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="stk">Stück</label>
-                  <input type="text" class="form-control" id="stk" placeholder="0">
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
+<div class="row">
+  <div class="col-md-24">
+    <button (click)="addRow()" class="btn btn-default"><span class="glyph glyph-add"></span></button>
   </div>
-</div>-->
+</div>
+

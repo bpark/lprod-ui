@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GlulamDetail, GlulamModel} from '../model/glulam.model';
 
 @Component({
   selector: 'app-order-details-table',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderDetailsTableComponent implements OnInit {
 
+  rows: GlulamDetail[] = [{id: 1}, {id: 2}];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addRow() {
+    const len = this.rows.length;
+    this.rows.push({id: len + 1});
   }
 
 }

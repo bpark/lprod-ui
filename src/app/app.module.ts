@@ -14,6 +14,7 @@ import {OrderGlueComponent} from './order-glue/order-glue.component';
 import {OrderDetailsComponent} from './order-details/order-details.component';
 import {RouterModule, Routes} from '@angular/router';
 import {OrderDetailsTableComponent} from './order-details-table/order-details-table.component';
+import {GlulamOrderService} from './model/glulam-order.service';
 
 
 const appRoutes: Routes = [
@@ -46,7 +47,9 @@ const appRoutes: Routes = [
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    GlulamOrderService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
