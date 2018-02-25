@@ -12,8 +12,6 @@ export class OrderPressDataComponent implements OnInit {
   minDate = new Date(2017, 5, 10);
   maxDate = new Date(2018, 9, 15);
 
-  bsValue: Date = new Date();
-
   glulamModel: GlulamModel;
 
   constructor(private glulamOrderService: GlulamOrderService) { }

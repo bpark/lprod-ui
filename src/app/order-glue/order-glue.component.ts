@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {GlulamOrderService} from '../model/glulam-order.service';
+import {GlulamModel} from '../model/glulam.model';
 
 @Component({
   selector: 'app-order-glue',
@@ -10,11 +12,12 @@ export class OrderGlueComponent implements OnInit {
   minDate = new Date(2017, 5, 10);
   maxDate = new Date(2018, 9, 15);
 
-  bsValue: Date = new Date();
+  glulamModel: GlulamModel;
 
-  constructor() { }
+  constructor(private glulamOrderService: GlulamOrderService) { }
 
   ngOnInit() {
+    this.glulamModel = this.glulamOrderService.glulamModel;
   }
 
 }

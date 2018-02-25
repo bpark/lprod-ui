@@ -15,6 +15,8 @@ import {OrderDetailsComponent} from './order-details/order-details.component';
 import {RouterModule, Routes} from '@angular/router';
 import {OrderDetailsTableComponent} from './order-details-table/order-details-table.component';
 import {GlulamOrderService} from './model/glulam-order.service';
+import { OrderNavButtonsComponent } from './order-nav-buttons/order-nav-buttons.component';
+import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +24,7 @@ const appRoutes: Routes = [
   {path: 'pressdata', component: OrderPressDataComponent},
   {path: 'details', component: OrderDetailsComponent},
   {path: 'detailstbl', component: OrderDetailsTableComponent},
+  {path: 'summary', component: OrderSummaryComponent},
   {path: '**', component: OrderPressDataComponent}
 ];
 
@@ -35,7 +38,9 @@ const appRoutes: Routes = [
     NavbarComponent,
     OrderGlueComponent,
     OrderDetailsComponent,
-    OrderDetailsTableComponent
+    OrderDetailsTableComponent,
+    OrderNavButtonsComponent,
+    OrderSummaryComponent
   ],
   imports: [
     RouterModule.forRoot(

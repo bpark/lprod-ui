@@ -3,60 +3,65 @@
     <h2>Leim/Härter</h2>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-12">
-    <form>
-      <div class="form-group">
-        <label for="lam">Leimsorte</label>
-        <div class="combobox">
-          <select class="form-control" id="lam">
-            <option>BASF 683 flüssig</option>
-          </select>
-        </div>
+    <div class="form-group">
+      <label for="glue">Leimsorte</label>
+      <div class="combobox">
+        <select class="form-control" id="glue" [(ngModel)]="glulamModel.glueData.glueType">
+          <option *ngFor="let item of glulamModel.glueTypes" [ngValue]="item.id"
+                  [selected]="glulamModel.glueData.glueType">{{item.name}}
+          </option>
+        </select>
       </div>
-    </form>
-  </div>
-</div>
-<div class="row">
-  <div class="form-group">
-    <div class="col-md-12">
-      <label for="gluetype">Lieferdatum</label>
-      <input type="text"
-             id="gluetype"
-             class="form-control"
-             [minDate]="minDate"
-             [maxDate]="maxDate"
-             #dp="bsDatepicker"
-             bsDatepicker [(bsValue)]="bsValue">
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <form>
-      <div class="form-group">
-        <label for="hardtype">Härtersorte</label>
-        <div class="combobox">
-          <select class="form-control" id="hardtype">
-            <option>BASF 683 flüssig</option>
-          </select>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="row">
-  <div class="form-group">
-    <div class="col-md-12">
-      <label for="htype">Lieferdatum</label>
-      <input type="text"
-             id="htype"
-             class="form-control"
-             [minDate]="minDate"
-             [maxDate]="maxDate"
-             #dp="bsDatepicker"
-             bsDatepicker [(bsValue)]="bsValue">
     </div>
   </div>
 </div>
 
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="gluedate">Lieferdatum</label>
+      <input type="text"
+             id="gluedate"
+             class="form-control"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             #dp="bsDatepicker"
+             bsDatepicker [(bsValue)]="glulamModel.glueData.glueDeliveryDate">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="hardenertype">Härtersorte</label>
+      <div class="combobox">
+        <select class="form-control" id="hardenertype" [(ngModel)]="glulamModel.glueData.hardenerType">
+          <option *ngFor="let item of glulamModel.hardenerTypes" [ngValue]="item.id"
+                  [selected]="glulamModel.glueData.hardenerType">{{item.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    <div class="col-md-12">
+      <label for="hardenerdate">Lieferdatum</label>
+      <input type="text"
+             id="hardenerdate"
+             class="form-control"
+             [minDate]="minDate"
+             [maxDate]="maxDate"
+             #dp="bsDatepicker"
+             bsDatepicker [(bsValue)]="glulamModel.glueData.hardenerDeliveryDate">
+    </div>
+  </div>
+</div>
+
+<app-order-nav-buttons [forward]="'/details'" [back]="'/pressdata'"></app-order-nav-buttons>
