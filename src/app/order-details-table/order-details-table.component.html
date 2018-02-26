@@ -19,7 +19,8 @@
         </div>
       </li>
       <li class="list-items-row" *ngFor="let row of rows">
-        <div data-toggle="collapse" data-parent="#accordion" aria-expanded="false" [attr.data-target]="'#detail-line-' + row.id">
+        <div data-toggle="collapse" data-parent="#accordion" aria-expanded="false"
+             [attr.data-target]="'#detail-line-' + row.id">
           <div class="row">
             <div class="col-md-3">
               0
@@ -43,36 +44,34 @@
               0.00
             </div>
           </div>
+        </div>
 
-          <div class="collapse" id="detail-line-{{row.id}}">
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-24">
-                  <label for="stk">Stück</label>
-                  <input type="text" class="form-control" id="stk" placeholder="8.5">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-24">
-                  <label for="height">Höhe</label>
-                  <input type="email" class="form-control" id="height" placeholder="8.5">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-24">
-                  <label for="length">Länge</label>
-                  <input type="email" class="form-control" id="length" placeholder="8.5">
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-24">
-                  <button class="btn btn-primary">Ok</button>
-                </div>
+        <div class="collapse" id="detail-line-{{row.id}}">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-24">
+                <label for="stk">Stück</label>
+                <input type="text" class="form-control" id="stk" placeholder="8.5">
               </div>
             </div>
-
+            <div class="row">
+              <div class="col-md-24">
+                <label for="height">Höhe</label>
+                <input type="email" class="form-control" id="height" placeholder="8.5">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-24">
+                <label for="length">Länge</label>
+                <input type="email" class="form-control" id="length" placeholder="8.5">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-24">
+                <button class="btn btn-primary">Ok</button>
+              </div>
+            </div>
           </div>
-
         </div>
 
       </li>
@@ -80,8 +79,8 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-24">
+<div class="row text-right">
+  <div class="col-md-20">
     <button (click)="addRow()" class="btn btn-default"><span class="glyph glyph-add"></span></button>
   </div>
 </div>
