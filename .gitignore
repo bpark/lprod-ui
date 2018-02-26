@@ -5,6 +5,7 @@
 /dist-server
 /tmp
 /out-tsc
+/lprod-ui-win32-x64
 
 # dependencies
 /node_modules
