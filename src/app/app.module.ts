@@ -17,15 +17,47 @@ import {OrderDetailsTableComponent} from './order-details-table/order-details-ta
 import {GlulamOrderService} from './model/glulam-order.service';
 import { OrderNavButtonsComponent } from './order-nav-buttons/order-nav-buttons.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 
 const appRoutes: Routes = [
-  {path: 'glue', component: OrderGlueComponent},
-  {path: 'pressdata', component: OrderPressDataComponent},
-  {path: 'details', component: OrderDetailsComponent},
-  {path: 'detailstbl', component: OrderDetailsTableComponent},
-  {path: 'summary', component: OrderSummaryComponent},
-  {path: '**', component: OrderPressDataComponent}
+  /*{
+    path: 'glue',
+    component: OrderGlueComponent
+  },
+  {
+    path: 'pressdata',
+    component: OrderPressDataComponent
+  },
+  {
+    path: 'details',
+    component: OrderDetailsComponent
+  },
+  {
+    path: 'detailstbl',
+    component: OrderDetailsTableComponent
+  },
+  {
+    path: 'summary',
+    component: OrderSummaryComponent
+  },*/
+  {
+    path: '',
+    component: OrderListComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'orders/:orderId',
+    component: OrderScreenComponent,
+    children: [
+      {path: '', redirectTo: 'pressdata', pathMatch: 'full'},
+      {path: 'glue', component: OrderGlueComponent},
+      {path: 'pressdata', component: OrderPressDataComponent},
+      {path: 'details', component: OrderDetailsComponent},
+      {path: 'detailstbl', component: OrderDetailsTableComponent},
+      {path: 'summary', component: OrderSummaryComponent}
+    ]
+  }
 ];
 
 @NgModule({
@@ -40,7 +72,8 @@ const appRoutes: Routes = [
     OrderDetailsComponent,
     OrderDetailsTableComponent,
     OrderNavButtonsComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    OrderListComponent
   ],
   imports: [
     RouterModule.forRoot(
