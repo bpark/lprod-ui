@@ -1,3 +1,9 @@
 .container-fluid {
   padding-left: 0;
+  padding-right: 0;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
 }

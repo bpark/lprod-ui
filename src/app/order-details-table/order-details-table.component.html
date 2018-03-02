@@ -1,88 +1,122 @@
 <div class="row">
-  <div class="col-md-12">
-    <h2>Leimbinderdaten</h2>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-md-20">
-    <ol class="list-items" id="accordion">
-      <li class="list-items-row">
-        <div class="row text-t9">
-          <div class="col-md-3">Stück</div>
-          <div class="col-md-3">Höhe</div>
-          <div class="col-md-3">Länge</div>
-          <div class="col-md-4">Lamellen</div>
-          <div class="col-md-3">Fläche</div>
-          <div class="col-md-4">Fläche ges.</div>
-          <div class="col-md-4">Vol MQ</div>
-        </div>
-      </li>
-      <li class="list-items-row" *ngFor="let row of rows">
-        <div data-toggle="collapse" data-parent="#accordion" aria-expanded="false"
-             [attr.data-target]="'#detail-line-' + row.id">
-          <div class="row">
-            <div class="col-md-3">
-              0
+  <div class="col-md-24">
+    <div class="row">
+      <div class="col-md-24 nopadding">
+        <nav class="navbar navbar-inverse">
+          <div class="navbar-global theme-default">
+            <div class="container-fluid">
+              <ul class="nav navbar-nav">
+                <li><a [routerLink]="" #addRowItem (click)="addRow()"><span class="glyph glyph-expand"></span> Hinzufügen</a>
+                </li>
+                <li><a [routerLink]="" #removeRowItem (click)="removeRow()"><span class="glyph glyph-delete"></span> Löschen</a>
+                </li>
+              </ul>
             </div>
-            <div class="col-md-3">
-              0.00
-            </div>
-            <div class="col-md-3">
-              0.00
-            </div>
-            <div class="col-md-4">
-              0
-            </div>
-            <div class="col-md-3">
-              0.00
-            </div>
-            <div class="col-md-4">
-              0.00
-            </div>
-            <div class="col-md-4">
-              0.00
-            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-14">
+
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Leimbinderdaten</h2>
           </div>
         </div>
 
-        <div class="collapse" id="detail-line-{{row.id}}">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-md-24">
-                <label for="stk">Stück</label>
-                <input type="text" class="form-control" id="stk" placeholder="8.5">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-24">
-                <label for="height">Höhe</label>
-                <input type="email" class="form-control" id="height" placeholder="8.5">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-24">
-                <label for="length">Länge</label>
-                <input type="email" class="form-control" id="length" placeholder="8.5">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-24">
-                <button class="btn btn-primary">Ok</button>
-              </div>
-            </div>
+        <div class="row">
+          <div class="col-md-20">
+            <ol class="list-items" id="accordion">
+              <li class="list-items-row">
+                <div class="row text-t9">
+                  <div class="col-md-3">Stück</div>
+                  <div class="col-md-3">Höhe</div>
+                  <div class="col-md-3">Länge</div>
+                  <div class="col-md-4">Lamellen</div>
+                  <div class="col-md-3">Fläche</div>
+                  <div class="col-md-4">Fläche ges.</div>
+                  <div class="col-md-4">Vol MQ</div>
+                </div>
+              </li>
+              <li class="list-items-row" *ngFor="let row of rows">
+                <div data-toggle="collapse" data-parent="#accordion" aria-expanded="false"
+                     [attr.data-target]="'#detail-line-' + row.id">
+                  <div class="row">
+                    <div class="col-md-3">
+                      0
+                    </div>
+                    <div class="col-md-3">
+                      0.00
+                    </div>
+                    <div class="col-md-3">
+                      0.00
+                    </div>
+                    <div class="col-md-4">
+                      0
+                    </div>
+                    <div class="col-md-3">
+                      0.00
+                    </div>
+                    <div class="col-md-4">
+                      0.00
+                    </div>
+                    <div class="col-md-4">
+                      0.00
+                    </div>
+                  </div>
+                </div>
+
+                <div class="collapse" id="detail-line-{{row.id}}">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-24">
+                        <label for="stk">Stück</label>
+                        <input type="text" class="form-control" id="stk" placeholder="8.5">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-24">
+                        <label for="height">Höhe</label>
+                        <input type="email" class="form-control" id="height" placeholder="8.5">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-24">
+                        <label for="length">Länge</label>
+                        <input type="email" class="form-control" id="length" placeholder="8.5">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-24">
+                        <button class="btn btn-primary">Ok</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </li>
+            </ol>
           </div>
         </div>
 
-      </li>
-    </ol>
+        <div class="row text-right">
+          <div class="col-md-20">
+            <button (click)="addRow()" class="btn btn-default"><span class="glyph glyph-add"></span></button>
+          </div>
+        </div>
+
+        <app-order-nav-buttons [back]="'../details'" [forwardDisabled]="true"></app-order-nav-buttons>
+
+      </div>
+
+      <div class="col-md-10">
+        <app-order-result></app-order-result>
+      </div>
+
+    </div>
   </div>
 </div>
-
-<div class="row text-right">
-  <div class="col-md-20">
-    <button (click)="addRow()" class="btn btn-default"><span class="glyph glyph-add"></span></button>
-  </div>
-</div>
-
-<app-order-nav-buttons [back]="'../details'" [forwardDisabled]="true"></app-order-nav-buttons>

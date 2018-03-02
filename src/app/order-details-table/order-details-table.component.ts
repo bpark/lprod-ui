@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {GlulamDetail, GlulamModel} from '../model/glulam.model';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {GlulamDetail} from '../model/glulam.model';
 
 @Component({
   selector: 'app-order-details-table',
@@ -10,6 +10,9 @@ export class OrderDetailsTableComponent implements OnInit {
 
   rows: GlulamDetail[] = [{id: 1}, {id: 2}];
 
+  @ViewChild('addRowItem') addRowItem;
+  @ViewChild('removeRowItem') removeRowItem;
+
   constructor() { }
 
   ngOnInit() {
@@ -18,6 +21,12 @@ export class OrderDetailsTableComponent implements OnInit {
   addRow() {
     const len = this.rows.length;
     this.rows.push({id: len + 1});
+
+    this.addRowItem.nativeElement.blur();
+  }
+
+  removeRow() {
+    this.removeRowItem.nativeElement.blur();
   }
 
 }
