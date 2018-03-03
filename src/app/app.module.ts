@@ -18,6 +18,7 @@ import {GlulamOrderService} from './model/glulam-order.service';
 import { OrderNavButtonsComponent } from './order-nav-buttons/order-nav-buttons.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 const appRoutes: Routes = [
@@ -82,6 +83,7 @@ const appRoutes: Routes = [
     ),
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot()
   ],

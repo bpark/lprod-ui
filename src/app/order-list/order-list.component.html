@@ -1,5 +1,84 @@
-<p>
-  order-list works!
-</p>
-<a [routerLink]="'/orders/123'">Overview</a>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-24 nopadding">
+          <nav class="navbar navbar-inverse">
+            <div class="navbar-global theme-default">
+              <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-24">
+          <app-side-nav [sideNavModel]="sideNavModel"></app-side-nav>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-19">
+      <div class="row">
+        <nav class="navbar navbar-inverse">
+          <div class="navbar-global theme-default">
+            <div class="container-fluid">
+              <ul class="nav navbar-nav">
+                <li><a [routerLink]="" #newItem><span class="glyph glyph-expand"></span> Neuer Auftrag</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="row">
+        <div class="col-md-20">
+
+          <div *ngIf="errors" class="alert alert-danger" role="alert">
+            <strong>Fehler!</strong> Produktionsdaten konnten nicht geladen werden!
+          </div>
+
+          <ol class="list-items" *ngIf="gluelamItems">
+            <li class="list-items-row">
+              <div class="row text-t9">
+                <div class="col-md-6">Datum</div>
+                <div class="col-md-12">Kunde</div>
+                <div class="col-md-6">Bauteilnummer</div>
+              </div>
+            </li>
+            <li class="list-items-row" *ngFor="let item of gluelamItems; let i = index">
+              <div data-toggle="collapse" aria-expanded="false" [attr.data-target]="'#list-item-line-' + i">
+                <div class="row">
+                  <div class="col-md-6">
+                    {{item.date}}
+                  </div>
+                  <div class="col-md-12">
+                    {{item.customer}}
+                  </div>
+                  <div class="col-md-6">
+                    {{item.elementNumber}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="collapse" [attr.id]="'list-item-line-' + i">
+                <div class="row">
+                  <div class="col-md-20 col-md-offset-2">
+                    <div class="btn-group">
+                        <a [routerLink]="'/orders/123'" role="button" class="btn btn-primary">Ändern</a>
+                        <button class="btn btn-danger">Löschen</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 

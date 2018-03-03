@@ -19,6 +19,13 @@ export class GlulamDetail {
   volume = 0;
 }
 
+export interface Gluelam {
+  id: number;
+  date: Date;
+  customer: string;
+  elementNumber: string;
+}
+
 export class GlulamModel {
   quality: EnumType[] = [{id: 0, name: 'GL24h'}, {id: 1, name: 'GL28h'}, {id: 2, name: 'GL28c'}];
   pressTypes: EnumType[] = [{id: 0, name: '24m'}, {id: 1, name: '16m'}];
