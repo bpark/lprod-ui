@@ -1,8 +1,6 @@
 <div class="row">
-  <div class="col-md-6 text-left">
-    <a routerLink="{{ back }}" class="btn btn-secondary" [attr.disabled]="backDisabled"><span class="glyph glyph-arrow-left"></span></a>
-  </div>
-  <div class="col-md-6 text-left">
-    <a routerLink="{{ forward }}" class="btn btn-primary" [attr.disabled]="forwardDisabled"><span class="glyph glyph-arrow-right"></span></a>
+  <div class="col-md-10 btn-group">
+    <a role="button" routerLink="{{ back }}" class="btn btn-secondary" [attr.disabled]="backDisabled"><span class="glyph glyph-arrow-left"></span></a>
+    <a role="button" routerLink="{{ forward }}" class="btn btn-primary" [attr.disabled]="forwardDisabled"><span class="glyph glyph-arrow-right"></span></a>
   </div>
 </div>

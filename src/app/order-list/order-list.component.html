@@ -40,43 +40,47 @@
             <strong>Fehler!</strong> Produktionsdaten konnten nicht geladen werden!
           </div>
 
-          <app-paginator [count]="23" [page]="1" [perPage]="10" [pagesToShow]="3"></app-paginator>
+          <div *ngIf="gluelamList">
 
-          <ol class="list-items" *ngIf="gluelamItems">
-            <li class="list-items-row">
-              <div class="row text-t9">
-                <div class="col-md-6">Datum</div>
-                <div class="col-md-12">Kunde</div>
-                <div class="col-md-6">Bauteilnummer</div>
-              </div>
-            </li>
-            <li class="list-items-row" *ngFor="let item of gluelamItems; let i = index">
-              <div data-toggle="collapse" aria-expanded="false" [attr.data-target]="'#list-item-line-' + i">
-                <div class="row">
-                  <div class="col-md-6">
-                    {{item.date}}
-                  </div>
-                  <div class="col-md-12">
-                    {{item.customer}}
-                  </div>
-                  <div class="col-md-6">
-                    {{item.elementNumber}}
-                  </div>
+            <app-paginator [count]="gluelamList.totalCount" [page]="page" [perPage]="10" (goNext)="onNext()"
+                           (goPrev)="onPrev()" (goPage)="goToPage($event)"></app-paginator>
+
+            <ol class="list-items">
+              <li class="list-items-row">
+                <div class="row text-t9">
+                  <div class="col-md-6">Datum</div>
+                  <div class="col-md-12">Kunde</div>
+                  <div class="col-md-6">Bauteilnummer</div>
                 </div>
-              </div>
-
-              <div class="collapse" [attr.id]="'list-item-line-' + i">
-                <div class="row">
-                  <div class="col-md-20 col-md-offset-2">
-                    <div class="btn-group">
-                        <a [routerLink]="'/orders/123'" role="button" class="btn btn-primary">Ändern</a>
-                        <button class="btn btn-danger">Löschen</button>
+              </li>
+              <li class="list-items-row" *ngFor="let item of gluelamList.items; let i = index">
+                <div data-toggle="collapse" aria-expanded="false" [attr.data-target]="'#list-item-line-' + i">
+                  <div class="row">
+                    <div class="col-md-6">
+                      {{item.date}}
+                    </div>
+                    <div class="col-md-12">
+                      {{item.customer}}
+                    </div>
+                    <div class="col-md-6">
+                      {{item.elementNumber}}
                     </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          </ol>
+
+                <div class="collapse" [attr.id]="'list-item-line-' + i">
+                  <div class="row">
+                    <div class="col-md-20 col-md-offset-2">
+                      <div class="btn-group">
+                        <a [routerLink]="'/orders/123'" role="button" class="btn btn-primary">Ändern</a>
+                        <button class="btn btn-danger">Löschen</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>

@@ -19,6 +19,11 @@ export class GlulamDetail {
   volume = 0;
 }
 
+export interface GluelamList {
+  totalCount: number;
+  items: Gluelam[];
+}
+
 export interface Gluelam {
   id: number;
   date: Date;

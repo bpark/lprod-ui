@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SideNavModel} from '../side-nav/side-nav-model';
 import {GlulamOrderService} from '../model/glulam-order.service';
-import {Gluelam} from '../model/glulam.model';
+import {Gluelam, GluelamList} from '../model/glulam.model';
 
 @Component({
   selector: 'app-order-list',
@@ -29,20 +29,49 @@ export class OrderListComponent implements OnInit {
       }]
   };
 
-  gluelamItems: Gluelam[];
+  gluelamList: GluelamList;
   errors: boolean;
+  page = 1;
+  totalPages: number;
 
   constructor(private gluelamOrderService: GlulamOrderService) { }
 
   ngOnInit() {
-    this.gluelamOrderService.getGluelamOrders().subscribe(
-      items => {
-        this.gluelamItems = items;
+    this.getMessages(1, 10);
+  }
+
+  getMessages(page: number, pageSize: number): void {
+
+    this.gluelamOrderService.getGluelamOrders(page, pageSize).subscribe(
+      result => {
+        this.gluelamList = result;
+        this.totalPages = Math.floor(result.totalCount / pageSize) + 1;
       },
       error => {
         this.errors = true;
       }
     );
+  }
+
+  public goToPage(n: number): void {
+    this.page = n;
+    this.getMessages(this.page, 10);
+  }
+
+  public onNext(): void {
+    this.page++;
+    if (this.page > this.totalPages) {
+      this.page = this.totalPages;
+    }
+    this.getMessages(this.page, 10);
+  }
+
+  public onPrev(): void {
+    this.page--;
+    if (this.page < 1) {
+      this.page = 1;
+    }
+    this.getMessages(this.page, 10);
   }
 
 }

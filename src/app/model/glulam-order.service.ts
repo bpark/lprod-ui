@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Gluelam, GlulamModel} from './glulam.model';
-import {HttpClient} from '@angular/common/http';
+import {GluelamList, GlulamModel} from './glulam.model';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../environments/environment';
 
@@ -21,8 +21,11 @@ export class GlulamOrderService {
     this.glulamModel = new GlulamModel();
   }
 
-  getGluelamOrders(): Observable<Gluelam[]> {
-    return this.http.get<Gluelam[]>(GlulamOrderService.createConnectionUrl());
+  getGluelamOrders(page: number, pageSize: number): Observable<GluelamList> {
+    const queryParams = new HttpParams();
+    queryParams.set('page', String(page));
+    queryParams.set('pageSize', String(pageSize));
+    return this.http.get<GluelamList>(GlulamOrderService.createConnectionUrl(), {params: queryParams });
   }
 
 }
