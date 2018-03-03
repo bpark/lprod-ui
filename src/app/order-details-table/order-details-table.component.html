@@ -42,30 +42,30 @@
                   <div class="col-md-4">Vol MQ</div>
                 </div>
               </li>
-              <li class="list-items-row" *ngFor="let row of rows">
+              <li class="list-items-row" *ngFor="let row of glulamModel.gluelamDetail">
                 <div data-toggle="collapse" data-parent="#accordion" aria-expanded="false"
                      [attr.data-target]="'#detail-line-' + row.id">
                   <div class="row">
                     <div class="col-md-3">
-                      0
+                      {{row.amount}}
                     </div>
                     <div class="col-md-3">
-                      0.00
+                      {{row.height}}
                     </div>
                     <div class="col-md-3">
-                      0.00
+                      {{row.length}}
                     </div>
                     <div class="col-md-4">
-                      0
+                      {{row.lamella}}
                     </div>
                     <div class="col-md-3">
-                      0.00
+                      {{row.square}}
                     </div>
                     <div class="col-md-4">
-                      0.00
+                      {{row.squareTotal}}
                     </div>
                     <div class="col-md-4">
-                      0.00
+                      {{row.volume}}
                     </div>
                   </div>
                 </div>
@@ -74,25 +74,28 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-24">
-                        <label for="stk">Stück</label>
-                        <input type="text" class="form-control" id="stk" placeholder="8.5">
+                        <label for="amount">Stück</label>
+                        <input type="text" class="form-control" id="amount" placeholder="8"
+                               [(ngModel)]="row.amount">
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-24">
                         <label for="height">Höhe</label>
-                        <input type="email" class="form-control" id="height" placeholder="8.5">
+                        <input type="text" class="form-control" id="height" placeholder="8.5"
+                               [(ngModel)]="row.height">
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-24">
                         <label for="length">Länge</label>
-                        <input type="email" class="form-control" id="length" placeholder="8.5">
+                        <input type="text" class="form-control" id="length" placeholder="8.5"
+                               [(ngModel)]="row.length">
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-24">
-                        <button class="btn btn-primary">Ok</button>
+                        <button class="btn btn-primary" (click)="glulamModel.calculateDetail(row)">Ok</button>
                       </div>
                     </div>
                   </div>

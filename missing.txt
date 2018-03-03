@@ -1,0 +1,3 @@
+- Pressdaten: Bauteilnummer (alphanummerisch)
+- Lammellenstärke gehobelt (dezimal, 1 Nachkommastelle)
+- Leimbinderdaten.Breite voreingaben

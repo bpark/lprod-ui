@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrderStepComponent } from './order-step.component';
+import { SideNavComponent } from './side-nav.component';
 
-describe('OrderStepComponent', () => {
-  let component: OrderStepComponent;
-  let fixture: ComponentFixture<OrderStepComponent>;
+describe('SideNavComponent', () => {
+  let component: SideNavComponent;
+  let fixture: ComponentFixture<SideNavComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderStepComponent ]
+      declarations: [ SideNavComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OrderStepComponent);
+    fixture = TestBed.createComponent(SideNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

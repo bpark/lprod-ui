@@ -1,9 +1,5 @@
-<a class="btn btn-lightweight no-outline navigation-btn">Leimbinder</a>
-<nav role="navigation" id="sidenav" class="nav side-navigation side-navigation-large theme-default">
+<!--<nav role="navigation" id="sidenav" class="nav side-navigation side-navigation-large theme-default">
   <div class="navigation-label p20">Leimbinder</div>
-  <button type="button" class="close" data-dismiss="side-navigation" aria-label="close">
-    <i class="glyph glyph-cancel"></i>
-  </button>
   <ul>
     <a routerLink="./pressdata" routerLinkActive="active" #rla1="routerLinkActive">
       <li ngClass="{{ rla1.isActive ? 'selected' : 'empty'}}"><span class="p20">Pressdaten</span></li>
@@ -20,5 +16,16 @@
     <a routerLink="./summary" routerLinkActive="active" #rla5="routerLinkActive">
       <li ngClass="{{ rla5.isActive ? 'selected' : 'empty'}}"><span class="p20">Übersicht</span></li>
     </a>
+  </ul>
+</nav>-->
+
+<nav role="navigation" id="sidenav" class="nav side-navigation side-navigation-large theme-default">
+  <div class="navigation-label p20">{{sideNavModel.title}}</div>
+  <ul>
+
+    <a *ngFor="let item of sideNavModel.items" routerLink="{{item.link}}" routerLinkActive="active" #rla="routerLinkActive">
+      <li ngClass="{{ rla.isActive ? 'selected' : 'empty'}}"><span class="p20">{{item.label}}</span></li>
+    </a>
+
   </ul>
 </nav>
