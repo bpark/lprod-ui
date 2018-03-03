@@ -40,6 +40,8 @@
             <strong>Fehler!</strong> Produktionsdaten konnten nicht geladen werden!
           </div>
 
+          <app-paginator [count]="23" [page]="1" [perPage]="10" [pagesToShow]="3"></app-paginator>
+
           <ol class="list-items" *ngIf="gluelamItems">
             <li class="list-items-row">
               <div class="row text-t9">

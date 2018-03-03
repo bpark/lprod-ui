@@ -19,6 +19,7 @@ import { OrderNavButtonsComponent } from './order-nav-buttons/order-nav-buttons.
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import {HttpClientModule} from '@angular/common/http';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 
 const appRoutes: Routes = [
@@ -74,7 +75,8 @@ const appRoutes: Routes = [
     OrderDetailsTableComponent,
     OrderNavButtonsComponent,
     OrderSummaryComponent,
-    OrderListComponent
+    OrderListComponent,
+    PaginatorComponent
   ],
   imports: [
     RouterModule.forRoot(
