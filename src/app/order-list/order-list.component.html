@@ -27,6 +27,9 @@
             <div class="container-fluid">
               <ul class="nav navbar-nav">
                 <li><a [routerLink]="" #newItem><span class="glyph glyph-expand"></span> Neuer Auftrag</a>
+                <li><a [routerLink]="'/orders/' + selectedId" #newItem><span class="glyph glyph-edit"></span> Bearbeiten</a>
+                <li><a [routerLink]="'/orders/123'" #newItem><span class="glyph glyph-copy"></span> Kopieren</a>
+                <li><a [routerLink]="'/orders/' + selectedId" #newItem><span class="glyph glyph-delete"></span> Löschen</a>
                 </li>
               </ul>
             </div>
@@ -45,7 +48,25 @@
             <app-paginator [count]="gluelamList.totalCount" [page]="page" [perPage]="pageSize" (goNext)="onNext()"
                            (goPrev)="onPrev()" (goPage)="goToPage($event)"></app-paginator>
 
-            <ol class="list-items">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Datum</th>
+                    <th>Kunde</th>
+                    <th class="text-right">Bauteilnummer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of gluelamList.items; let i = index;" (click)="select(i)" [ngClass]="selectedIndex === i ? 'info' : ''">
+                    <td>{{item.date}}</td>
+                    <td>{{item.customer}}</td>
+                    <td class="text-right">{{item.elementNumber}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+           <!-- <ol class="list-items">
               <li class="list-items-row">
                 <div class="row text-t9">
                   <div class="col-md-6">Datum</div>
@@ -79,7 +100,7 @@
                   </div>
                 </div>
               </li>
-            </ol>
+            </ol>-->
           </div>
         </div>
       </div>

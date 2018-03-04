@@ -34,6 +34,8 @@ export class OrderListComponent implements OnInit {
   page = 1;
   pageSize = 10;
   totalPages: number;
+  selectedIndex = 0;
+  selectedId: number;
 
   constructor(private gluelamOrderService: GlulamOrderService) { }
 
@@ -47,6 +49,7 @@ export class OrderListComponent implements OnInit {
       result => {
         this.gluelamList = result;
         this.totalPages = Math.floor(result.totalCount / pageSize) + 1;
+        this.select(0);
       },
       error => {
         this.errors = true;
@@ -73,6 +76,11 @@ export class OrderListComponent implements OnInit {
       this.page = 1;
     }
     this.getMessages(this.page, this.pageSize);
+  }
+
+  public select(index: number): void {
+    this.selectedIndex = index;
+    this.selectedId = this.gluelamList.items[index].id;
   }
 
 }
