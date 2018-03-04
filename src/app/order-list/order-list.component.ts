@@ -32,12 +32,13 @@ export class OrderListComponent implements OnInit {
   gluelamList: GluelamList;
   errors: boolean;
   page = 1;
+  pageSize = 10;
   totalPages: number;
 
   constructor(private gluelamOrderService: GlulamOrderService) { }
 
   ngOnInit() {
-    this.getMessages(1, 10);
+    this.getMessages(this.page, this.pageSize);
   }
 
   getMessages(page: number, pageSize: number): void {
@@ -55,7 +56,7 @@ export class OrderListComponent implements OnInit {
 
   public goToPage(n: number): void {
     this.page = n;
-    this.getMessages(this.page, 10);
+    this.getMessages(this.page, this.pageSize);
   }
 
   public onNext(): void {
@@ -63,7 +64,7 @@ export class OrderListComponent implements OnInit {
     if (this.page > this.totalPages) {
       this.page = this.totalPages;
     }
-    this.getMessages(this.page, 10);
+    this.getMessages(this.page, this.pageSize);
   }
 
   public onPrev(): void {
@@ -71,7 +72,7 @@ export class OrderListComponent implements OnInit {
     if (this.page < 1) {
       this.page = 1;
     }
-    this.getMessages(this.page, 10);
+    this.getMessages(this.page, this.pageSize);
   }
 
 }

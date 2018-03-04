@@ -42,7 +42,7 @@
 
           <div *ngIf="gluelamList">
 
-            <app-paginator [count]="gluelamList.totalCount" [page]="page" [perPage]="10" (goNext)="onNext()"
+            <app-paginator [count]="gluelamList.totalCount" [page]="page" [perPage]="pageSize" (goNext)="onNext()"
                            (goPrev)="onPrev()" (goPage)="goToPage($event)"></app-paginator>
 
             <ol class="list-items">
