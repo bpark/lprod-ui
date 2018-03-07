@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SideNavModel} from '../side-nav/side-nav-model';
 import {GlulamOrderService} from '../model/glulam-order.service';
-import {Gluelam, GluelamList} from '../model/glulam.model';
+import {GluelamList} from '../model/glulam.model';
 
 @Component({
   selector: 'app-order-list',
@@ -14,18 +14,8 @@ export class OrderListComponent implements OnInit {
     title: 'Produktion',
     items: [{
         id: 1,
-        link: './gluelam',
+        link: '/gluelam',
         label: 'Leimbinder'
-      },
-      {
-        id: 2,
-        link: './bilam',
-        label: 'Bilam'
-      },
-      {
-        id: 3,
-        link: './arc',
-        label: 'Bögen'
       }]
   };
 
@@ -55,6 +45,11 @@ export class OrderListComponent implements OnInit {
         this.errors = true;
       }
     );
+  }
+
+  deleteMessage() {
+    this.gluelamOrderService.deleteGluelamOrder(this.selectedId);
+    this.getMessages(this.page, this.pageSize);
   }
 
   public goToPage(n: number): void {

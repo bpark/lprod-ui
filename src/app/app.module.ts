@@ -43,8 +43,18 @@ const appRoutes: Routes = [
     path: 'summary',
     component: OrderSummaryComponent
   },*/
+  /*{
+    path: '**',
+    component: OrderListComponent,
+    pathMatch: 'full'
+  },*/
   {
     path: '',
+    component: OrderListComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'gluelam',
     component: OrderListComponent,
     pathMatch: 'full'
   },

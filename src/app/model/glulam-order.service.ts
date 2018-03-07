@@ -28,4 +28,9 @@ export class GlulamOrderService {
     return this.http.get<GluelamList>(GlulamOrderService.createConnectionUrl(), {params: queryParams });
   }
 
+  deleteGluelamOrder(id: number): Observable<number> {
+    console.log('deleting item with id: ' + id);
+    return this.http.delete<number>(GlulamOrderService.createConnectionUrl() + id);
+  }
+
 }

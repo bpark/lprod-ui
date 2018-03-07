@@ -29,7 +29,8 @@
                 <li><a [routerLink]="" #newItem><span class="glyph glyph-expand"></span> Neuer Auftrag</a>
                 <li><a [routerLink]="'/orders/' + selectedId" #newItem><span class="glyph glyph-edit"></span> Bearbeiten</a>
                 <li><a [routerLink]="'/orders/123'" #newItem><span class="glyph glyph-copy"></span> Kopieren</a>
-                <li><a [routerLink]="'/orders/' + selectedId" #newItem><span class="glyph glyph-delete"></span> Löschen</a>
+                <li><a [routerLink]="" #newItem (click)="deleteMessage()"><span class="glyph glyph-delete"></span>
+                  Löschen</a>
                 </li>
               </ul>
             </div>
@@ -51,61 +52,28 @@
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
-                  <tr>
-                    <th>Datum</th>
-                    <th>Kunde</th>
-                    <th class="text-right">Bauteilnummer</th>
-                  </tr>
+                <tr>
+                  <th>Datum</th>
+                  <th>Kunde</th>
+                  <th class="text-right">Bauteilnummer</th>
+                </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of gluelamList.items; let i = index;" (click)="select(i)" [ngClass]="selectedIndex === i ? 'info' : ''">
-                    <td>{{item.date}}</td>
-                    <td>{{item.customer}}</td>
-                    <td class="text-right">{{item.elementNumber}}</td>
-                  </tr>
+                <tr *ngFor="let item of gluelamList.items; let i = index;" (click)="select(i)"
+                    [ngClass]="selectedIndex === i ? 'info' : ''">
+                  <td>{{item.date}}</td>
+                  <td>{{item.customer}}</td>
+                  <td class="text-right">{{item.elementNumber}}</td>
+                </tr>
                 </tbody>
               </table>
 
-           <!-- <ol class="list-items">
-              <li class="list-items-row">
-                <div class="row text-t9">
-                  <div class="col-md-6">Datum</div>
-                  <div class="col-md-12">Kunde</div>
-                  <div class="col-md-6">Bauteilnummer</div>
-                </div>
-              </li>
-              <li class="list-items-row" *ngFor="let item of gluelamList.items; let i = index">
-                <div data-toggle="collapse" aria-expanded="false" [attr.data-target]="'#list-item-line-' + i">
-                  <div class="row">
-                    <div class="col-md-6">
-                      {{item.date}}
-                    </div>
-                    <div class="col-md-12">
-                      {{item.customer}}
-                    </div>
-                    <div class="col-md-6">
-                      {{item.elementNumber}}
-                    </div>
-                  </div>
-                </div>
-
-                <div class="collapse" [attr.id]="'list-item-line-' + i">
-                  <div class="row">
-                    <div class="col-md-20 col-md-offset-2">
-                      <div class="btn-group">
-                        <a [routerLink]="'/orders/123'" role="button" class="btn btn-primary">Ändern</a>
-                        <button class="btn btn-danger">Löschen</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ol>-->
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
 </div>
-
-
