@@ -20,6 +20,8 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { ShipmentGlueComponent } from './shipment-glue/shipment-glue.component';
+import {ShipmentsService} from './model/shipments.service';
 
 
 const appRoutes: Routes = [
@@ -59,6 +61,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'shipments-glue',
+    component: ShipmentGlueComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'orders/:orderId',
     component: OrderScreenComponent,
     children: [
@@ -86,7 +93,8 @@ const appRoutes: Routes = [
     OrderNavButtonsComponent,
     OrderSummaryComponent,
     OrderListComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    ShipmentGlueComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -100,7 +108,8 @@ const appRoutes: Routes = [
     BsDatepickerModule.forRoot()
   ],
   providers: [
-    GlulamOrderService
+    GlulamOrderService,
+    ShipmentsService
   ],
   bootstrap: [AppComponent]
 })

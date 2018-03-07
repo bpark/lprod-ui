@@ -26,10 +26,9 @@
           <div class="navbar-global theme-default">
             <div class="container-fluid">
               <ul class="nav navbar-nav">
-                <li><a [routerLink]="" #newItem><span class="glyph glyph-expand"></span> Neuer Auftrag</a>
+                <li><a [routerLink]="" #newItem><span class="glyph glyph-expand"></span> Neue Lieferung</a>
                 <li><a [routerLink]="'/orders/' + selectedId" #newItem><span class="glyph glyph-edit"></span> Bearbeiten</a>
-                <li><a [routerLink]="'/orders/123'" #newItem><span class="glyph glyph-copy"></span> Kopieren</a>
-                <li><a [routerLink]="" #newItem (click)="deleteMessage()"><span class="glyph glyph-delete"></span>
+                <li><a [routerLink]="" #newItem><span class="glyph glyph-delete"></span>
                   Löschen</a>
                 </li>
               </ul>
@@ -39,7 +38,7 @@
       </div>
       <div class="row">
         <div class="col-md-20">
-          <h2>Leimbinder Aufträge</h2>
+          <h2>Leim Lieferungen</h2>
         </div>
       </div>
       <div class="row">
@@ -49,23 +48,27 @@
             <strong>Fehler!</strong> Produktionsdaten konnten nicht geladen werden!
           </div>
 
-          <div *ngIf="gluelamList">
+          <div *ngIf="shipmentsList">
 
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
                 <tr>
-                  <th>Datum</th>
-                  <th>Kunde</th>
-                  <th class="text-right">Bauteilnummer</th>
+                  <th>Lieferdatum</th>
+                  <th>Sorte</th>
+                  <th class="text-right">Auswählbar</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let item of gluelamList.items; let i = index;" (click)="select(i)"
+                <tr *ngFor="let item of shipmentsList.items; let i = index;" (click)="select(i)"
                     [ngClass]="selectedIndex === i ? 'info' : ''">
                   <td>{{item.date}}</td>
-                  <td>{{item.customer}}</td>
-                  <td class="text-right">{{item.elementNumber}}</td>
+                  <td>{{item.name}}</td>
+                  <td class="text-right">
+                    <button type="button" data-toggle="button" class="btn btn-toggle-switch"
+                            [ngClass]="item.selectable ? 'active' : ''" [attr.aria-pressed]="item.selectable">
+                    </button>
+                  </td>
                 </tr>
                 </tbody>
               </table>
@@ -73,8 +76,9 @@
             </div>
 
             <div class="text-right">
-              <app-paginator [count]="gluelamList.totalCount" [page]="page" [perPage]="pageSize" (goNext)="onNext()"
+              <app-paginator [count]="shipmentsList.totalCount" [page]="page" [perPage]="pageSize" (goNext)="onNext()"
                              (goPrev)="onPrev()" (goPage)="goToPage($event)"></app-paginator>
+
             </div>
 
           </div>
