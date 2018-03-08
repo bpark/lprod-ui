@@ -12,7 +12,7 @@ import {OrderResultComponent} from './order-result/order-result.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {OrderGlueComponent} from './order-glue/order-glue.component';
 import {OrderDetailsComponent} from './order-details/order-details.component';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes, UrlSegment} from '@angular/router';
 import {OrderDetailsTableComponent} from './order-details-table/order-details-table.component';
 import {GlulamOrderService} from './model/glulam-order.service';
 import { OrderNavButtonsComponent } from './order-nav-buttons/order-nav-buttons.component';
@@ -61,7 +61,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'shipments-glue',
+    path: 'shipments',
     component: ShipmentGlueComponent,
     pathMatch: 'full'
   },

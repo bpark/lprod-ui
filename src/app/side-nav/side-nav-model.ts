@@ -7,4 +7,5 @@ export interface SideNavItem {
   id: number;
   link: string;
   label: string;
+  queryParams?: any;
 }

@@ -1,29 +1,8 @@
-<!--<nav role="navigation" id="sidenav" class="nav side-navigation side-navigation-large theme-default">
-  <div class="navigation-label p20">Leimbinder</div>
-  <ul>
-    <a routerLink="./pressdata" routerLinkActive="active" #rla1="routerLinkActive">
-      <li ngClass="{{ rla1.isActive ? 'selected' : 'empty'}}"><span class="p20">Pressdaten</span></li>
-    </a>
-    <a routerLink="./glue" routerLinkActive="active" #rla2="routerLinkActive">
-      <li ngClass="{{ rla2.isActive ? 'selected' : 'empty'}}"><span class="p20">Leim/Härter</span></li>
-    </a>
-    <a routerLink="./details" routerLinkActive="active" #rla3="routerLinkActive">
-      <li ngClass="{{ rla3.isActive ? 'selected' : 'empty'}}"><span class="p20">Leimbinderdaten</span></li>
-    </a>
-    <a routerLink="./detailstbl" routerLinkActive="active" #rla4="routerLinkActive">
-      <li ngClass="{{ rla4.isActive ? 'selected' : 'empty'}}"><span class="p20">Details</span></li>
-    </a>
-    <a routerLink="./summary" routerLinkActive="active" #rla5="routerLinkActive">
-      <li ngClass="{{ rla5.isActive ? 'selected' : 'empty'}}"><span class="p20">Übersicht</span></li>
-    </a>
-  </ul>
-</nav>-->
-
 <nav role="navigation" id="sidenav" class="nav side-navigation side-navigation-large theme-default">
   <div class="navigation-label p20">{{sideNavModel.title}}</div>
   <ul>
 
-    <a *ngFor="let item of sideNavModel.items" routerLink="{{item.link}}" routerLinkActive="active" #rla="routerLinkActive">
+    <a *ngFor="let item of sideNavModel.items" [routerLink]="item.link" [queryParams]="item.queryParams" routerLinkActive="active" #rla="routerLinkActive">
       <li ngClass="{{ rla.isActive ? 'selected' : 'empty'}}"><span class="p20">{{item.label}}</span></li>
     </a>
 

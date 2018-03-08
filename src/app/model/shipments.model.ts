@@ -9,3 +9,7 @@ export interface ShipmentsList {
   totalCount: number;
   items: Shipment[];
 }
+
+export enum ShipmentType {
+  glue, hardener
+}

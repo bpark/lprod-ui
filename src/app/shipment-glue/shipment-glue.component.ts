@@ -1,24 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SideNavModel} from '../side-nav/side-nav-model';
 import {ShipmentsService} from '../model/shipments.service';
-import {ShipmentsList} from '../model/shipments.model';
+import {ShipmentsList, ShipmentType} from '../model/shipments.model';
+import {ActivatedRoute} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-shipment-glue',
   templateUrl: './shipment-glue.component.html',
   styleUrls: ['./shipment-glue.component.css']
 })
-export class ShipmentGlueComponent implements OnInit {
+export class ShipmentGlueComponent implements OnInit, OnDestroy {
 
   sideNavModel: SideNavModel = {
     title: 'Lieferungen',
     items: [{
       id: 1,
-      link: '/shipments-glue',
+      link: '/shipments',
+      queryParams: {
+          type: 'glue'
+      },
       label: 'Leim'
     }, {
       id: 2,
-      link: '/hardener',
+      link: '/shipments',
+      queryParams: {
+        type: 'hardener'
+      },
       label: 'Härter'
     }]
   };
@@ -30,16 +38,27 @@ export class ShipmentGlueComponent implements OnInit {
   selectedIndex = 0;
   selectedId: number;
   shipmentsList: ShipmentsList;
+  subscription: Subscription;
+  shipmentType: ShipmentType;
 
-  constructor(private shipmentsService: ShipmentsService) { }
+
+  constructor(private route: ActivatedRoute,
+              private shipmentsService: ShipmentsService) { }
 
   ngOnInit() {
-    this.getMessages(this.page, this.pageSize);
+    this.subscription = this.route.queryParams.subscribe(params => {
+      this.shipmentType = params['type'];
+      this.getMessages(this.page, this.pageSize);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   getMessages(page: number, pageSize: number): void {
 
-    this.shipmentsService.getShipments(page, pageSize).subscribe(
+    this.shipmentsService.getShipments(page, pageSize, this.shipmentType).subscribe(
       result => {
         this.shipmentsList = result;
         this.totalPages = Math.floor(result.totalCount / pageSize) + 1;
