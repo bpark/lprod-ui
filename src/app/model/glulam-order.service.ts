@@ -9,16 +9,23 @@ export class GlulamOrderService {
 
   glulamModel: GlulamModel;
 
-  private static createConnectionUrl(): string {
+  private static createConnectionUrl(id?: number): string {
     if (environment.production) {
-      return 'api/sftp/connections/';
+      if (id) {
+        return 'api/orders/' + id;
+      } else {
+        return 'api/orders';
+      }
     } else {
-      return 'assets/gluelams.json';
+      if (id) {
+        return 'assets/singleorder.json';
+      } else {
+        return 'assets/gluelams.json';
+      }
     }
   }
 
   constructor(private http: HttpClient) {
-    this.glulamModel = new GlulamModel();
   }
 
   getGluelamOrders(page: number, pageSize: number): Observable<GluelamList> {
@@ -28,9 +35,14 @@ export class GlulamOrderService {
     return this.http.get<GluelamList>(GlulamOrderService.createConnectionUrl(), {params: queryParams });
   }
 
+  getGluelamOrder(id: number): Observable<GlulamModel> {
+    // return this.http.get<GlulamModel>(GlulamOrderService.createConnectionUrl() + '/' + id);
+    return this.http.get<GlulamModel>(GlulamOrderService.createConnectionUrl(id));
+  }
+
   deleteGluelamOrder(id: number): Observable<number> {
     console.log('deleting item with id: ' + id);
-    return this.http.delete<number>(GlulamOrderService.createConnectionUrl() + id);
+    return this.http.delete<number>(GlulamOrderService.createConnectionUrl(id));
   }
 
 }

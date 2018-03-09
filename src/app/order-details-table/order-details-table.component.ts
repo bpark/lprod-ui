@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GlulamDetail, GlulamModel} from '../model/glulam.model';
 import {GlulamOrderService} from '../model/glulam-order.service';
+import {GluelamCalculatorService} from '../model/gluelam-calculator.service';
 
 @Component({
   selector: 'app-order-details-table',
@@ -14,7 +15,8 @@ export class OrderDetailsTableComponent implements OnInit {
 
   glulamModel: GlulamModel;
 
-  constructor(private glulamOrderService: GlulamOrderService) { }
+  constructor(private glulamOrderService: GlulamOrderService,
+              private gluelamCalculatorService: GluelamCalculatorService) { }
 
   ngOnInit() {
     this.glulamModel = this.glulamOrderService.glulamModel;
@@ -30,6 +32,10 @@ export class OrderDetailsTableComponent implements OnInit {
 
   removeRow() {
     this.removeRowItem.nativeElement.blur();
+  }
+
+  calculateRow(glulamDetail: GlulamDetail) {
+    this.gluelamCalculatorService.calculateDetail(glulamDetail, this.glulamModel);
   }
 
 }

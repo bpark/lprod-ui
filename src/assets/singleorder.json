@@ -1,0 +1,45 @@
+{
+  "pressData": {
+    "date": "2018-02-12",
+    "customer": "Test Kunde",
+    "elementNumber": "12Z3",
+    "laminationStrength": 33.6,
+    "coverLamination": 0,
+    "press": 0,
+    "woodType": 0
+  },
+  "glueData": {
+    "glueType": 0,
+    "glueDeliveryDate": "2018-02-12",
+    "hardenerType": 0,
+    "hardenerDeliveryDate": "2018-02-12"
+  },
+  "gluelamData": {
+    "width": 8.5,
+    "additionalLength": 10.00,
+    "glueAmount": 380.00,
+    "hardenerPercentage": 20.00
+  },
+  "gluelamDetail": [
+    {
+      "id": 1,
+      "amount": 0,
+      "height": 0,
+      "length": 0,
+      "lamella": 0,
+      "square": 0,
+      "squareTotal": 0,
+      "volume": 0
+    },
+    {
+      "id": 2,
+      "amount": 0,
+      "height": 0,
+      "length": 0,
+      "lamella": 0,
+      "square": 0,
+      "squareTotal": 0,
+      "volume": 0
+    }
+  ]
+}

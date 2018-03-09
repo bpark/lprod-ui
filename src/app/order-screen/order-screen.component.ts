@@ -1,13 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SideNavModel} from '../side-nav/side-nav-model';
-import {stringDistance} from 'codelyzer/util/utils';
+import {ActivatedRoute} from '@angular/router';
+import {GlulamOrderService} from '../model/glulam-order.service';
+import {Subscription} from 'rxjs/Subscription';
+import {GlulamModel} from '../model/glulam.model';
+import {GluelamCalculatorService} from '../model/gluelam-calculator.service';
 
 @Component({
   selector: 'app-order-screen',
   templateUrl: './order-screen.component.html',
-  styleUrls: ['./order-screen.component.css']
+  styleUrls: ['./order-screen.component.css'],
+  providers: [
+    GluelamCalculatorService
+  ]
 })
-export class OrderScreenComponent implements OnInit {
+export class OrderScreenComponent implements OnInit, OnDestroy {
 
   sideNavModel: SideNavModel = {
     title: 'Leimbinder',
@@ -38,10 +45,42 @@ export class OrderScreenComponent implements OnInit {
       }]
   };
 
-  constructor() {
+  routeSubscription: Subscription;
+  orderSubscription: Subscription;
+  glulamModel: GlulamModel;
+
+  constructor(private route: ActivatedRoute,
+              private gluelamOrderService: GlulamOrderService) {
   }
 
   ngOnInit() {
+    this.routeSubscription = this.route.params.subscribe(params => {
+      const orderId = params['orderId'];
+      console.log('orderid is ' + orderId);
+      if (orderId === 'new') {
+        this.glulamModel = new GlulamModel();
+        this.gluelamOrderService.glulamModel = this.glulamModel;
+        console.log('model created');
+      } else {
+        this.orderSubscription = this.gluelamOrderService.getGluelamOrder(orderId).subscribe(
+          result => {
+            this.glulamModel = result;
+            this.gluelamOrderService.glulamModel = this.glulamModel;
+            console.log('model loaded');
+          },
+          error => {
+            console.log('error');
+          }
+        );
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
+    if (this.orderSubscription) {
+      this.orderSubscription.unsubscribe();
+    }
   }
 
 }

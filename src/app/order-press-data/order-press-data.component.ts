@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GlulamOrderService} from '../model/glulam-order.service';
 import {GlulamModel} from '../model/glulam.model';
+import {GluelamCalculatorService} from '../model/gluelam-calculator.service';
 
 @Component({
   selector: 'app-order-press-data',
@@ -14,10 +15,14 @@ export class OrderPressDataComponent implements OnInit {
 
   glulamModel: GlulamModel;
 
-  constructor(private glulamOrderService: GlulamOrderService) { }
+  constructor(private glulamOrderService: GlulamOrderService,
+              private gluelamCalculatorService: GluelamCalculatorService) { }
 
   ngOnInit() {
     this.glulamModel = this.glulamOrderService.glulamModel;
   }
 
+  calculate() {
+    this.gluelamCalculatorService.calculate(this.glulamModel);
+  }
 }

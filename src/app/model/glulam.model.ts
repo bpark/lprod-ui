@@ -1,7 +1,7 @@
 export class CalculationParameters {
-  maxPressHeight = 2100; // mm
-  additionalWidth = 1; // cm
-  additionalLength = 1; // cm
+  static maxPressHeight = 2100; // mm
+  static additionalWidth = 1; // cm
+  static additionalLength = 1; // cm
 }
 
 export class CalculationResult {
@@ -41,21 +41,6 @@ export class GlulamModel {
   glueData: GlueData = new GlueData();
   gluelamData: GluelamData = new GluelamData();
   gluelamDetail: GlulamDetail[] = [];
-
-  calculationResult: CalculationResult = new CalculationResult();
-  calculationParameters: CalculationParameters = new CalculationParameters();
-
-  calculate() {
-    this.calculationResult.lamination = Math.floor(this.calculationParameters.maxPressHeight / this.pressData.laminationStrength);
-  }
-
-  calculateDetail(detail: GlulamDetail) {
-    const singleLamella = Math.round(detail.height * 10 / this.pressData.laminationStrength);
-    detail.lamella = singleLamella * detail.amount;
-    /*detail.square = (this.gluelamData.width + this.calculationParameters.additionalWidth) *
-      (detail.length + this.gluelamData.additionalLenght) */
-    this.calculationResult.lamination -= detail.lamella;  // TODO: error if negative
-  }
 }
 
 export class PressData {
@@ -77,7 +62,7 @@ export class GlueData {
 
 export class GluelamData {
   width = 8.5;
-  additionalLenght = 10.00;
+  additionalLength = 10.00;
   glueAmount = 380.00;
   hardenerPercentage = 20.00;
 }
