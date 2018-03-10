@@ -22,6 +22,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { ShipmentGlueComponent } from './shipment-glue/shipment-glue.component';
 import {ShipmentsService} from './model/shipments.service';
+import { ShipmentEditComponent } from './shipment-edit/shipment-edit.component';
+import { AlertStackComponent } from './alert-stack/alert-stack.component';
 
 
 const appRoutes: Routes = [
@@ -66,6 +68,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'shipments/:shipmentId',
+    component: ShipmentEditComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'orders/:orderId',
     component: OrderScreenComponent,
     children: [
@@ -94,7 +101,9 @@ const appRoutes: Routes = [
     OrderSummaryComponent,
     OrderListComponent,
     PaginatorComponent,
-    ShipmentGlueComponent
+    ShipmentGlueComponent,
+    ShipmentEditComponent,
+    AlertStackComponent
   ],
   imports: [
     RouterModule.forRoot(

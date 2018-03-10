@@ -26,9 +26,9 @@
           <div class="navbar-global theme-default">
             <div class="container-fluid">
               <ul class="nav navbar-nav">
-                <li><a [routerLink]="" #newItem><span class="glyph glyph-expand"></span> Neue Lieferung</a>
-                <li><a [routerLink]="'/orders/' + selectedId" #newItem><span class="glyph glyph-edit"></span> Bearbeiten</a>
-                <li><a [routerLink]="" #newItem><span class="glyph glyph-delete"></span>
+                <li><a [routerLink]="'/shipments/-1'" [queryParams]="{ type: shipmentType}"><span class="glyph glyph-expand"></span> Neue Lieferung</a>
+                <li><a [routerLink]="'/shipments/' + selectedId" [queryParams]="{ type: shipmentType}"><span class="glyph glyph-edit"></span> Bearbeiten</a>
+                <li><a [routerLink]="" (click)="delete()"><span class="glyph glyph-delete"></span>
                   Löschen</a>
                 </li>
               </ul>
@@ -38,16 +38,14 @@
       </div>
       <div class="row">
         <div class="col-md-20">
-          <h2 *ngIf="shipmentType=='glue'">Leim Lieferungen</h2>
-          <h2 *ngIf="shipmentType=='hardener'">Härter Lieferungen</h2>
+          <h2 *ngIf="shipmentType===ShipmentType.glue">Leim Lieferungen</h2>
+          <h2 *ngIf="shipmentType===ShipmentType.hardener">Härter Lieferungen</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-20">
 
-          <div *ngIf="errors" class="alert alert-danger" role="alert">
-            <strong>Fehler!</strong> Produktionsdaten konnten nicht geladen werden!
-          </div>
+          <app-alert-stack [alertStackModel]="alertStackModel"></app-alert-stack>
 
           <div *ngIf="shipmentsList">
 

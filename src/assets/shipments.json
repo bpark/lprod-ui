@@ -8,13 +8,13 @@
       "selectable": true
     },
     {
-      "id": 1,
+      "id": 2,
       "date": "2012-04-23",
       "name": "Leim Typ 2",
       "selectable": true
     },
     {
-      "id": 1,
+      "id": 3,
       "date": "2012-04-23",
       "name": "Leim Typ 3",
       "selectable": false

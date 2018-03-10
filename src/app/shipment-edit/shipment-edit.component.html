@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-24 nopadding">
+          <nav class="navbar navbar-inverse">
+            <div class="navbar-global theme-default">
+              <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-24">
+          <app-side-nav [sideNavModel]="sideNavModel"></app-side-nav>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-19">
+      <div class="row">
+        <nav class="navbar navbar-inverse">
+          <div class="navbar-global theme-default">
+            <div class="container-fluid">
+              <ul class="nav navbar-nav">
+                <li><a [routerLink]="" (click)="save()"><span class="glyph glyph-expand"></span> Speichern</a></li>
+                <li><a [routerLink]="'/shipments/'" [queryParams]="{ type: shipmentType}"><span class="glyph glyph-expand"></span> Abbrechen</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+     <app-alert-stack [alertStackModel]="alertStackModel"></app-alert-stack>
+
+      <div class="row">
+        <div class="col-md-20">
+          <h2>Leim Lieferung</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-12">
+            <label for="pressdate">Datum</label>
+            <input id="pressdate"
+                   type="text"
+                   class="form-control"
+                   [minDate]="minDate"
+                   [maxDate]="maxDate"
+                   #dp="bsDatepicker"
+                   bsDatepicker [(bsValue)]="shipment.date">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-12">
+            <label for="type">Sorte</label>
+            <input type="text" class="form-control" id="type" placeholder="Sorte"
+                   [(ngModel)]="shipment.name">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-12">
+            <label for="selectable">Auswählbar</label>
+            <div class="btn-group">
+              <button [ngClass]="shipment.selectable ? 'active' : ''" id="selectable" type="button" data-toggle="button" class="btn btn-toggle-switch"
+                      aria-pressed="false">
+                <span *ngIf='shipment.selectable' class="stateLabel stateLabel-on">An</span>
+                <span *ngIf='!shipment.selectable' class="stateLabel stateLabel-off">Aus</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

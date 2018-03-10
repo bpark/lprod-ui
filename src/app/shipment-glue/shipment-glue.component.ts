@@ -4,6 +4,7 @@ import {ShipmentsService} from '../model/shipments.service';
 import {ShipmentsList, ShipmentType} from '../model/shipments.model';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
+import {AlertStackModel} from '../alert-stack/alert-stack.model';
 
 @Component({
   selector: 'app-shipment-glue',
@@ -31,7 +32,9 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
     }]
   };
 
-  errors: boolean;
+  ShipmentType = ShipmentType;
+
+  alertStackModel: AlertStackModel;
   page = 1;
   pageSize = 10;
   totalPages: number;
@@ -56,6 +59,21 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  delete(): void {
+    this.subscription.add(this.shipmentsService.deleteShipment(this.selectedId).subscribe(
+      result => {
+        if (result.ok) {
+          this.getMessages(this.page, this.pageSize);
+        } else {
+          this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gelöscht werden!');
+        }
+      },
+      error => {
+        this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gelöscht werden!');
+      }
+    ));
+  }
+
   getMessages(page: number, pageSize: number): void {
 
     this.shipmentsService.getShipments(page, pageSize, this.shipmentType).subscribe(
@@ -65,7 +83,7 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
         this.select(0);
       },
       error => {
-        this.errors = true;
+        this.alertStackModel = AlertStackModel.withDangerMessage('Datensätze konnten nicht geladen werden!');
       }
     );
   }

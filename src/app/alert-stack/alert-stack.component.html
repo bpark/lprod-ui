@@ -1,0 +1,23 @@
+<div *ngIf="alertStackModel" class="row">
+  <div class="col-md-24">
+    <div class="alert-stack">
+
+      <div *ngFor="let message of alertStackModel.alertMessages">
+        <div [ngClass]="'alert alert-dismissible fade in ' + message.alertClass" class="" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="glyph glyph-cancel"></i></span>
+          </button>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-20">
+                <p>{{message.text}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
