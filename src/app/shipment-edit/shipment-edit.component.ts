@@ -38,6 +38,7 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
   requestSubscription: Subscription;
 
   alertStackModel: AlertStackModel;
+  selectable: boolean;
 
   constructor(private shipmentService: ShipmentsService,
               private route: ActivatedRoute,
@@ -55,7 +56,7 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
       if (shipmentId === -1) {
         this.shipment = new Shipment();
         this.shipment.date = new Date();
-        this.shipment.selectable = true;
+        this.shipment.selectable = this.selectable = true;
       } else {
         this.requestSubscription = this.shipmentService.getCachedShipments().subscribe(result => {
           console.log('shipments: ', result);
@@ -80,6 +81,10 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
     } else {
       this.handleResponse(this.shipmentService.createShipment(this.shipment));
     }
+  }
+
+  toggle() {
+    this.selectable = !this.selectable;
   }
 
   private handleResponse(responseObservable: Observable<any>) {

@@ -70,11 +70,11 @@
         <div class="form-group">
           <div class="col-md-12">
             <label for="selectable">Auswählbar</label>
-            <div class="btn-group">
-              <button [ngClass]="shipment.selectable ? 'active' : ''" id="selectable" type="button" data-toggle="button" class="btn btn-toggle-switch"
+            <div>
+              <button (click)="toggle()" [ngClass]="shipment.selectable ? 'active' : ''" id="selectable" type="button" data-toggle="button" class="btn btn-toggle-switch"
                       aria-pressed="false">
-                <span *ngIf='shipment.selectable' class="stateLabel stateLabel-on">An</span>
-                <span *ngIf='!shipment.selectable' class="stateLabel stateLabel-off">Aus</span>
+                <span *ngIf='selectable' class="stateLabel stateLabel-on">An</span>
+                <span *ngIf='!selectable' class="stateLabel stateLabel-off">Aus</span>
               </button>
             </div>
           </div>

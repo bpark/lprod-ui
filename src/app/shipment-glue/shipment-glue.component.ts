@@ -74,6 +74,21 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
     ));
   }
 
+  updateSelecteable(): void {
+    const shipment = this.shipmentsList.items.find(s => s.id === this.selectedId);
+    shipment.selectable = !shipment.selectable;
+    this.subscription.add(this.shipmentsService.updateShipment(shipment).subscribe(
+      result => {
+        if (!result.ok) {
+          this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
+        }
+      },
+      error => {
+        this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
+      }
+    ));
+  }
+
   getMessages(page: number, pageSize: number): void {
 
     this.shipmentsService.getShipments(page, pageSize, this.shipmentType).subscribe(
