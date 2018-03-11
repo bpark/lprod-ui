@@ -30,10 +30,10 @@
               <input id="pressdate"
                      type="text"
                      class="form-control"
-                     [minDate]="minDate"
-                     [maxDate]="maxDate"
                      #dp="bsDatepicker"
-                     bsDatepicker [(bsValue)]="glulamModel.pressData.date">
+                     [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-dark-blue' }"
+                     bsDatepicker
+                     [(bsValue)]="glulamModel.pressData.date">
             </div>
           </div>
         </div>

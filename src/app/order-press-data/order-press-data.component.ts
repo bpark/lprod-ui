@@ -10,9 +10,6 @@ import {GluelamCalculatorService} from '../model/gluelam-calculator.service';
 })
 export class OrderPressDataComponent implements OnInit {
 
-  minDate = new Date(2017, 5, 10);
-  maxDate = new Date(2018, 9, 15);
-
   glulamModel: GlulamModel;
 
   constructor(private glulamOrderService: GlulamOrderService,
