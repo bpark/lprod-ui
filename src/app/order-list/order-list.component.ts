@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SideNavModel} from '../side-nav/side-nav-model';
 import {GlulamOrderService} from '../model/glulam-order.service';
 import {GluelamList} from '../model/glulam.model';
+import {Subscription} from 'rxjs/Subscription';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-order-list',
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.css']
 })
-export class OrderListComponent implements OnInit {
+export class OrderListComponent implements OnInit, OnDestroy {
 
   sideNavModel: SideNavModel = {
     title: 'Produktion',
@@ -21,21 +23,30 @@ export class OrderListComponent implements OnInit {
 
   gluelamList: GluelamList;
   errors: boolean;
-  page = 1;
-  pageSize = 10;
+  page: number;
+  pageSize: number;
   totalPages: number;
   selectedIndex = 0;
   selectedId: number;
+  subscription: Subscription;
 
-  constructor(private gluelamOrderService: GlulamOrderService) { }
+  constructor(private route: ActivatedRoute,
+              private gluelamOrderService: GlulamOrderService) { }
 
   ngOnInit() {
+    const paramMap = this.route.snapshot.queryParamMap;
+    this.page = paramMap.has('page') ? +paramMap.get('page') : 1;
+    this.pageSize = paramMap.has('pageSize') ? +paramMap.get('pageSize') : 10;
     this.getMessages(this.page, this.pageSize);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   getMessages(page: number, pageSize: number): void {
 
-    this.gluelamOrderService.getGluelamOrders(page, pageSize).subscribe(
+    this.subscription = this.subscription = this.gluelamOrderService.getGluelamOrders(page, pageSize).subscribe(
       result => {
         this.gluelamList = result;
         this.totalPages = Math.floor(result.totalCount / pageSize) + 1;
