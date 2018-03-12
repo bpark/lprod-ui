@@ -29,7 +29,7 @@
               <label for="glue">Leimsorte</label>
               <div class="combobox">
                 <select class="form-control" id="glue" [(ngModel)]="glulamModel.glueData.glueType">
-                  <option *ngFor="let item of glulamModel.glueTypes" [ngValue]="item.id"
+                  <option *ngFor="let item of gluelamTypes.glueTypes" [ngValue]="item.id"
                           [selected]="glulamModel.glueData.glueType">{{item.name}}
                   </option>
                 </select>
@@ -59,7 +59,7 @@
               <label for="hardenertype">Härtersorte</label>
               <div class="combobox">
                 <select class="form-control" id="hardenertype" [(ngModel)]="glulamModel.glueData.hardenerType">
-                  <option *ngFor="let item of glulamModel.hardenerTypes" [ngValue]="item.id"
+                  <option *ngFor="let item of gluelamTypes.hardenerTypes" [ngValue]="item.id"
                           [selected]="glulamModel.glueData.hardenerType">{{item.name}}
                   </option>
                 </select>

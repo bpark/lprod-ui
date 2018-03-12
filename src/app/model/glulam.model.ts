@@ -4,6 +4,21 @@ export class CalculationParameters {
   static additionalLength = 1; // cm
 }
 
+export class GluelamTypes {
+
+  private static instance = new GluelamTypes();
+
+  quality: EnumType[] = [{id: 0, name: 'GL24h'}, {id: 1, name: 'GL28h'}, {id: 2, name: 'GL28c'}];
+  pressTypes: EnumType[] = [{id: 0, name: '24m'}, {id: 1, name: '16m'}];
+  glueTypes: EnumType[] = [{id: 0, name: 'BASF 683 flüssig'}];
+  hardenerTypes: EnumType[] = [{id: 0, name: 'BASF 683 flüssig'}];
+  woodTypes: EnumType[] = [{id: 0, name: 'Fichte'}, {id: 1, name: 'Lärche'}, {id: 2, name: 'Kiefer'}];
+
+  public static getInstance(): GluelamTypes {
+    return GluelamTypes.instance;
+  }
+}
+
 export class CalculationResult {
   lamination: number;
 }
@@ -32,11 +47,7 @@ export interface Gluelam {
 }
 
 export class GlulamModel {
-  quality: EnumType[] = [{id: 0, name: 'GL24h'}, {id: 1, name: 'GL28h'}, {id: 2, name: 'GL28c'}];
-  pressTypes: EnumType[] = [{id: 0, name: '24m'}, {id: 1, name: '16m'}];
-  glueTypes: EnumType[] = [{id: 0, name: 'BASF 683 flüssig'}];
-  hardenerTypes: EnumType[] = [{id: 0, name: 'BASF 683 flüssig'}];
-  woodTypes: EnumType[] = [{id: 0, name: 'Fichte'}, {id: 1, name: 'Lärche'}, {id: 2, name: 'Kiefer'}];
+  id: number;
   pressData: PressData = new PressData();
   glueData: GlueData = new GlueData();
   gluelamData: GluelamData = new GluelamData();

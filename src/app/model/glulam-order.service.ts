@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {GluelamList, GlulamModel} from './glulam.model';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../environments/environment';
 
@@ -45,4 +45,11 @@ export class GlulamOrderService {
     return this.http.delete<number>(GlulamOrderService.createConnectionUrl(id));
   }
 
+  create(gluelam: GlulamModel) {
+    return this.http.post<number>(GlulamOrderService.createConnectionUrl(), gluelam, {observe: 'response'});
+  }
+
+  update(gluelam: GlulamModel): Observable<HttpResponse<void>> {
+    return this.http.put<void>(GlulamOrderService.createConnectionUrl(gluelam.id), gluelam, {observe: 'response'});
+  }
 }

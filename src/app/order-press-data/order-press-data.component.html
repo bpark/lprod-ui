@@ -74,7 +74,7 @@
               <label for="lam">Qualität</label>
               <div class="combobox">
                 <select class="form-control" id="lam" [(ngModel)]="glulamModel.pressData.coverLamination">
-                  <option *ngFor="let item of glulamModel.quality" [ngValue]="item.id"
+                  <option *ngFor="let item of gluelamTypes.quality" [ngValue]="item.id"
                           [selected]="glulamModel.pressData.coverLamination">{{item.name}}
                   </option>
                 </select>
@@ -89,7 +89,7 @@
               <label for="press">Presse</label>
               <div class="combobox">
                 <select class="form-control" id="press" [(ngModel)]="glulamModel.pressData.press">
-                  <option *ngFor="let item of glulamModel.pressTypes" [ngValue]="item.id"
+                  <option *ngFor="let item of gluelamTypes.pressTypes" [ngValue]="item.id"
                           [selected]="glulamModel.pressData.press">{{item.name}}
                   </option>
                 </select>
@@ -104,7 +104,7 @@
               <label for="wood">Holzart</label>
               <div class="combobox">
                 <select class="form-control" id="wood" [(ngModel)]="glulamModel.pressData.woodType">
-                  <option *ngFor="let item of glulamModel.woodTypes" [ngValue]="item.id"
+                  <option *ngFor="let item of gluelamTypes.woodTypes" [ngValue]="item.id"
                           [selected]="glulamModel.pressData.woodType">{{item.name}}
                   </option>
                 </select>
