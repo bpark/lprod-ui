@@ -20,26 +20,31 @@ export class OrderScreenComponent implements OnInit, OnDestroy {
     title: 'Leimbinder',
     items: [{
         id: 1,
+        link: './customer',
+        label: 'Auftragsdaten'
+      },
+      {
+        id: 2,
         link: './pressdata',
         label: 'Pressdaten'
       },
       {
-        id: 2,
+        id: 3,
         link: './glue',
         label: 'Leim/Härter'
       },
       {
-        id: 3,
+        id: 4,
         link: './details',
         label: 'Leimbinderdaten'
       },
       {
-        id: 4,
+        id: 5,
         link: './detailstbl',
         label: 'Details'
       },
       {
-        id: 5,
+        id: 6,
         link: './summary',
         label: 'Übersicht'
       }]

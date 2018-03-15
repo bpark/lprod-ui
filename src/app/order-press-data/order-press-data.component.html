@@ -26,42 +26,7 @@
         <div class="row">
           <div class="form-group">
             <div class="col-md-12">
-              <label for="pressdate">Datum</label>
-              <input id="pressdate"
-                     type="text"
-                     class="form-control"
-                     #dp="bsDatepicker"
-                     [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-dark-blue' }"
-                     bsDatepicker
-                     [(bsValue)]="glulamModel.pressData.date">
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group">
-            <div class="col-md-12">
-              <label for="customer">Auftraggeber</label>
-              <input type="text" class="form-control" id="customer" placeholder="Lager"
-                     [(ngModel)]="glulamModel.pressData.customer">
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group">
-            <div class="col-md-12">
-              <label for="customer">Bauteilnummer</label>
-              <input type="text" class="form-control" id="elementNumber" placeholder=""
-                     [(ngModel)]="glulamModel.pressData.elementNumber">
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group">
-            <div class="col-md-12">
-              <label for="customer">Lammellenstärke gehobelt</label>
+              <label for="laminationStrength">Lammellenstärke gehobelt</label>
               <input type="text" class="form-control" id="laminationStrength" placeholder=""
                      [(ngModel)]="glulamModel.pressData.laminationStrength" (blur)="calculate()">
             </div>
@@ -113,7 +78,7 @@
           </div>
         </div>
 
-        <app-order-nav-buttons [forward]="'../glue'" [backDisabled]="true"></app-order-nav-buttons>
+        <app-order-nav-buttons [forward]="'../glue'" [back]="'../customer'"></app-order-nav-buttons>
 
       </div>
 

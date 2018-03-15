@@ -25,6 +25,7 @@ import {ShipmentsService} from './model/shipments.service';
 import { ShipmentEditComponent } from './shipment-edit/shipment-edit.component';
 import { AlertStackComponent } from './alert-stack/alert-stack.component';
 import { TimesPipe } from './paginator/times.pipe';
+import { OrderDataComponent } from './order-data/order-data.component';
 
 
 const appRoutes: Routes = [
@@ -77,7 +78,8 @@ const appRoutes: Routes = [
     path: 'orders/:orderId',
     component: OrderScreenComponent,
     children: [
-      {path: '', redirectTo: 'pressdata', pathMatch: 'full'},
+      {path: '', redirectTo: 'customer', pathMatch: 'full'},
+      {path: 'customer', component: OrderDataComponent},
       {path: 'glue', component: OrderGlueComponent},
       {path: 'pressdata', component: OrderPressDataComponent},
       {path: 'details', component: OrderDetailsComponent},
@@ -105,7 +107,8 @@ const appRoutes: Routes = [
     ShipmentGlueComponent,
     ShipmentEditComponent,
     AlertStackComponent,
-    TimesPipe
+    TimesPipe,
+    OrderDataComponent
   ],
   imports: [
     RouterModule.forRoot(
