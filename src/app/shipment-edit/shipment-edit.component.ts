@@ -6,7 +6,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/combineLatest';
-import {combineLatest} from 'rxjs/observable/combineLatest';
 import {AlertStackModel} from '../alert-stack/alert-stack.model';
 
 @Component({
@@ -52,11 +51,8 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
       this.shipment.date = new Date();
       this.shipment.selectable = this.selectable = true;
     } else {
-      this.subscription = this.shipmentService.getCachedShipments().subscribe(result => {
-        console.log('shipments: ', result);
-        console.log('shipmentId: ' + shipmentId);
-        this.shipment = result.items.find(s => s.id === shipmentId);
-        console.log('shipment: ', this.shipment);
+      this.subscription = this.shipmentService.getShipment(shipmentId).subscribe(result => {
+        this.shipment = result;
       });
     }
   }
