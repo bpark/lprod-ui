@@ -16,9 +16,6 @@ import {AlertStackModel} from '../alert-stack/alert-stack.model';
 })
 export class ShipmentEditComponent implements OnInit, OnDestroy {
 
-  minDate = new Date(2017, 5, 10);
-  maxDate = new Date(2030, 9, 15);
-
   sideNavModel: SideNavModel = {
     title: 'Lieferung',
     items: [{
@@ -35,7 +32,6 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
   shipmentType: ShipmentType;
 
   subscription: Subscription;
-  requestSubscription: Subscription;
 
   alertStackModel: AlertStackModel;
   selectable: boolean;
@@ -47,31 +43,27 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    const allParams = combineLatest(this.route.params, this.route.queryParams,
-      (params, qparams) => ({ params, qparams }));
+    const shipmentId = +this.route.snapshot.paramMap.get('shipmentId');
+    const type = this.route.snapshot.queryParamMap.get('type');
+    this.shipmentType = ShipmentType[type as keyof typeof ShipmentType];
 
-    this.subscription = allParams.subscribe(params => {
-      const shipmentId = +params.params['shipmentId'];
-      this.shipmentType = params.qparams['type'];
-      if (shipmentId === -1) {
-        this.shipment = new Shipment();
-        this.shipment.date = new Date();
-        this.shipment.selectable = this.selectable = true;
-      } else {
-        this.requestSubscription = this.shipmentService.getCachedShipments().subscribe(result => {
-          console.log('shipments: ', result);
-          console.log('shipmentId: ' + shipmentId);
-          this.shipment = result.items.find(s => s.id === shipmentId);
-          console.log('shipment: ', this.shipment);
-        });
-      }
-    });
+    if (shipmentId === -1) {
+      this.shipment = new Shipment();
+      this.shipment.date = new Date();
+      this.shipment.selectable = this.selectable = true;
+    } else {
+      this.subscription = this.shipmentService.getCachedShipments().subscribe(result => {
+        console.log('shipments: ', result);
+        console.log('shipmentId: ' + shipmentId);
+        this.shipment = result.items.find(s => s.id === shipmentId);
+        console.log('shipment: ', this.shipment);
+      });
+    }
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-    if (this.requestSubscription) {
-      this.requestSubscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 
@@ -89,11 +81,11 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
 
   private handleResponse(responseObservable: Observable<any>) {
     this.subscription.add(responseObservable.subscribe(result => {
-      if (result.ok) {
-        this.router.navigate(['/shipments'], { queryParams: { type: this.shipmentType } });
-      } else {
-        this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gespeichert werden!');
-      }
+        if (result.ok) {
+          this.router.navigate(['/shipments'], {queryParams: {type: this.shipmentType}});
+        } else {
+          this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gespeichert werden!');
+        }
       },
       error => {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');

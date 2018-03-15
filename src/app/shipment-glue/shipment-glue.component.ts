@@ -42,6 +42,7 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
   selectedId: number;
   shipmentsList: ShipmentsList;
   subscription: Subscription;
+  dataSubscription: Subscription;
   shipmentType: ShipmentType;
 
 
@@ -49,16 +50,22 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
               private shipmentsService: ShipmentsService) { }
 
   ngOnInit() {
-    this.shipmentType = this.route.snapshot.queryParams['type'];
-    this.getMessages(this.page, this.pageSize);
+    this.subscription = this.route.queryParamMap.subscribe(paramMap => {
+      // const type = this.route.snapshot.queryParamMap.get('type');
+      const type = paramMap.get('type');
+      this.shipmentType = ShipmentType[type as keyof typeof ShipmentType];
+      console.log('shipmentType=', this.shipmentType);
+      this.getMessages(this.page, this.pageSize);
+    });
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.dataSubscription.unsubscribe();
   }
 
   delete(): void {
-    this.subscription = this.shipmentsService.deleteShipment(this.selectedId).subscribe(
+    this.subscription.add(this.shipmentsService.deleteShipment(this.selectedId).subscribe(
       result => {
         if (result.ok) {
           this.getMessages(this.page, this.pageSize);
@@ -69,13 +76,13 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
       error => {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gelöscht werden!');
       }
-    );
+    ));
   }
 
   updateSelecteable(): void {
     const shipment = this.shipmentsList.items.find(s => s.id === this.selectedId);
     shipment.selectable = !shipment.selectable;
-    this.subscription = this.shipmentsService.updateShipment(shipment).subscribe(
+    this.subscription.add(this.shipmentsService.updateShipment(shipment).subscribe(
       result => {
         if (!result.ok) {
           this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
@@ -84,12 +91,12 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
       error => {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
       }
-    );
+    ));
   }
 
   getMessages(page: number, pageSize: number): void {
 
-    this.subscription = this.shipmentsService.getShipments(page, pageSize, this.shipmentType).subscribe(
+    this.dataSubscription = this.shipmentsService.getShipments(page, pageSize, this.shipmentType).subscribe(
       result => {
         this.shipmentsList = result;
         this.totalPages = Math.floor(result.totalCount / pageSize) + 1;
@@ -99,27 +106,6 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensätze konnten nicht geladen werden!');
       }
     );
-  }
-
-  public goToPage(n: number): void {
-    this.page = n;
-    this.getMessages(this.page, this.pageSize);
-  }
-
-  public onNext(): void {
-    this.page++;
-    if (this.page > this.totalPages) {
-      this.page = this.totalPages;
-    }
-    this.getMessages(this.page, this.pageSize);
-  }
-
-  public onPrev(): void {
-    this.page--;
-    if (this.page < 1) {
-      this.page = 1;
-    }
-    this.getMessages(this.page, this.pageSize);
   }
 
   public select(index: number): void {

@@ -11,5 +11,5 @@ export interface ShipmentsList {
 }
 
 export enum ShipmentType {
-  glue, hardener
+  glue = 'glue', hardener = 'hardener'
 }
