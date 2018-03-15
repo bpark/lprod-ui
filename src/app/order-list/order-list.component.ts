@@ -29,12 +29,13 @@ export class OrderListComponent implements OnInit, OnDestroy {
   selectedIndex = 0;
   selectedId: number;
   subscription: Subscription;
+  dataSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               private gluelamOrderService: GlulamOrderService) { }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(paramMap => {
+    this.subscription = this.route.queryParamMap.subscribe(paramMap => {
       this.page = paramMap.has('page') ? +paramMap.get('page') : 1;
       this.pageSize = paramMap.has('pageSize') ? +paramMap.get('pageSize') : 10;
       console.log('page: ', this.page);
@@ -45,11 +46,12 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.dataSubscription.unsubscribe();
   }
 
   getMessages(page: number, pageSize: number): void {
 
-    this.subscription = this.subscription = this.gluelamOrderService.getGluelamOrders(page, pageSize).subscribe(
+    this.dataSubscription = this.gluelamOrderService.getGluelamOrders(page, pageSize).subscribe(
       result => {
         this.gluelamList = result;
         this.totalPages = Math.floor(result.totalCount / pageSize) + 1;
