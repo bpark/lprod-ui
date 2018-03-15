@@ -36,6 +36,12 @@ export class ShipmentsService {
     return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams });
   }
 
+  getSelectableShipments(): Observable<ShipmentsList> {
+    const queryParams = new HttpParams();
+    queryParams.set('selectable', String(true));
+    return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams });
+  }
+
   getShipment(id: number): Observable<Shipment> {
     return this.http.get<Shipment>(ShipmentsService.createConnectionUrl(id));
   }

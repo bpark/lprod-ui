@@ -3,6 +3,7 @@ export class Shipment {
   name: string;
   date: Date;
   selectable: boolean;
+  shipmentType: ShipmentType;
 }
 
 export interface ShipmentsList {

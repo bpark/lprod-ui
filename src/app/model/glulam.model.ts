@@ -65,10 +65,8 @@ export class PressData {
 }
 
 export class GlueData {
-  glueType = 0;
-  glueDeliveryDate: Date = new Date();
-  hardenerType = 0;
-  hardenerDeliveryDate: Date = new Date();
+  glueTypeId: number;
+  hardenerTypeId: number;
 }
 
 export class GluelamData {

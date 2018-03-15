@@ -5,19 +5,22 @@
       "id": 1,
       "date": "2012-04-23",
       "name": "Leim Typ 1",
-      "selectable": true
+      "selectable": true,
+      "shipmentType": "glue"
     },
     {
       "id": 2,
       "date": "2012-04-23",
       "name": "Leim Typ 2",
-      "selectable": true
+      "selectable": true,
+      "shipmentType": "glue"
     },
     {
       "id": 3,
       "date": "2012-04-23",
       "name": "Leim Typ 3",
-      "selectable": false
+      "selectable": false,
+      "shipmentType": "hardener"
     }
   ]
 }

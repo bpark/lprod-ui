@@ -50,6 +50,7 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
       this.shipment = new Shipment();
       this.shipment.date = new Date();
       this.shipment.selectable = this.selectable = true;
+      this.shipment.shipmentType = this.shipmentType;
     } else {
       this.subscription = this.shipmentService.getShipment(shipmentId).subscribe(result => {
         this.shipment = result;

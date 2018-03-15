@@ -28,27 +28,12 @@
             <div class="form-group">
               <label for="glue">Leimsorte</label>
               <div class="combobox">
-                <select class="form-control" id="glue" [(ngModel)]="glulamModel.glueData.glueType">
-                  <option *ngFor="let item of gluelamTypes.glueTypes" [ngValue]="item.id"
-                          [selected]="glulamModel.glueData.glueType">{{item.name}}
+                <select class="form-control" id="glue" [(ngModel)]="glulamModel.glueData.glueTypeId">
+                  <option *ngFor="let item of glueShipments" [ngValue]="item.id"
+                          [selected]="glueShipments[0].id">{{item.name}} ({{item.date}})
                   </option>
                 </select>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group">
-            <div class="col-md-12">
-              <label for="gluedate">Lieferdatum</label>
-              <input type="text"
-                     id="gluedate"
-                     class="form-control"
-                     [minDate]="minDate"
-                     [maxDate]="maxDate"
-                     #dp="bsDatepicker"
-                     bsDatepicker [(bsValue)]="glulamModel.glueData.glueDeliveryDate">
             </div>
           </div>
         </div>
@@ -58,27 +43,12 @@
             <div class="form-group">
               <label for="hardenertype">Härtersorte</label>
               <div class="combobox">
-                <select class="form-control" id="hardenertype" [(ngModel)]="glulamModel.glueData.hardenerType">
-                  <option *ngFor="let item of gluelamTypes.hardenerTypes" [ngValue]="item.id"
-                          [selected]="glulamModel.glueData.hardenerType">{{item.name}}
+                <select class="form-control" id="hardenertype" [(ngModel)]="glulamModel.glueData.hardenerTypeId">
+                  <option *ngFor="let item of hardenerShipments" [ngValue]="item.id"
+                          [selected]="hardenerShipments[0].id">{{item.name}} ({{item.date}})
                   </option>
                 </select>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group">
-            <div class="col-md-12">
-              <label for="hardenerdate">Lieferdatum</label>
-              <input type="text"
-                     id="hardenerdate"
-                     class="form-control"
-                     [minDate]="minDate"
-                     [maxDate]="maxDate"
-                     #dp="bsDatepicker"
-                     bsDatepicker [(bsValue)]="glulamModel.glueData.hardenerDeliveryDate">
             </div>
           </div>
         </div>
