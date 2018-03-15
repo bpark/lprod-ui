@@ -24,6 +24,7 @@ import { ShipmentGlueComponent } from './shipment-glue/shipment-glue.component';
 import {ShipmentsService} from './model/shipments.service';
 import { ShipmentEditComponent } from './shipment-edit/shipment-edit.component';
 import { AlertStackComponent } from './alert-stack/alert-stack.component';
+import { TimesPipe } from './paginator/times.pipe';
 
 
 const appRoutes: Routes = [
@@ -103,7 +104,8 @@ const appRoutes: Routes = [
     PaginatorComponent,
     ShipmentGlueComponent,
     ShipmentEditComponent,
-    AlertStackComponent
+    AlertStackComponent,
+    TimesPipe
   ],
   imports: [
     RouterModule.forRoot(

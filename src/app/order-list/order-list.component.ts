@@ -34,10 +34,13 @@ export class OrderListComponent implements OnInit, OnDestroy {
               private gluelamOrderService: GlulamOrderService) { }
 
   ngOnInit() {
-    const paramMap = this.route.snapshot.queryParamMap;
-    this.page = paramMap.has('page') ? +paramMap.get('page') : 1;
-    this.pageSize = paramMap.has('pageSize') ? +paramMap.get('pageSize') : 10;
-    this.getMessages(this.page, this.pageSize);
+    this.route.queryParamMap.subscribe(paramMap => {
+      this.page = paramMap.has('page') ? +paramMap.get('page') : 1;
+      this.pageSize = paramMap.has('pageSize') ? +paramMap.get('pageSize') : 10;
+      console.log('page: ', this.page);
+      this.getMessages(this.page, this.pageSize);
+    });
+    // const paramMap = this.route.snapshot.queryParamMap;
   }
 
   ngOnDestroy(): void {
@@ -60,27 +63,6 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
   deleteMessage() {
     this.gluelamOrderService.deleteGluelamOrder(this.selectedId);
-    this.getMessages(this.page, this.pageSize);
-  }
-
-  public goToPage(n: number): void {
-    this.page = n;
-    this.getMessages(this.page, this.pageSize);
-  }
-
-  public onNext(): void {
-    this.page++;
-    if (this.page > this.totalPages) {
-      this.page = this.totalPages;
-    }
-    this.getMessages(this.page, this.pageSize);
-  }
-
-  public onPrev(): void {
-    this.page--;
-    if (this.page < 1) {
-      this.page = 1;
-    }
     this.getMessages(this.page, this.pageSize);
   }
 
