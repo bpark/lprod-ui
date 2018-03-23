@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GlulamModel} from '../model/glulam.model';
 import {GlulamOrderService} from '../model/glulam-order.service';
+import {BsLocaleService} from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-order-data',
@@ -11,10 +12,14 @@ export class OrderDataComponent implements OnInit {
 
   glulamModel: GlulamModel;
 
-  constructor(private glulamOrderService: GlulamOrderService) { }
+  constructor(private glulamOrderService: GlulamOrderService,
+              private localeService: BsLocaleService) {
+  }
 
   ngOnInit() {
+    this.localeService.use('de');
     this.glulamModel = this.glulamOrderService.glulamModel;
+    console.log('date: ', this.glulamModel.pressData.date);
   }
 
 }

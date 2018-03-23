@@ -26,6 +26,10 @@ import { ShipmentEditComponent } from './shipment-edit/shipment-edit.component';
 import { AlertStackComponent } from './alert-stack/alert-stack.component';
 import { TimesPipe } from './paginator/times.pipe';
 import { OrderDataComponent } from './order-data/order-data.component';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { deLocale } from 'ngx-bootstrap/locale';
+
+defineLocale('de', deLocale);
 
 
 const appRoutes: Routes = [

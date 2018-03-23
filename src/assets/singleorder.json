@@ -1,6 +1,6 @@
 {
   "pressData": {
-    "date": "2018-02-12",
+    "date": "2018-04-23T18:25:43.511Z",
     "customer": "Test Kunde",
     "elementNumber": "12Z3",
     "laminationStrength": 33.6,
@@ -10,9 +10,9 @@
   },
   "glueData": {
     "glueType": 0,
-    "glueDeliveryDate": "2018-02-12",
+    "glueDeliveryDate": "2018-04-23T18:25:43.511Z",
     "hardenerType": 0,
-    "hardenerDeliveryDate": "2018-02-12"
+    "hardenerDeliveryDate": "2018-04-23T18:25:43.511Z"
   },
   "gluelamData": {
     "width": 8.5,
