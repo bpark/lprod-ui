@@ -28,6 +28,7 @@ import { TimesPipe } from './paginator/times.pipe';
 import { OrderDataComponent } from './order-data/order-data.component';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { deLocale } from 'ngx-bootstrap/locale';
+import { LoginComponent } from './login/login.component';
 
 defineLocale('de', deLocale);
 
@@ -61,6 +62,11 @@ const appRoutes: Routes = [
   {
     path: '',
     component: OrderListComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
     pathMatch: 'full'
   },
   {
@@ -112,7 +118,8 @@ const appRoutes: Routes = [
     ShipmentEditComponent,
     AlertStackComponent,
     TimesPipe,
-    OrderDataComponent
+    OrderDataComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(
