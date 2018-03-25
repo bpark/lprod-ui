@@ -26,8 +26,8 @@
           <div class="navbar-global theme-default">
             <div class="container-fluid">
               <ul class="nav navbar-nav">
-                <li><a [routerLink]="'/shipments/-1'" [queryParams]="{ type: shipmentType}"><span class="glyph glyph-expand"></span> Neue Lieferung</a>
-                <li><a [routerLink]="'/shipments/' + selectedId" [queryParams]="{ type: shipmentType}"><span class="glyph glyph-edit"></span> Bearbeiten</a>
+                <li><a [routerLink]="'/app/shipments/-1'" [queryParams]="{ type: shipmentType}"><span class="glyph glyph-expand"></span> Neue Lieferung</a>
+                <li><a [routerLink]="'/app/shipments/' + selectedId" [queryParams]="{ type: shipmentType}"><span class="glyph glyph-edit"></span> Bearbeiten</a>
                 <li><a [routerLink]="" (click)="delete()"><span class="glyph glyph-delete"></span>
                   Löschen</a>
                 </li>

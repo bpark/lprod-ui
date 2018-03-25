@@ -17,14 +17,14 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
     title: 'Lieferungen',
     items: [{
       id: 1,
-      link: '/shipments',
+      link: '/app/shipments',
       queryParams: {
           type: 'glue'
       },
       label: 'Leim'
     }, {
       id: 2,
-      link: '/shipments',
+      link: '/app/shipments',
       queryParams: {
         type: 'hardener'
       },

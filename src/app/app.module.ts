@@ -29,73 +29,45 @@ import { OrderDataComponent } from './order-data/order-data.component';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { deLocale } from 'ngx-bootstrap/locale';
 import { LoginComponent } from './login/login.component';
+import { ProductComponent } from './product/product.component';
+import {LoginService} from './login/login.service';
 
 defineLocale('de', deLocale);
 
 
 const appRoutes: Routes = [
-  /*{
-    path: 'glue',
-    component: OrderGlueComponent
-  },
   {
-    path: 'pressdata',
-    component: OrderPressDataComponent
+    path: 'app',
+    component: ProductComponent,
+    children: [
+      {path: '', redirectTo: 'gluelam', pathMatch: 'full'},
+      {path: 'gluelam', component: OrderListComponent},
+      {path: 'shipments', component: ShipmentGlueComponent},
+      {path: 'shipments/:shipmentId', component: ShipmentEditComponent},
+      {
+        path: 'orders/:orderId',
+        component: OrderScreenComponent,
+        children: [
+          {path: '', redirectTo: 'customer', pathMatch: 'full'},
+          {path: 'customer', component: OrderDataComponent},
+          {path: 'glue', component: OrderGlueComponent},
+          {path: 'pressdata', component: OrderPressDataComponent},
+          {path: 'details', component: OrderDetailsComponent},
+          {path: 'detailstbl', component: OrderDetailsTableComponent},
+          {path: 'summary', component: OrderSummaryComponent}
+        ]
+      }
+    ]
   },
-  {
-    path: 'details',
-    component: OrderDetailsComponent
-  },
-  {
-    path: 'detailstbl',
-    component: OrderDetailsTableComponent
-  },
-  {
-    path: 'summary',
-    component: OrderSummaryComponent
-  },*/
-  /*{
-    path: '**',
-    component: OrderListComponent,
-    pathMatch: 'full'
-  },*/
   {
     path: '',
-    component: OrderListComponent,
+    component: LoginComponent,
     pathMatch: 'full'
   },
   {
     path: 'login',
     component: LoginComponent,
     pathMatch: 'full'
-  },
-  {
-    path: 'gluelam',
-    component: OrderListComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'shipments',
-    component: ShipmentGlueComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'shipments/:shipmentId',
-    component: ShipmentEditComponent,
-    pathMatch: 'full'
-  },
-  {
-    path: 'orders/:orderId',
-    component: OrderScreenComponent,
-    children: [
-      {path: '', redirectTo: 'customer', pathMatch: 'full'},
-      {path: 'customer', component: OrderDataComponent},
-      {path: 'glue', component: OrderGlueComponent},
-      {path: 'pressdata', component: OrderPressDataComponent},
-      {path: 'details', component: OrderDetailsComponent},
-      {path: 'detailstbl', component: OrderDetailsTableComponent},
-      {path: 'summary', component: OrderSummaryComponent}
-    ]
   }
 ];
 
@@ -119,7 +91,8 @@ const appRoutes: Routes = [
     AlertStackComponent,
     TimesPipe,
     OrderDataComponent,
-    LoginComponent
+    LoginComponent,
+    ProductComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -135,6 +108,7 @@ const appRoutes: Routes = [
   providers: [
     GlulamOrderService,
     ShipmentsService,
+    LoginService,
     { provide: LOCALE_ID, useValue: 'de' }
   ],
   bootstrap: [AppComponent]

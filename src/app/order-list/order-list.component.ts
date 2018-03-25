@@ -16,7 +16,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
     title: 'Produktion',
     items: [{
         id: 1,
-        link: '/gluelam',
+        link: '/app/gluelam',
         label: 'Leimbinder'
       }]
   };
