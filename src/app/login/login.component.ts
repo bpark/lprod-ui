@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
+    console.log('username: ' + this.username + ', password: ' + this.password);
     this.handleResponse(this.loginService.login(this.username, this.password));
   }
 

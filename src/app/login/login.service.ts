@@ -10,6 +10,10 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<HttpResponse<number>> {
-    return this.http.post<number>('login', {'username': username, 'password':  password}, {headers: this.headers, observe: 'response'});
+    const body = new URLSearchParams();
+    body.set('username', username);
+    body.set('password', password);
+    console.log('body: ', body.toString());
+    return this.http.post<number>('login', body.toString(), {headers: this.headers, observe: 'response'});
   }
 }
