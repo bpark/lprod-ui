@@ -42,7 +42,7 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
   selectedId: number;
   shipmentsList: ShipmentsList;
   subscription: Subscription;
-  dataSubscription: Subscription;
+  dataSubscription: Subscription = new Subscription();
   shipmentType: ShipmentType;
 
 
@@ -52,6 +52,9 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.route.queryParamMap.subscribe(paramMap => {
       // const type = this.route.snapshot.queryParamMap.get('type');
+      console.log('paramMap', paramMap);
+      this.page = paramMap.has('page') ? +paramMap.get('page') : 1;
+      this.pageSize = paramMap.has('pageSize') ? +paramMap.get('pageSize') : 10;
       const type = paramMap.get('type');
       this.shipmentType = ShipmentType[type as keyof typeof ShipmentType];
       console.log('shipmentType=', this.shipmentType);
@@ -96,7 +99,9 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
 
   getMessages(page: number, pageSize: number): void {
 
-    this.dataSubscription = this.shipmentsService.getShipments(page, pageSize, this.shipmentType).subscribe(
+    console.log('shipments paging with page: ' + page + ', pageSize: ' + pageSize);
+
+    this.shipmentsService.getShipments(page, pageSize, this.shipmentType).subscribe(
       result => {
         this.shipmentsList = result;
         this.totalPages = Math.floor(result.totalCount / pageSize) + 1;

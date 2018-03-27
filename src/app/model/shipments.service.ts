@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
@@ -26,20 +26,24 @@ export class ShipmentsService {
     }
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getShipments(page: number, pageSize: number, shipmentType: ShipmentType): Observable<ShipmentsList> {
-    const queryParams = new HttpParams();
-    queryParams.set('page', String(page));
-    queryParams.set('pageSize', String(pageSize));
-    queryParams.set('shipmentType', String(shipmentType));
-    return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams });
+    const queryParams = new HttpParams()
+      .set('page', String(page))
+      .set('pageSize', String(pageSize))
+      .set('shipmentType', String(shipmentType));
+
+    console.log('shipments service with: ', queryParams);
+
+    return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams});
   }
 
   getSelectableShipments(): Observable<ShipmentsList> {
     const queryParams = new HttpParams();
     queryParams.set('selectable', String(true));
-    return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams });
+    return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams});
   }
 
   getShipment(id: number): Observable<Shipment> {
