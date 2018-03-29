@@ -6,9 +6,11 @@
   height: 100vh;
 }
 
-.content {
-  overflow: hidden;
-  margin-top: 25%;
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+  margin-top: 20%;
 }
 
 .wood {
@@ -20,4 +22,8 @@
 .row {
   margin-right: 0;
   margin-left: 0;
+}
+
+.well {
+  background-color: rgba(255, 255, 255, 0.7);
 }
