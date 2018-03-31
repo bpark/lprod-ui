@@ -10,29 +10,26 @@ import {Subscription} from 'rxjs/Subscription';
   templateUrl: './order-glue.component.html',
   styleUrls: ['./order-glue.component.css']
 })
-export class OrderGlueComponent implements OnInit, OnDestroy {
+export class OrderGlueComponent implements OnInit {
 
   glulamModel: GlulamModel;
-  gluelamTypes = GluelamTypes.getInstance();
 
   glueShipments: Shipment[];
   hardenerShipments: Shipment[];
-
-  dataSubscription: Subscription;
 
   constructor(private glulamOrderService: GlulamOrderService,
               private shipmentsService: ShipmentsService) { }
 
   ngOnInit() {
     this.glulamModel = this.glulamOrderService.glulamModel;
-    this.dataSubscription = this.shipmentsService.getSelectableShipments().subscribe(shipments => {
-      this.glueShipments = shipments.items.filter(shipment => shipment.shipmentType === ShipmentType.glue);
-      console.log('glueShipments=', this.glueShipments);
-      this.hardenerShipments = shipments.items.filter(shipment => shipment.shipmentType === ShipmentType.hardener);
+
+    this.shipmentsService.getSelectableShipments(ShipmentType.glue).subscribe(shipments => {
+      this.glueShipments = shipments.items;
+    });
+
+    this.shipmentsService.getSelectableShipments(ShipmentType.hardener).subscribe(shipments => {
+      this.hardenerShipments = shipments.items;
     });
   }
 
-  ngOnDestroy(): void {
-    this.dataSubscription.unsubscribe();
-  }
 }

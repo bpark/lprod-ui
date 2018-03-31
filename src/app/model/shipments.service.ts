@@ -40,9 +40,10 @@ export class ShipmentsService {
     return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams});
   }
 
-  getSelectableShipments(): Observable<ShipmentsList> {
-    const queryParams = new HttpParams();
-    queryParams.set('selectable', String(true));
+  getSelectableShipments(shipmentType: ShipmentType): Observable<ShipmentsList> {
+    const queryParams = new HttpParams()
+      .set('selectable', String(true))
+      .set('shipmentType', String(shipmentType));
     return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams});
   }
 
@@ -58,7 +59,9 @@ export class ShipmentsService {
     return this.http.put<void>(ShipmentsService.createConnectionUrl(shipment.id), shipment, {observe: 'response'});
   }
 
-  deleteShipment(id: number): Observable<HttpResponse<void>> {
-    return this.http.delete<void>(ShipmentsService.createConnectionUrl(id), {observe: 'response'});
+  deleteShipment(id: number, shipmentType: ShipmentType): Observable<HttpResponse<void>> {
+    const queryParams = new HttpParams()
+      .set('shipmentType', String(shipmentType));
+    return this.http.delete<void>(ShipmentsService.createConnectionUrl(id), {observe: 'response', params: queryParams});
   }
 }

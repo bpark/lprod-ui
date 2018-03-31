@@ -9,6 +9,14 @@ export class AlertStackModel {
     return alertStackModel;
   }
 
+  public static withSuccessMessage(text: string): AlertStackModel {
+    const alertStackModel = new AlertStackModel();
+    const alertMessage = new AlertMessage(text, 'alert-success');
+    alertStackModel.alertMessages.push(alertMessage);
+
+    return alertStackModel;
+  }
+
   constructor() {}
 }
 

@@ -35,6 +35,7 @@ export class OrderDetailsTableComponent implements OnInit {
   }
 
   calculateRow(glulamDetail: GlulamDetail) {
+    glulamDetail.show = false;
     this.gluelamCalculatorService.calculateDetail(glulamDetail, this.glulamModel);
   }
 

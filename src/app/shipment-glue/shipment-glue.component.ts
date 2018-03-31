@@ -5,6 +5,7 @@ import {ShipmentsList, ShipmentType} from '../model/shipments.model';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {AlertStackModel} from '../alert-stack/alert-stack.model';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-shipment-glue',
@@ -42,7 +43,6 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
   selectedId: number;
   shipmentsList: ShipmentsList;
   subscription: Subscription;
-  dataSubscription: Subscription = new Subscription();
   shipmentType: ShipmentType;
 
 
@@ -58,7 +58,7 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
       const type = paramMap.get('type');
       this.shipmentType = ShipmentType[type as keyof typeof ShipmentType];
       console.log('shipmentType=', this.shipmentType);
-      this.getMessages(this.page, this.pageSize);
+      this.getItems(this.page, this.pageSize, this.shipmentType);
     });
   }
 
@@ -67,41 +67,36 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
   }
 
   delete(): void {
-    this.shipmentsService.deleteShipment(this.selectedId).subscribe(
+    this.shipmentsService.deleteShipment(this.selectedId, this.shipmentType).subscribe(
       result => {
-        if (result.ok) {
-          this.getMessages(this.page, this.pageSize);
-        } else {
-          this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gelöscht werden!');
-        }
+        this.alertStackModel = AlertStackModel.withSuccessMessage('Datensatz wurde erfolgreich gelöscht');
+        this.getItems(this.page, this.pageSize, this.shipmentType);
       },
-      error => {
+      (error: HttpErrorResponse) => {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gelöscht werden!');
       }
     );
   }
 
-  updateSelecteable(index): void {
+  updateSelecteable(event: Event, index: number): void {
+    event.stopPropagation();
     this.select(index);
     const shipment = this.shipmentsList.items.find(s => s.id === this.selectedId);
     shipment.selectable = !shipment.selectable;
     this.shipmentsService.updateShipment(shipment).subscribe(
       result => {
-        if (!result.ok) {
-          this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
-        }
       },
-      error => {
+      (error: HttpErrorResponse) => {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
       }
     );
   }
 
-  getMessages(page: number, pageSize: number): void {
+  getItems(page: number, pageSize: number, shipmentType: ShipmentType): void {
 
     console.log('shipments paging with page: ' + page + ', pageSize: ' + pageSize);
 
-    this.shipmentsService.getShipments(page, pageSize, this.shipmentType).subscribe(
+    this.shipmentsService.getShipments(page, pageSize, shipmentType).subscribe(
       result => {
         this.shipmentsList = result;
         this.totalPages = Math.floor(result.totalCount / pageSize) + 1;

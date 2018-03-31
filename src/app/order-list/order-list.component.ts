@@ -4,6 +4,7 @@ import {GlulamOrderService} from '../model/glulam-order.service';
 import {GluelamList} from '../model/glulam.model';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute} from '@angular/router';
+import {AlertStackModel} from '../alert-stack/alert-stack.model';
 
 @Component({
   selector: 'app-order-list',
@@ -21,15 +22,16 @@ export class OrderListComponent implements OnInit, OnDestroy {
       }]
   };
 
+  alertStackModel: AlertStackModel;
+
   gluelamList: GluelamList;
   errors: boolean;
   page: number;
   pageSize: number;
   totalPages: number;
-  selectedIndex = 0;
+  selectedIndex: number;
   selectedId: number;
   subscription: Subscription;
-  dataSubscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               private gluelamOrderService: GlulamOrderService) { }
@@ -38,27 +40,25 @@ export class OrderListComponent implements OnInit, OnDestroy {
     this.subscription = this.route.queryParamMap.subscribe(paramMap => {
       this.page = paramMap.has('page') ? +paramMap.get('page') : 1;
       this.pageSize = paramMap.has('pageSize') ? +paramMap.get('pageSize') : 10;
-      console.log('page: ', this.page);
+
       this.getMessages(this.page, this.pageSize);
     });
-    // const paramMap = this.route.snapshot.queryParamMap;
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.dataSubscription.unsubscribe();
   }
 
   getMessages(page: number, pageSize: number): void {
 
-    this.dataSubscription = this.gluelamOrderService.getGluelamOrders(page, pageSize).subscribe(
+    this.gluelamOrderService.getGluelamOrders(page, pageSize).subscribe(
       result => {
         this.gluelamList = result;
         this.totalPages = Math.floor(result.totalCount / pageSize) + 1;
         this.select(0);
       },
       error => {
-        this.errors = true;
+        this.alertStackModel = AlertStackModel.withDangerMessage('Datensätze konnten nicht geladen werden!');
       }
     );
   }
@@ -69,8 +69,13 @@ export class OrderListComponent implements OnInit, OnDestroy {
   }
 
   public select(index: number): void {
-    this.selectedIndex = index;
-    this.selectedId = this.gluelamList.items[index].id;
+    if (this.gluelamList.items.length > 0) {
+      this.selectedIndex = index;
+      this.selectedId = this.gluelamList.items[index].id;
+    } else {
+      this.selectedIndex = -1;
+      this.selectedId = undefined;
+    }
   }
 
 }

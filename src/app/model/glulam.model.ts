@@ -32,6 +32,7 @@ export class GlulamDetail {
   square = 0;
   squareTotal = 0;
   volume = 0;
+  show = true;
 }
 
 export interface GluelamList {

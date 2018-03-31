@@ -26,10 +26,10 @@
           <div class="navbar-global theme-default">
             <div class="container-fluid">
               <ul class="nav navbar-nav">
-                <li><a [routerLink]="'/app/orders/new'" #newItem><span class="glyph glyph-expand"></span> Neuer Auftrag</a>
-                <li><a [routerLink]="'/app/orders/' + selectedId" #newItem><span class="glyph glyph-edit"></span> Bearbeiten</a>
-                <li><a [routerLink]="'/app/orders/123'" #newItem><span class="glyph glyph-copy"></span> Kopieren</a>
-                <li><a [routerLink]="" #newItem (click)="deleteMessage()"><span class="glyph glyph-delete"></span>
+                <li><a [routerLink]="'/app/orders/new'"><span class="glyph glyph-expand"></span> Neuer Auftrag</a>
+                <li><a [routerLink]="'/app/orders/' + selectedId" [class.disabled]="!selectedId"><span class="glyph glyph-edit"></span> Bearbeiten</a>
+                <!--<li><a [routerLink]="'/app/orders/123'" [class.disabled]="selectedIndex < 0"><span class="glyph glyph-copy"></span> Kopieren</a>-->
+                <li><a (click)="deleteMessage()" [class.disabled]="!selectedId"><span class="glyph glyph-delete"></span>
                   Löschen</a>
                 </li>
               </ul>
@@ -45,9 +45,7 @@
       <div class="row">
         <div class="col-md-20">
 
-          <div *ngIf="errors" class="alert alert-danger" role="alert">
-            <strong>Fehler!</strong> Produktionsdaten konnten nicht geladen werden!
-          </div>
+          <app-alert-stack [alertStackModel]="alertStackModel"></app-alert-stack>
 
           <div *ngIf="gluelamList">
 

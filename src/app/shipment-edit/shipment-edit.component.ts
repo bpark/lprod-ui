@@ -77,15 +77,15 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
   }
 
   private handleResponse(responseObservable: Observable<any>) {
-    this.subscription.add(responseObservable.subscribe(result => {
+    responseObservable.subscribe(result => {
         if (result.ok) {
-          this.router.navigate(['/shipments'], {queryParams: {type: this.shipmentType}});
+          this.router.navigate(['/app/shipments'], {queryParams: {type: this.shipmentType}});
         } else {
           this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gespeichert werden!');
         }
       },
       error => {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
-      }));
+      });
   }
 }
