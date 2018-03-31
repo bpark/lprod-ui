@@ -30,7 +30,7 @@
 
         <div class="row">
           <div class="col-md-20">
-            <ol class="list-items" id="accordion">
+            <ol class="list-items">
               <li class="list-items-row">
                 <div class="row text-t9">
                   <div class="col-md-3">Stück</div>
@@ -42,9 +42,8 @@
                   <div class="col-md-4">Vol MQ</div>
                 </div>
               </li>
-              <li class="list-items-row" *ngFor="let row of glulamModel.gluelamDetail">
-                <div data-toggle="collapse" data-parent="#accordion" aria-expanded="false"
-                     [attr.data-target]="'#detail-line-' + row.id">
+              <li class="list-items-row list-items-hover" *ngFor="let row of glulamModel.gluelamDetail">
+                <div (click)="collapse.show()">
                   <div class="row">
                     <div class="col-md-3">
                       {{row.amount}}
@@ -70,34 +69,26 @@
                   </div>
                 </div>
 
-                <div class="collapse" id="detail-line-{{row.id}}" [ngClass]="{'in': row.show}">
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-md-24">
+                <div #collapse="bs-collapse" [collapse]="false" class="card card-block card-header">
+                  <div class="well well-lg">
+                      <div class="form-group">
                         <label for="amount">Stück</label>
                         <input type="text" class="form-control" id="amount" placeholder="8"
                                [(ngModel)]="row.amount">
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-24">
+                      <div class="form-group">
                         <label for="height">Höhe</label>
                         <input type="text" class="form-control" id="height" placeholder="8.5"
                                [(ngModel)]="row.height">
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-24">
+                      <div class="form-group">
                         <label for="length">Länge</label>
                         <input type="text" class="form-control" id="length" placeholder="8.5"
                                [(ngModel)]="row.length">
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-24">
-                        <button class="btn btn-primary" (click)="calculateRow(row)">Ok</button>
+                      <div class="form-group">
+                        <button class="btn btn-primary" (click)="collapse.hide()">Ok</button>
                       </div>
-                    </div>
                   </div>
                 </div>
 

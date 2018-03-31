@@ -4,7 +4,7 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
-import {AlertModule, BsDatepickerModule} from 'ngx-bootstrap';
+import {AlertModule, BsDatepickerModule, CollapseModule} from 'ngx-bootstrap';
 import {SideNavComponent} from './side-nav/side-nav.component';
 import {OrderScreenComponent} from './order-screen/order-screen.component';
 import {OrderPressDataComponent} from './order-press-data/order-press-data.component';
@@ -103,7 +103,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     AlertModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   providers: [
     GlulamOrderService,
