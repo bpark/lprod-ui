@@ -64,11 +64,10 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.dataSubscription.unsubscribe();
   }
 
   delete(): void {
-    this.subscription.add(this.shipmentsService.deleteShipment(this.selectedId).subscribe(
+    this.shipmentsService.deleteShipment(this.selectedId).subscribe(
       result => {
         if (result.ok) {
           this.getMessages(this.page, this.pageSize);
@@ -79,13 +78,14 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
       error => {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gelöscht werden!');
       }
-    ));
+    );
   }
 
-  updateSelecteable(): void {
+  updateSelecteable(index): void {
+    this.select(index);
     const shipment = this.shipmentsList.items.find(s => s.id === this.selectedId);
     shipment.selectable = !shipment.selectable;
-    this.subscription.add(this.shipmentsService.updateShipment(shipment).subscribe(
+    this.shipmentsService.updateShipment(shipment).subscribe(
       result => {
         if (!result.ok) {
           this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
@@ -94,7 +94,7 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
       error => {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
       }
-    ));
+    );
   }
 
   getMessages(page: number, pageSize: number): void {

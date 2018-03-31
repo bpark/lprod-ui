@@ -64,8 +64,8 @@
                   <td>{{item.date}}</td>
                   <td>{{item.name}}</td>
                   <td class="text-right">
-                    <button type="button" data-toggle="button" class="btn btn-toggle-switch" (click)="updateSelecteable()"
-                            [ngClass]="item.selectable ? 'active' : ''" [attr.aria-pressed]="item.selectable">
+                    <button type="button" data-toggle="button" class="btn btn-toggle-switch" (click)="updateSelecteable(i)"
+                            [ngClass]="item.selectable ? 'active' : ''">
                     </button>
                   </td>
                 </tr>
