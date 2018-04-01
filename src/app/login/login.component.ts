@@ -18,10 +18,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   alertStackModel: AlertStackModel;
 
+  rnd: number;
+
   constructor(private loginService: LoginService,
               private router: Router) { }
 
   ngOnInit() {
+    this.rnd = Math.floor(Math.random() * 16);
   }
 
   ngOnDestroy() {

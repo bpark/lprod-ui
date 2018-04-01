@@ -1,5 +1,133 @@
-.myimage {
-  background: transparent url("../../assets/wood.jpg") no-repeat top center fixed;
+.wall_0 {
+  background: transparent url("../../assets/andre-sanano-36243-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_1 {
+  background: transparent url("../../assets/dakota-roos-1311-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_2 {
+  background: transparent url("../../assets/daniel-mccullough-348488-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_3 {
+  background: transparent url("../../assets/joel-jasmin-forestbird-506723-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_4 {
+  background: transparent url("../../assets/joey-kyber-121699-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_5 {
+  background: transparent url("../../assets/josh-rose-587587-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_6 {
+  background: transparent url("../../assets/kindfolk-703-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_7 {
+  background: transparent url("../../assets/marc-olivier-jodoin-361842-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_8 {
+  background: transparent url("../../assets/matthew-hamilton-202227-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_9 {
+  background: transparent url("../../assets/michael-browning-227688-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_10 {
+  background: transparent url("../../assets/michael-mroczek-440382-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_11 {
+  background: transparent url("../../assets/ricardo-gomez-angel-558502-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_12 {
+  background: transparent url("../../assets/rob-bye-182304.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_13 {
+  background: transparent url("../../assets/sean-pollock-203658-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_14 {
+  background: transparent url("../../assets/simon-stankowski-253345-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_15 {
+  background: transparent url("../../assets/verne-ho-23880-unsplash.jpg") no-repeat top center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100vh;
+}
+
+.wall_16 {
+  background: transparent url("../../assets/verstappen-photography-532656-unsplash.jpg") no-repeat top center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -25,5 +153,5 @@
 }
 
 .well {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.9);
 }
