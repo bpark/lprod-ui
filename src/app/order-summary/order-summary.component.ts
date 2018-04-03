@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {GlulamOrderService} from '../model/glulam-order.service';
+import {GluelamTypes, GlulamModel} from '../model/glulam.model';
 
 @Component({
   selector: 'app-order-summary',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSummaryComponent implements OnInit {
 
-  constructor() { }
+  glulamModel: GlulamModel;
+
+  constructor(private glulamOrderService: GlulamOrderService) { }
 
   ngOnInit() {
+    this.glulamModel = this.glulamOrderService.glulamModel;
   }
 
 }
