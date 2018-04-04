@@ -39,21 +39,21 @@
         </div>
 
         <div class="row">
-          <div class="form-group">
+          <div class="form-group" [ngClass]="(customer.invalid && (customer.dirty || customer.touched)) ? 'has-error' : ''">
             <div class="col-md-12">
               <label for="customer">Auftraggeber</label>
               <input type="text" class="form-control" id="customer" placeholder="Lager"
-                     [(ngModel)]="glulamModel.pressData.customer">
+                     [(ngModel)]="glulamModel.pressData.customer" required minlength="4" maxlength="50" #customer="ngModel">
             </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="form-group">
+          <div class="form-group" [ngClass]="(elementNumber.invalid && (elementNumber.dirty || elementNumber.touched)) ? 'has-error' : ''">
             <div class="col-md-12">
               <label for="customer">Bauteilnummer</label>
               <input type="text" class="form-control" id="elementNumber" placeholder=""
-                     [(ngModel)]="glulamModel.pressData.elementNumber">
+                     [(ngModel)]="glulamModel.pressData.elementNumber" required minlength="2" maxlength="50" #elementNumber="ngModel">
             </div>
           </div>
         </div>
