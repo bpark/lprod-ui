@@ -18,7 +18,7 @@ import {GlulamOrderService} from './model/glulam-order.service';
 import { OrderNavButtonsComponent } from './order-nav-buttons/order-nav-buttons.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderListComponent } from './order-list/order-list.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { ShipmentGlueComponent } from './shipment-glue/shipment-glue.component';
 import {ShipmentsService} from './model/shipments.service';
@@ -33,6 +33,7 @@ import { ProductComponent } from './product/product.component';
 import {LoginService} from './login/login.service';
 import localeDe from '@angular/common/locales/de';
 import {registerLocaleData} from '@angular/common';
+import {ApiInterceptor} from './model/api-interceptor';
 
 
 defineLocale('de', deLocale);
@@ -114,7 +115,12 @@ const appRoutes: Routes = [
     GlulamOrderService,
     ShipmentsService,
     LoginService,
-    { provide: LOCALE_ID, useValue: 'de' }
+    { provide: LOCALE_ID, useValue: 'de' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
