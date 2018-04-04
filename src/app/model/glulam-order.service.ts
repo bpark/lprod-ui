@@ -29,9 +29,9 @@ export class GlulamOrderService {
   }
 
   getGluelamOrders(page: number, pageSize: number): Observable<GluelamList> {
-    const queryParams = new HttpParams();
-    queryParams.set('page', String(page));
-    queryParams.set('pageSize', String(pageSize));
+    const queryParams = new HttpParams()
+      .set('page', String(page))
+      .set('pageSize', String(pageSize));
     return this.http.get<GluelamList>(GlulamOrderService.createConnectionUrl(), {params: queryParams });
   }
 
