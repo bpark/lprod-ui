@@ -31,8 +31,12 @@ import { deLocale } from 'ngx-bootstrap/locale';
 import { LoginComponent } from './login/login.component';
 import { ProductComponent } from './product/product.component';
 import {LoginService} from './login/login.service';
+import localeDe from '@angular/common/locales/de';
+import {registerLocaleData} from '@angular/common';
+
 
 defineLocale('de', deLocale);
+registerLocaleData(localeDe);
 
 
 const appRoutes: Routes = [

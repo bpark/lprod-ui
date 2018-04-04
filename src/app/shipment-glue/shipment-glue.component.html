@@ -61,7 +61,7 @@
                 <tbody>
                 <tr *ngFor="let item of shipmentsList.items; let i = index;" (click)="select(i)"
                     [ngClass]="selectedIndex === i ? 'info' : ''">
-                  <td>{{item.date}}</td>
+                  <td>{{item.date | date:'fullDate'}}</td>
                   <td>{{item.name}}</td>
                   <td class="text-right">
                     <button type="button" data-toggle="button" class="btn btn-toggle-switch" (click)="updateSelecteable($event, i)"

@@ -19,6 +19,7 @@ export class OrderDataComponent implements OnInit {
   ngOnInit() {
     this.localeService.use('de');
     this.glulamModel = this.glulamOrderService.glulamModel;
+    this.glulamModel.pressData.date = new Date(this.glulamModel.pressData.date);
     console.log('date: ', this.glulamModel.pressData.date);
   }
 

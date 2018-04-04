@@ -30,7 +30,7 @@
               <div class="combobox">
                 <select class="form-control" id="glue" [(ngModel)]="glulamModel.glueData.glueTypeId">
                   <option *ngFor="let item of glueShipments" [ngValue]="item.id"
-                          [selected]="glueShipments[0].id">{{item.name}} ({{item.date}})
+                          [selected]="glueShipments[0].id">{{item.name}} ({{item.date | date:'fullDate'}})
                   </option>
                 </select>
               </div>
@@ -45,7 +45,7 @@
               <div class="combobox">
                 <select class="form-control" id="hardenertype" [(ngModel)]="glulamModel.glueData.hardenerTypeId">
                   <option *ngFor="let item of hardenerShipments" [ngValue]="item.id"
-                          [selected]="hardenerShipments[0].id">{{item.name}} ({{item.date}})
+                          [selected]="hardenerShipments[0].id">{{item.name}} ({{item.date | date:'fullDate'}})
                   </option>
                 </select>
               </div>

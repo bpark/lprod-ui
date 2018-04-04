@@ -61,7 +61,7 @@
                 <tbody>
                 <tr *ngFor="let item of gluelamList.items; let i = index;" (click)="select(i)"
                     [ngClass]="selectedIndex === i ? 'info' : ''">
-                  <td>{{item.date}}</td>
+                  <td>{{item.date | date:'fullDate'}}</td>
                   <td>{{item.customer}}</td>
                   <td class="text-right">{{item.elementNumber}}</td>
                 </tr>
