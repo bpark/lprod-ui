@@ -81,7 +81,7 @@ export class ApiInterceptor implements HttpInterceptor {
     if (value === '0001-01-01T00:00:00') {
       return null;
     }
-    const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)Z$/.exec(value);
+    const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)-|\+\d{4}$/.exec(value);
     if (!match) {
       return value;
     }
