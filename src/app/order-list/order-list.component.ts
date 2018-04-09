@@ -5,6 +5,9 @@ import {GluelamList} from '../model/glulam.model';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute} from '@angular/router';
 import {AlertStackModel} from '../alert-stack/alert-stack.model';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'app-order-list',
@@ -23,6 +26,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
   };
 
   alertStackModel: AlertStackModel;
+  loading = false;
 
   gluelamList: GluelamList;
   errors: boolean;
@@ -51,8 +55,10 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
   getMessages(page: number, pageSize: number): void {
 
-    this.gluelamOrderService.getGluelamOrders(page, pageSize).subscribe(
+    const dataObservable = this.gluelamOrderService.getGluelamOrders(page, pageSize);
+    dataObservable.subscribe(
       result => {
+        this.loading = false;
         this.gluelamList = result;
         this.totalPages = Math.floor(result.totalCount / pageSize) + 1;
         this.select(0);
@@ -61,6 +67,14 @@ export class OrderListComponent implements OnInit, OnDestroy {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensätze konnten nicht geladen werden!');
       }
     );
+
+    /*
+    Observable.create(obs => {
+      obs.next(true);
+      obs.complete();
+    }).takeUntil(dataObservable).delay(200).subscribe(loading => {
+      this.loading = loading;
+    });*/
   }
 
   deleteMessage() {

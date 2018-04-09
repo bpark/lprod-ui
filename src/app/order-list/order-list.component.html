@@ -47,6 +47,18 @@
 
           <app-alert-stack [alertStackModel]="alertStackModel"></app-alert-stack>
 
+          <div class="row">
+            <div class="col-md-24">
+              <div *ngIf="loading" class="progress-ring progress-medium" style="width: 0%;">
+                <div class="progress-circle"></div>
+                <div class="progress-circle"></div>
+                <div class="progress-circle"></div>
+                <div class="progress-circle"></div>
+                <div class="progress-circle"></div>
+              </div>
+            </div>
+          </div>
+
           <div *ngIf="gluelamList">
 
             <div class="table-responsive">

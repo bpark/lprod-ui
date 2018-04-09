@@ -18,11 +18,73 @@
       <div class="col-md-14">
 
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-20">
             <h2>Zusammenfassung</h2>
-            <strong>Kunde:</strong> {{glulamModel.pressData.customer}}<br>
-            <strong>Datum:</strong> {{glulamModel.pressData.date}}<br>
-            <strong>Bauteil Nr.:</strong> {{glulamModel.pressData.elementNumber}}<br>
+            <div class="row">
+              <div class="col-md-12">
+                <span class="text-t9">Kundendaten</span>
+                <hr>
+                <strong>Kunde:</strong> {{glulamModel.pressData.customer}}<br>
+                <strong>Datum:</strong> {{glulamModel.pressData.date | date:'fullDate'}}<br>
+                <strong>Bauteil Nr.:</strong> {{glulamModel.pressData.elementNumber}}<br>
+              </div>
+              <div class="col-md-12">
+                <span class="text-t9">Leim/Härter</span>
+                <hr>
+                <strong>Leimsorte:</strong> {{glulamModel.glueData.glueTypeId}}<br>
+                <strong>Härtersorte:</strong> {{glulamModel.glueData.hardenerTypeId}}<br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <span class="text-t9">Pressdaten</span>
+                <hr>
+                <strong>Lammellenstärke:</strong> {{glulamModel.pressData.laminationStrength}}<br>
+                <strong>Qualität:</strong> {{glulamModel.pressData.coverLamination}}<br>
+                <strong>Presse:</strong> {{glulamModel.pressData.press}}<br>
+                <strong>Holzart:</strong> {{glulamModel.pressData.woodType}}<br>
+              </div>
+              <div class="col-md-12">
+                <span class="text-t9">Leimbinderdaten</span>
+                <hr>
+                <strong>Breite:</strong> {{glulamModel.gluelamData.width}}<br>
+                <strong>Zusatzlänge:</strong> {{glulamModel.gluelamData.additionalLength}}<br>
+                <strong>Leimmenge:</strong> {{glulamModel.gluelamData.glueAmount}}<br>
+                <strong>Härter in %:</strong> {{glulamModel.gluelamData.hardenerPercentage}}<br>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-20">
+            <span class="text-t9">Details</span>
+            <hr>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>Stück</th>
+                  <th>Höhe</th>
+                  <th>Länge</th>
+                  <th>Lamellen</th>
+                  <th>Fläche</th>
+                  <th>Fläche ges.</th>
+                  <th>Vol MQ</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let row of glulamModel.gluelamDetail">
+                  <td>{{row.amount}}</td>
+                  <td>{{row.height}}</td>
+                  <td>{{row.length}}</td>
+                  <td>{{row.lamella}}</td>
+                  <td>{{row.square}}</td>
+                  <td>{{row.squareTotal}}</td>
+                  <td>{{row.volume}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
