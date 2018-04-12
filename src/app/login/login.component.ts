@@ -1,36 +1,32 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from './login.service';
 import {AlertStackModel} from '../alert-stack/alert-stack.model';
 import {Observable} from 'rxjs/Observable';
-import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
+import {JwtTokenStoreService} from '../model/jwt-token-store.service';
+import {JwtToken} from '../model/jwt-token';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
 
-  subscription: Subscription;
   alertStackModel: AlertStackModel;
 
   rnd: number;
 
   constructor(private loginService: LoginService,
-              private router: Router) { }
+              private jwtTokenStore: JwtTokenStoreService,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.rnd = Math.floor(Math.random() * 16);
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 
   login() {
@@ -38,16 +34,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.handleResponse(this.loginService.login(this.username, this.password));
   }
 
-  private handleResponse(responseObservable: Observable<any>) {
-    this.subscription = responseObservable.subscribe(result => {
-        if (result.ok) {
-          this.router.navigate(['/app']);
-        } else {
-          this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gespeichert werden!');
-        }
+  private handleResponse(responseObservable: Observable<JwtToken>) {
+    responseObservable.subscribe(result => {
+        this.jwtTokenStore.token = result.token;
+        this.router.navigate(['/app']);
       },
       error => {
         this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
+        console.log('error: ', error);
       });
   }
 }

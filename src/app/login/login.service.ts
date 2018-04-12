@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {JwtToken} from '../model/jwt-token';
 
 @Injectable()
 export class LoginService {
@@ -9,7 +10,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<HttpResponse<number>> {
+  login(username: string, password: string): Observable<JwtToken> {
     /*
     var formData = {
             username: $form.find('input[name="username"]').val(),
@@ -26,6 +27,6 @@ export class LoginService {
     console.log('body: ', body.toString());
     */
 
-    return this.http.post<number>('http://localhost:8080/auth', {username: username, password: password}, {observe: 'response'});
+    return this.http.post<JwtToken>('http://localhost:8080/auth', {username: username, password: password});
   }
 }

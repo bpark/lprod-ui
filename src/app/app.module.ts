@@ -34,6 +34,7 @@ import {LoginService} from './login/login.service';
 import localeDe from '@angular/common/locales/de';
 import {registerLocaleData} from '@angular/common';
 import {ApiInterceptor} from './model/api-interceptor';
+import {JwtTokenStoreService} from './model/jwt-token-store.service';
 
 
 defineLocale('de', deLocale);
@@ -115,6 +116,7 @@ const appRoutes: Routes = [
     GlulamOrderService,
     ShipmentsService,
     LoginService,
+    JwtTokenStoreService,
     { provide: LOCALE_ID, useValue: 'de' },
     {
       provide: HTTP_INTERCEPTORS,
