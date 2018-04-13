@@ -19,9 +19,9 @@ export class GlulamOrderService {
       }
     } else {
       if (id) {
-        return 'http://localhost:8080/api/orders/' + id;
+        return 'https://lprod-v1.appspot.com/api/orders/' + id;
       } else {
-        return 'http://localhost:8080/api/orders';
+        return 'https://lprod-v1.appspot.com/api/orders';
       }
     }
   }
@@ -34,13 +34,16 @@ export class GlulamOrderService {
     const queryParams = new HttpParams()
       .set('page', String(page))
       .set('pageSize', String(pageSize));
-    const options = {headers: this.jwtTokenStore.createTokenHeader(), params: queryParams };
-    return this.http.get<GluelamList>(GlulamOrderService.createConnectionUrl(), options);
+    return this.http.get<GluelamList>(GlulamOrderService.createConnectionUrl(), {
+      headers: this.jwtTokenStore.createTokenHeader(),
+      params: queryParams
+    });
   }
 
   getGluelamOrder(id: number): Observable<GlulamModel> {
-    const options = {headers: this.jwtTokenStore.createTokenHeader()};
-    return this.http.get<GlulamModel>(GlulamOrderService.createConnectionUrl(id), options);
+    return this.http.get<GlulamModel>(GlulamOrderService.createConnectionUrl(id), {
+      headers: this.jwtTokenStore.createTokenHeader()
+    });
   }
 
   deleteGluelamOrder(id: number): Observable<number> {
@@ -48,11 +51,15 @@ export class GlulamOrderService {
     return this.http.delete<number>(GlulamOrderService.createConnectionUrl(id), options);
   }
 
-  create(gluelam: GlulamModel) {
-    return this.http.post<number>(GlulamOrderService.createConnectionUrl(), gluelam, {headers: this.jwtTokenStore.createTokenHeader(), observe: 'response'});
+  create(gluelam: GlulamModel): Observable<number>  {
+    return this.http.post<number>(GlulamOrderService.createConnectionUrl(), gluelam, {
+      headers: this.jwtTokenStore.createTokenHeader()
+    });
   }
 
-  update(gluelam: GlulamModel): Observable<HttpResponse<void>> {
-    return this.http.put<void>(GlulamOrderService.createConnectionUrl(gluelam.id), gluelam, {headers: this.jwtTokenStore.createTokenHeader(), observe: 'response'});
+  update(gluelam: GlulamModel): Observable<void> {
+    return this.http.put<void>(GlulamOrderService.createConnectionUrl(gluelam.id), gluelam, {
+      headers: this.jwtTokenStore.createTokenHeader()
+    });
   }
 }

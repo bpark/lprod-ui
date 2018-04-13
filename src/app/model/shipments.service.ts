@@ -6,6 +6,7 @@ import {Shipment, ShipmentsList, ShipmentType} from './shipments.model';
 import {observable} from 'rxjs/symbol/observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/share';
+import {JwtTokenStoreService} from './jwt-token-store.service';
 
 @Injectable()
 export class ShipmentsService {
@@ -19,14 +20,15 @@ export class ShipmentsService {
       }
     } else {
       if (id) {
-        return 'assets/shipments.json';
+        return 'https://lprod-v1.appspot.com/api/shipments/' + id;
       } else {
-        return 'assets/shipments.json';
+        return 'https://lprod-v1.appspot.com/api/shipments';
       }
     }
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private jwtTokenStore: JwtTokenStoreService) {
   }
 
   getShipments(page: number, pageSize: number, shipmentType: ShipmentType): Observable<ShipmentsList> {
@@ -35,33 +37,46 @@ export class ShipmentsService {
       .set('pageSize', String(pageSize))
       .set('shipmentType', String(shipmentType));
 
-    console.log('shipments service with: ', queryParams);
-
-    return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams});
+    return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {
+      headers: this.jwtTokenStore.createTokenHeader(),
+      params: queryParams
+    });
   }
 
   getSelectableShipments(shipmentType: ShipmentType): Observable<ShipmentsList> {
     const queryParams = new HttpParams()
       .set('selectable', String(true))
       .set('shipmentType', String(shipmentType));
-    return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {params: queryParams});
+    return this.http.get<ShipmentsList>(ShipmentsService.createConnectionUrl(), {
+      headers: this.jwtTokenStore.createTokenHeader(),
+      params: queryParams
+    });
   }
 
   getShipment(id: number): Observable<Shipment> {
-    return this.http.get<Shipment>(ShipmentsService.createConnectionUrl(id));
+    return this.http.get<Shipment>(ShipmentsService.createConnectionUrl(id), {
+      headers: this.jwtTokenStore.createTokenHeader()
+    });
   }
 
-  createShipment(shipment: Shipment): Observable<HttpResponse<number>> {
-    return this.http.post<number>(ShipmentsService.createConnectionUrl(), shipment, {observe: 'response'});
+  createShipment(shipment: Shipment): Observable<number> {
+    return this.http.post<number>(ShipmentsService.createConnectionUrl(), shipment, {
+      headers: this.jwtTokenStore.createTokenHeader()
+    });
   }
 
-  updateShipment(shipment: Shipment): Observable<HttpResponse<void>> {
-    return this.http.put<void>(ShipmentsService.createConnectionUrl(shipment.id), shipment, {observe: 'response'});
+  updateShipment(shipment: Shipment): Observable<void> {
+    return this.http.put<void>(ShipmentsService.createConnectionUrl(shipment.id), shipment, {
+      headers: this.jwtTokenStore.createTokenHeader()
+    });
   }
 
-  deleteShipment(id: number, shipmentType: ShipmentType): Observable<HttpResponse<void>> {
+  deleteShipment(id: number, shipmentType: ShipmentType): Observable<void> {
     const queryParams = new HttpParams()
       .set('shipmentType', String(shipmentType));
-    return this.http.delete<void>(ShipmentsService.createConnectionUrl(id), {observe: 'response', params: queryParams});
+    return this.http.delete<void>(ShipmentsService.createConnectionUrl(id), {
+      headers: this.jwtTokenStore.createTokenHeader(),
+      params: queryParams
+    });
   }
 }

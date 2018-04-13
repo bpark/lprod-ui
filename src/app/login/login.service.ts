@@ -27,6 +27,7 @@ export class LoginService {
     console.log('body: ', body.toString());
     */
 
-    return this.http.post<JwtToken>('http://localhost:8080/auth', {username: username, password: password});
+    // return this.http.post<JwtToken>('http://localhost:8080/auth', {username: username, password: password});
+    return this.http.post<JwtToken>('https://lprod-v1.appspot.com/auth', {username: username, password: password});
   }
 }
