@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/app']);
       },
       error => {
-        this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
+        this.alertStackModel = AlertStackModel.withDangerMessage('Login fehlgeschlagen!');
         console.log('error: ', error);
       });
   }
