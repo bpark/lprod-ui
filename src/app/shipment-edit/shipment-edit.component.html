@@ -37,7 +37,8 @@
 
       <div class="row">
         <div class="col-md-20">
-          <h2>Leim Lieferung</h2>
+          <h2 *ngIf="shipmentType == 'glue'">Leim Lieferung</h2>
+          <h2 *ngIf="shipmentType == 'hardener'">Härter Lieferung</h2>
         </div>
       </div>
 
