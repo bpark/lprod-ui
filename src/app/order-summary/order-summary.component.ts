@@ -17,4 +17,8 @@ export class OrderSummaryComponent implements OnInit {
     this.glulamModel = this.glulamOrderService.glulamModel;
   }
 
+  save() {
+
+  }
+
 }
