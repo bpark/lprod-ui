@@ -11,11 +11,11 @@ export class GlulamOrderService {
   glulamModel: GlulamModel;
 
   private static createConnectionUrl(id?: number): string {
-    if (environment.production) {
+    if (!environment.production) {
       if (id) {
-        return 'api/orders/' + id;
+        return 'assets/singleorder.json';
       } else {
-        return 'api/orders';
+        return 'assets/gluelams.json';
       }
     } else {
       if (id) {

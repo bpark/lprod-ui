@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/combineLatest';
-import {AlertStackModel} from '../alert-stack/alert-stack.model';
+import {AlertStackModel} from '../shared/alert-stack/alert-stack.model';
 
 @Component({
   selector: 'app-shipment-edit',

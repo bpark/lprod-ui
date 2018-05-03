@@ -4,7 +4,7 @@ import {ShipmentsService} from '../model/shipments.service';
 import {ShipmentsList, ShipmentType} from '../model/shipments.model';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {AlertStackModel} from '../alert-stack/alert-stack.model';
+import {AlertStackModel} from '../shared/alert-stack/alert-stack.model';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({

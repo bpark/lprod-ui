@@ -19,12 +19,9 @@ import { OrderNavButtonsComponent } from './order-nav-buttons/order-nav-buttons.
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { PaginatorComponent } from './paginator/paginator.component';
 import { ShipmentGlueComponent } from './shipment-glue/shipment-glue.component';
 import {ShipmentsService} from './model/shipments.service';
 import { ShipmentEditComponent } from './shipment-edit/shipment-edit.component';
-import { AlertStackComponent } from './alert-stack/alert-stack.component';
-import { TimesPipe } from './paginator/times.pipe';
 import { OrderDataComponent } from './order-data/order-data.component';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { deLocale } from 'ngx-bootstrap/locale';
@@ -35,6 +32,7 @@ import localeDe from '@angular/common/locales/de';
 import {registerLocaleData} from '@angular/common';
 import {ApiInterceptor} from './model/api-interceptor';
 import {JwtTokenStoreService} from './model/jwt-token-store.service';
+import {SharedModule} from './shared/shared.module';
 
 
 defineLocale('de', deLocale);
@@ -91,11 +89,8 @@ const appRoutes: Routes = [
     OrderNavButtonsComponent,
     OrderSummaryComponent,
     OrderListComponent,
-    PaginatorComponent,
     ShipmentGlueComponent,
     ShipmentEditComponent,
-    AlertStackComponent,
-    TimesPipe,
     OrderDataComponent,
     LoginComponent,
     ProductComponent
@@ -110,7 +105,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    SharedModule.forRoot()
   ],
   providers: [
     GlulamOrderService,

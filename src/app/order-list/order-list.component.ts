@@ -4,7 +4,7 @@ import {GlulamOrderService} from '../model/glulam-order.service';
 import {GluelamList} from '../model/glulam.model';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute} from '@angular/router';
-import {AlertStackModel} from '../alert-stack/alert-stack.model';
+import {AlertStackModel} from '../shared/alert-stack/alert-stack.model';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/takeUntil';

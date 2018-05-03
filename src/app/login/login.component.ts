@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from './login.service';
-import {AlertStackModel} from '../alert-stack/alert-stack.model';
+import {AlertStackModel} from '../shared/alert-stack/alert-stack.model';
 import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
 import {JwtTokenStoreService} from '../model/jwt-token-store.service';
