@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {GluelamList, GlulamModel} from './glulam.model';
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../environments/environment';
 import {JwtTokenStoreService} from './jwt-token-store.service';
