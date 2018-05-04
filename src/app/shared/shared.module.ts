@@ -5,6 +5,7 @@ import { TimesPipe } from './times.pipe';
 import {PaginatorComponent} from './paginator/paginator.component';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {SideNavComponent} from './side-nav/side-nav.component';
 
 @NgModule({
   imports: [
@@ -15,11 +16,13 @@ import {RouterModule} from '@angular/router';
   declarations: [
     AlertStackComponent,
     PaginatorComponent,
+    SideNavComponent,
     TimesPipe
   ],
   exports: [
     AlertStackComponent,
     PaginatorComponent,
+    SideNavComponent,
     TimesPipe
   ]
 })

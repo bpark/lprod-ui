@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SideNavModel} from '../side-nav/side-nav-model';
+import {SideNavModel} from '../shared/side-nav/side-nav-model';
 import {Shipment, ShipmentType} from '../model/shipments.model';
 import {ShipmentsService} from '../model/shipments.service';
 import {ActivatedRoute, Router} from '@angular/router';

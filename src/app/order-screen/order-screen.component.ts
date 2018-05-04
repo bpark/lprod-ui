@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SideNavModel} from '../side-nav/side-nav-model';
+import {SideNavModel} from '../shared/side-nav/side-nav-model';
 import {ActivatedRoute} from '@angular/router';
 import {GlulamOrderService} from '../model/glulam-order.service';
 import {Subscription} from 'rxjs/Subscription';
