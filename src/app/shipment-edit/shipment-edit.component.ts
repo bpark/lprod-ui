@@ -81,7 +81,7 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
         this.router.navigate(['/app/shipments'], {queryParams: {type: this.shipmentType}});
       },
       error => {
-        this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
+        this.alertStackModel = AlertStackModel.withDangerMessage('Der Datensatz konnte nicht aktualisiert werden!');
       });
   }
 }

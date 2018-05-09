@@ -69,11 +69,11 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
   delete(): void {
     this.shipmentsService.deleteShipment(this.selectedId, this.shipmentType).subscribe(
       result => {
-        this.alertStackModel = AlertStackModel.withSuccessMessage('Datensatz wurde erfolgreich gelöscht');
+        this.alertStackModel = AlertStackModel.withSuccessMessage('Der Datensatz wurde erfolgreich gelöscht');
         this.getItems(this.page, this.pageSize, this.shipmentType);
       },
       (error: HttpErrorResponse) => {
-        this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht gelöscht werden!');
+        this.alertStackModel = AlertStackModel.withDangerMessage('Der Datensatz konnte nicht gelöscht werden!');
       }
     );
   }
@@ -87,7 +87,7 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
       result => {
       },
       (error: HttpErrorResponse) => {
-        this.alertStackModel = AlertStackModel.withDangerMessage('Datensatz konnte nicht aktualisiert werden!');
+        this.alertStackModel = AlertStackModel.withDangerMessage('Der Datensatz konnte nicht aktualisiert werden!');
       }
     );
   }
@@ -103,7 +103,7 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
         this.select(0);
       },
       error => {
-        this.alertStackModel = AlertStackModel.withDangerMessage('Datensätze konnten nicht geladen werden!');
+        this.alertStackModel = AlertStackModel.withDangerMessage('Die Datensätze konnten nicht geladen werden!');
       }
     );
   }
