@@ -1,0 +1,64 @@
+unit Berechnen;
+                 Hallo Kurt
+
+				 Ic hoffe Du kannst mit dieser Daten was anfangen !!!!
+
+
+
+
+      1 = Eingabevariable
+	  2 = Berechnungsvariable (Optionen)
+	  3 = Zwischenvariable
+	  4 = Ergebnis
+
+	    Eingaben                                            Ausgaben
+
+		Lamellen gehobelt in mm                             Fläche in m2
+		Höhe in cm                                          Volumen in m3
+		Breite in cm                                        Leim in Kg
+		Länge in m                                          Härter in Kg
+		Leimauftrag in gramm pro m2                         Leimflotte in Kg
+		Härteranteil in %
+
+
+          3                   1                1
+     Lamellen pro Stück := Hoehe / (Lamellenst gehobelt /10;     abrunden
+
+	      4                   3                  1
+     Lamellen[zeile] := Lamellen1 pro Stück * STueck[zeile]
+
+           3                3            4
+     Lamellen ges. := Lamellen ges. + Lamellen Zeile
+
+             3             3             4
+	 Restlamellen := Restlamellen - Lamellen Zeile     Fehlermeldung Max Pressenhöe Überschritten
+
+	       4                 1           1             1         1             3
+	 Fläche pro Stück := ( Breite + Zusatzbreite )* (Länge +Zusatzlänge) * ( Lamellen pro Stueck -1 )
+
+	     4                    4                1
+	 Fläche Zeile := Fläche pro Stueck * Stueck
+
+	    3               3              4
+	 Fläche ges  := Flaeche ges +Fläche Zeile
+
+	     1              1        1       1      1
+	 Volumen Zeile := Breite * Höhe * Länge * Stück    Ergebnis mit 4 Kommastellen
+
+	        3              4                 1
+     Leimflotte zeile:= Flaeche zeile * (Leimauftrag/1000);
+
+	      3                   3                          1
+     Leim zeile  := (Leimflotte zeile*100) / (Haerteranteil in % +100)
+
+	      3                3                 3
+     Haerter zeile  := Leimflotte zeile - Leim zeile
+
+	    3                  3                 4
+	 Leimflotte ges := Leimflotte ges + Leimflotte Zeile              ( Für Ausdruck )
+
+	    3         3          4
+	 Leim ges := Leim ges + Leim Zeile                                ( Für Ausdruck )
+
+	    3              3           4
+	 Härter ges := Härter ges +Härter Zeile                           ( Für Ausdruck )
