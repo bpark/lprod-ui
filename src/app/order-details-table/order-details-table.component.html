@@ -87,7 +87,7 @@
                                [(ngModel)]="row.length">
                       </div>
                       <div class="form-group">
-                        <button class="btn btn-primary" (click)="collapse.hide()">Ok</button>
+                        <button class="btn btn-primary" (click)="collapse.hide(); calculateRow(row)">Ok</button>
                       </div>
                   </div>
                 </div>

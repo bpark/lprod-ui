@@ -21,6 +21,8 @@ unit Berechnen;
 		Härteranteil in %
 
 
+Stück Höhe Länge Lamellen Fläche Fläche ges.Vol MQ
+
           3                   1                1
      Lamellen pro Stück := Hoehe / (Lamellenst gehobelt /10;     abrunden
 

@@ -28,6 +28,7 @@ export class OrderDetailsTableComponent implements OnInit {
     this.glulamModel.gluelamDetail.push(detail);
 
     this.addRowItem.nativeElement.blur();
+
   }
 
   removeRow() {
