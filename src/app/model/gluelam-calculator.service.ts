@@ -21,10 +21,6 @@ export class GluelamCalculatorService {
 
     const singleLamella = Math.round(inputDetailHeight * 10 / glulamModel.pressData.laminationStrength);
 
-    console.log('singleLamella: ', singleLamella);
-    console.log('inputDetailHeight: ', inputDetailHeight);
-    console.log('lamStrength: ', glulamModel.pressData.laminationStrength);
-
     const totalLength = inputDetailLength + glulamModel.gluelamData.additionalLength;
     const totalWidht = glulamModel.gluelamData.width;
     const singleQuare = totalLength * totalWidht * (singleLamella - 1);
@@ -33,12 +29,13 @@ export class GluelamCalculatorService {
     const outputDetailSquare = singleQuare * inputDetailAmount;
     const outputDetailTotalSquare = outputDetailLamella + singleQuare;
 
-    const rowVolume = glulamModel.gluelamData.width * inputDetailHeight * inputDetailLength * inputDetailAmount;
+    const outputRowVolume = glulamModel.gluelamData.width * inputDetailHeight * inputDetailLength * inputDetailAmount;
 
     this.calculationResult.lamination -= outputDetailLamella;  // TODO: error if negative
 
     detail.lamella = outputDetailLamella;
     detail.square = outputDetailSquare;
     detail.squareTotal = outputDetailTotalSquare;
+    detail.volume = outputRowVolume;
   }
 }
