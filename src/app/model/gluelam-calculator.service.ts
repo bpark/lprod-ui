@@ -23,11 +23,11 @@ export class GluelamCalculatorService {
 
     const totalLength = inputDetailLength + glulamModel.gluelamData.additionalLength;
     const totalWidht = glulamModel.gluelamData.width;
-    const singleQuare = totalLength * totalWidht * (singleLamella - 1);
+    const singleSquare = totalLength * totalWidht * (singleLamella - 1);
 
     const outputDetailLamella = singleLamella * inputDetailAmount;
-    const outputDetailSquare = singleQuare * inputDetailAmount;
-    const outputDetailTotalSquare = outputDetailLamella + singleQuare;
+    const outputDetailSquare = singleSquare * inputDetailAmount;
+    const outputDetailTotalSquare = outputDetailLamella + singleSquare;
 
     const outputRowVolume = glulamModel.gluelamData.width * inputDetailHeight * inputDetailLength * inputDetailAmount;
 
