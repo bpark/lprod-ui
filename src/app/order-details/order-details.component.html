@@ -28,8 +28,8 @@
           <div class="form-group">
             <div class="col-md-12">
               <label for="width">Breite</label>
-              <input type="text" class="form-control" id="width"
-                     [(ngModel)]="glulamModel.gluelamData.width">
+              <input type="number" class="form-control" id="width"
+                     [(ngModel)]="glulamModel.gluelamData.width" step="0.5" min="0" max="20">
             </div>
           </div>
         </div>
