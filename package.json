@@ -30,7 +30,7 @@
     "ngx-bootstrap": "^2.0.2",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.1.0",
-    "winstrap": "^0.5.11",
+    "winstrap": "^0.5.12",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
