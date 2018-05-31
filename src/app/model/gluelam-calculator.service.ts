@@ -15,20 +15,15 @@ export class GluelamCalculatorService {
   }
 
   calculateDetail(detail: GlulamDetail, glulamModel: GlulamModel) {
-    const inputDetailLength = detail.length; // 15
-    const inputDetailAmount = detail.amount; // 2
-    const inputDetailHeight = detail.height; // 10
+    const inputDetailLength = detail.length;
+    const inputDetailAmount = detail.amount;
+    const inputDetailHeight = detail.height;
 
     const singleLamella = Math.round(inputDetailHeight * 10 / glulamModel.pressData.laminationStrength);
-    //  10x10 / 33.6 = 2,97
 
-    const totalLength = inputDetailLength * 100 + glulamModel.gluelamData.additionalLength; // 15?? + 10 cm
-    console.log('inputDetailLength: ' + inputDetailLength);
-    console.log('addLen: ' + glulamModel.gluelamData.additionalLength);
-    console.log('totalLength: ' + totalLength);
-    const totalWidht = glulamModel.gluelamData.width + 1; // 9.5
-    const singleSquare = totalLength * totalWidht * (singleLamella - 1); // 25 * 9.5 * (3-1)
-    console.log('single square: ' + singleSquare);
+    const totalLength = inputDetailLength * 100 + glulamModel.gluelamData.additionalLength;
+    const totalWidht = glulamModel.gluelamData.width + 1;
+    const singleSquare = totalLength * totalWidht * (singleLamella - 1);
 
     const outputDetailLamella = singleLamella * inputDetailAmount;
     const outputDetailSquare = singleSquare / 10000;
