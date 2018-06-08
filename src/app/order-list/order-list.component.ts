@@ -45,7 +45,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
       this.page = paramMap.has('page') ? +paramMap.get('page') : 1;
       this.pageSize = paramMap.has('pageSize') ? +paramMap.get('pageSize') : 10;
 
-      this.getMessages(this.page, this.pageSize);
+      this.getOrders(this.page, this.pageSize);
     });
   }
 
@@ -53,7 +53,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  getMessages(page: number, pageSize: number): void {
+  getOrders(page: number, pageSize: number): void {
 
     const dataObservable = this.gluelamOrderService.getGluelamOrders(page, pageSize);
     dataObservable.subscribe(
@@ -77,9 +77,9 @@ export class OrderListComponent implements OnInit, OnDestroy {
     });*/
   }
 
-  deleteMessage() {
+  deleteOrder() {
     this.gluelamOrderService.deleteGluelamOrder(this.selectedId);
-    this.getMessages(this.page, this.pageSize);
+    this.getOrders(this.page, this.pageSize);
   }
 
   public select(index: number): void {

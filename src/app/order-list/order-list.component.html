@@ -29,7 +29,7 @@
                 <li><a [routerLink]="'/app/orders/new'"><span class="glyph glyph-expand"></span> Neuer Auftrag</a>
                 <li><a [routerLink]="'/app/orders/' + selectedId" [class.disabled]="!selectedId"><span class="glyph glyph-edit"></span> Bearbeiten</a>
                 <!--<li><a [routerLink]="'/app/orders/123'" [class.disabled]="selectedIndex < 0"><span class="glyph glyph-copy"></span> Kopieren</a>-->
-                <li><a (click)="deleteMessage()" [class.disabled]="!selectedId"><span class="glyph glyph-delete"></span>
+                <li><a (click)="deleteOrder()" [class.disabled]="!selectedId"><span class="glyph glyph-delete"></span>
                   Löschen</a>
                 </li>
               </ul>
