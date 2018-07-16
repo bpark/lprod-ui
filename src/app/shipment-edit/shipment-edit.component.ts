@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/combineLatest';
 import {AlertStackModel} from '../shared/alert-stack/alert-stack.model';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-shipment-edit',
@@ -27,17 +28,19 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
     }]
   };
 
-  shipment: Shipment;
   shipmentType: ShipmentType;
 
-  subscription: Subscription;
-
   alertStackModel: AlertStackModel;
-  selectable: boolean;
+
+  shipmentForm: FormGroup;
+
+  private subscription: Subscription;
+  private shipment: Shipment;
 
   constructor(private shipmentService: ShipmentsService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -46,14 +49,23 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
     const type = this.route.snapshot.queryParamMap.get('type');
     this.shipmentType = ShipmentType[type as keyof typeof ShipmentType];
 
+    this.shipmentForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      date: [new Date(), Validators.required],
+      selectable: [true, Validators.required]
+    });
+
     if (shipmentId === -1) {
       this.shipment = new Shipment();
-      this.shipment.date = new Date();
-      this.shipment.selectable = this.selectable = true;
       this.shipment.shipmentType = this.shipmentType;
     } else {
       this.subscription = this.shipmentService.getShipment(shipmentId).subscribe(result => {
         this.shipment = result;
+        this.shipmentForm.patchValue({
+          name: result.name,
+          date: result.date,
+          selectable: result.selectable
+        });
       });
     }
   }
@@ -65,15 +77,15 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
   }
 
   save() {
+    this.shipment.name = this.shipmentForm.controls.name.value;
+    this.shipment.date = this.shipmentForm.controls.date.value;
+    this.shipment.selectable = this.shipmentForm.controls.selectable.value;
+    console.log('shipment: ', this.shipment);
     if (this.shipment.id) {
       this.handleResponse(this.shipmentService.updateShipment(this.shipment));
     } else {
       this.handleResponse(this.shipmentService.createShipment(this.shipment));
     }
-  }
-
-  toggle() {
-    this.selectable = !this.selectable;
   }
 
   private handleResponse(responseObservable: Observable<any>) {

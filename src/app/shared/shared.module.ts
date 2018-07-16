@@ -6,6 +6,7 @@ import {PaginatorComponent} from './paginator/paginator.component';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {SideNavComponent} from './side-nav/side-nav.component';
+import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
 
 @NgModule({
   imports: [
@@ -17,12 +18,14 @@ import {SideNavComponent} from './side-nav/side-nav.component';
     AlertStackComponent,
     PaginatorComponent,
     SideNavComponent,
+    ToggleButtonComponent,
     TimesPipe
   ],
   exports: [
     AlertStackComponent,
     PaginatorComponent,
     SideNavComponent,
+    ToggleButtonComponent,
     TimesPipe
   ]
 })

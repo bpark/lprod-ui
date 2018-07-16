@@ -3,7 +3,7 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertModule, BsDatepickerModule, CollapseModule} from 'ngx-bootstrap';
 import {SideNavComponent} from './shared/side-nav/side-nav.component';
 import {OrderScreenComponent} from './order-screen/order-screen.component';
@@ -101,6 +101,7 @@ const appRoutes: Routes = [
     ),
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot(),

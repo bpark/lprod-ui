@@ -19,69 +19,70 @@
         </div>
       </div>
     </div>
-    <div class="col-md-19">
-      <div class="row">
-        <nav class="navbar navbar-inverse">
-          <div class="navbar-global theme-default">
-            <div class="container-fluid">
-              <ul class="nav navbar-nav">
-                <li><a [routerLink]="" (click)="save()"><span class="glyph glyph-expand"></span> Speichern</a></li>
-                <li><a [routerLink]="'/app/shipments/'" [queryParams]="{ type: shipmentType}"><span class="glyph glyph-expand"></span> Abbrechen</a></li>
-              </ul>
+
+    <form [formGroup]="shipmentForm" novalidate>
+
+      <div class="col-md-19">
+        <div class="row">
+          <nav class="navbar navbar-inverse">
+            <div class="navbar-global theme-default">
+              <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                  <li><a [routerLink]="" (click)="save()"><span class="glyph glyph-expand"></span> Speichern</a></li>
+                  <li><a [routerLink]="'/app/shipments/'" [queryParams]="{ type: shipmentType}"><span
+                    class="glyph glyph-expand"></span> Abbrechen</a></li>
+                </ul>
+              </div>
             </div>
-          </div>
-        </nav>
-      </div>
-
-     <app-alert-stack [alertStackModel]="alertStackModel"></app-alert-stack>
-
-      <div class="row">
-        <div class="col-md-20">
-          <h2 *ngIf="shipmentType == 'glue'">Leim Lieferung</h2>
-          <h2 *ngIf="shipmentType == 'hardener'">Härter Lieferung</h2>
+          </nav>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="form-group">
-          <div class="col-md-12">
-            <label for="pressdate">Datum</label>
-            <input id="pressdate"
-                   type="text"
-                   class="form-control"
-                   #dp="bsDatepicker"
-                   [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-dark-blue' }"
-                   bsDatepicker
-                   [(bsValue)]="shipment.date">
+        <app-alert-stack [alertStackModel]="alertStackModel"></app-alert-stack>
+
+        <div class="row">
+          <div class="col-md-20">
+            <h2 *ngIf="shipmentType == 'glue'">Leim Lieferung</h2>
+            <h2 *ngIf="shipmentType == 'hardener'">Härter Lieferung</h2>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="form-group">
-          <div class="col-md-12">
-            <label for="type">Sorte</label>
-            <input type="text" class="form-control" id="type" placeholder="Sorte"
-                   [(ngModel)]="shipment.name">
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group">
-          <div class="col-md-12">
-            <label for="selectable">Auswählbar</label>
-            <div>
-              <button (click)="toggle()" [ngClass]="shipment.selectable ? 'active' : ''" id="selectable" type="button" data-toggle="button" class="btn btn-toggle-switch"
-                      aria-pressed="false">
-                <span *ngIf='selectable' class="stateLabel stateLabel-on">An</span>
-                <span *ngIf='!selectable' class="stateLabel stateLabel-off">Aus</span>
-              </button>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-12">
+              <label for="pressdate">Datum</label>
+              <input id="pressdate"
+                     type="text"
+                     class="form-control"
+                     #dp="bsDatepicker"
+                     [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-dark-blue' }"
+                     bsDatepicker
+                     formControlName="date">
             </div>
           </div>
         </div>
-      </div>
 
-    </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-12 has-error">
+              <label for="type">Sorte</label>
+              <input type="text" class="form-control" id="type" placeholder="Sorte"
+                     formControlName="name">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-12">
+              <label for="selectable">Auswählbar</label>
+              <div>
+                <app-toggle-button id="selectable" formControlName="selectable"></app-toggle-button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
   </div>
 </div>

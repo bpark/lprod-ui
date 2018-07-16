@@ -1,0 +1,6 @@
+<button (click)="toggle()" [ngClass]="selected ? 'active' : ''" id="selectable" type="button"
+        data-toggle="button" class="btn btn-toggle-switch"
+        aria-pressed="false">
+  <span *ngIf="selected" class="stateLabel stateLabel-on">An</span>
+  <span *ngIf="!selected" class="stateLabel stateLabel-off">Aus</span>
+</button>
