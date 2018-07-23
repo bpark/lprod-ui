@@ -30,7 +30,7 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
 
   shipmentType: ShipmentType;
 
-  alertStackModel: AlertStackModel;
+  alertStackModel: AlertStackModel = new AlertStackModel();
 
   shipmentForm: FormGroup;
 
@@ -62,6 +62,12 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
       selectable: [true, Validators.required]
     });
 
+    this.shipmentForm.statusChanges.debounceTime(1000).subscribe(status => {
+      if (status === 'VALID') {
+        this.alertStackModel.clear();
+      }
+    });
+
     if (shipmentId === -1) {
       this.shipment = new Shipment();
       this.shipment.shipmentType = this.shipmentType;
@@ -84,14 +90,18 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    this.shipment.name = this.shipmentForm.controls.name.value;
-    this.shipment.date = this.shipmentForm.controls.date.value;
-    this.shipment.selectable = this.shipmentForm.controls.selectable.value;
-    console.log('shipment: ', this.shipment);
-    if (this.shipment.id) {
-      this.handleResponse(this.shipmentService.updateShipment(this.shipment));
+    if (!this.shipmentForm.valid) {
+      this.alertStackModel.addDangerMessage('Die Eingaben sind falsch!');
     } else {
-      this.handleResponse(this.shipmentService.createShipment(this.shipment));
+      this.shipment.name = this.shipmentForm.controls.name.value;
+      this.shipment.date = this.shipmentForm.controls.date.value;
+      this.shipment.selectable = this.shipmentForm.controls.selectable.value;
+      console.log('shipment: ', this.shipment);
+      if (this.shipment.id) {
+        this.handleResponse(this.shipmentService.updateShipment(this.shipment));
+      } else {
+        this.handleResponse(this.shipmentService.createShipment(this.shipment));
+      }
     }
   }
 

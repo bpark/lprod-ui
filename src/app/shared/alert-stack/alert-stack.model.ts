@@ -3,18 +3,32 @@ export class AlertStackModel {
 
   public static withDangerMessage(text: string): AlertStackModel {
     const alertStackModel = new AlertStackModel();
-    const alertMessage = new AlertMessage(text, 'alert-danger');
-    alertStackModel.alertMessages.push(alertMessage);
+    alertStackModel.addDangerMessage(text);
 
     return alertStackModel;
   }
 
   public static withSuccessMessage(text: string): AlertStackModel {
     const alertStackModel = new AlertStackModel();
-    const alertMessage = new AlertMessage(text, 'alert-success');
-    alertStackModel.alertMessages.push(alertMessage);
+    alertStackModel.addDangerMessage(text);
 
     return alertStackModel;
+  }
+
+  public addDangerMessage(text: string) {
+    const alertMessage = new AlertMessage(text, 'alert-danger');
+    this.alertMessages.push(alertMessage);
+  }
+
+  public addSuccessMessage(text: string) {
+    const alertMessage = new AlertMessage(text, 'alert-success');
+    this.alertMessages.push(alertMessage);
+  }
+
+  public clear() {
+    if (this.alertMessages.length > 0) {
+      this.alertMessages = [];
+    }
   }
 
   constructor() {}
