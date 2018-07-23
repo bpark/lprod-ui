@@ -47,7 +47,7 @@
         </div>
 
         <div class="row">
-          <div class="form-group">
+          <div class="form-group" [ngClass]="{'has-error': (shipmentForm.get('date').touched || shipmentForm.get('date').dirty) && !shipmentForm.get('date').valid }">
             <div class="col-md-12">
               <label for="pressdate">Datum</label>
               <input id="pressdate"
@@ -56,14 +56,15 @@
                      #dp="bsDatepicker"
                      [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-dark-blue' }"
                      bsDatepicker
+                     [minDate]="minDate"
                      formControlName="date">
             </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="form-group">
-            <div class="col-md-12 has-error">
+          <div class="form-group" [ngClass]="{'has-error has-feedback': (shipmentForm.get('name').touched || shipmentForm.get('name').dirty) && !shipmentForm.get('name').valid }">
+            <div class="col-md-12">
               <label for="type">Sorte</label>
               <input type="text" class="form-control" id="type" placeholder="Sorte"
                      formControlName="name">

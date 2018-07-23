@@ -34,8 +34,15 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
 
   shipmentForm: FormGroup;
 
+  minDate = new Date();
+
   private subscription: Subscription;
   private shipment: Shipment;
+
+  private validationMessages = {
+    required: 'Please enter your email address.',
+    pattern: 'Please enter a valid email address.'
+  };
 
   constructor(private shipmentService: ShipmentsService,
               private route: ActivatedRoute,
