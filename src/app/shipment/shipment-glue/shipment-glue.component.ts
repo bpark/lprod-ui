@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SideNavModel} from '../shared/side-nav/side-nav-model';
-import {ShipmentsService} from '../model/shipments.service';
-import {ShipmentsList, ShipmentType} from '../model/shipments.model';
+import {SideNavModel} from '../../components/side-nav/side-nav-model';
+import {ShipmentsService} from '../../model/shipments.service';
+import {ShipmentsList, ShipmentType} from '../../model/shipments.model';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {AlertStackModel} from '../shared/alert-stack/alert-stack.model';
+import {AlertStackModel} from '../../components/alert-stack/alert-stack.model';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({

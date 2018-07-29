@@ -5,24 +5,24 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertModule, BsDatepickerModule, CollapseModule} from 'ngx-bootstrap';
-import {SideNavComponent} from './shared/side-nav/side-nav.component';
-import {OrderScreenComponent} from './order-screen/order-screen.component';
-import {OrderPressDataComponent} from './order-press-data/order-press-data.component';
-import {OrderResultComponent} from './order-result/order-result.component';
+import {SideNavComponent} from './components/side-nav/side-nav.component';
+import {OrderScreenComponent} from './order/order-screen/order-screen.component';
+import {OrderPressDataComponent} from './order/order-press-data/order-press-data.component';
+import {OrderResultComponent} from './order/order-result/order-result.component';
 import {NavbarComponent} from './navbar/navbar.component';
-import {OrderGlueComponent} from './order-glue/order-glue.component';
-import {OrderDetailsComponent} from './order-details/order-details.component';
+import {OrderGlueComponent} from './order/order-glue/order-glue.component';
+import {OrderDetailsComponent} from './order/order-details/order-details.component';
 import {RouterModule, Routes, UrlSegment} from '@angular/router';
-import {OrderDetailsTableComponent} from './order-details-table/order-details-table.component';
+import {OrderDetailsTableComponent} from './order/order-details-table/order-details-table.component';
 import {GlulamOrderService} from './model/glulam-order.service';
-import { OrderNavButtonsComponent } from './order-nav-buttons/order-nav-buttons.component';
-import { OrderSummaryComponent } from './order-summary/order-summary.component';
-import { OrderListComponent } from './order-list/order-list.component';
+import { OrderNavButtonsComponent } from './order/order-nav-buttons/order-nav-buttons.component';
+import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
+import { OrderListComponent } from './order/order-list/order-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { ShipmentGlueComponent } from './shipment-glue/shipment-glue.component';
+import { ShipmentGlueComponent } from './shipment/shipment-glue/shipment-glue.component';
 import {ShipmentsService} from './model/shipments.service';
-import { ShipmentEditComponent } from './shipment-edit/shipment-edit.component';
-import { OrderDataComponent } from './order-data/order-data.component';
+import { ShipmentEditComponent } from './shipment/shipment-edit/shipment-edit.component';
+import { OrderDataComponent } from './order/order-data/order-data.component';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { deLocale } from 'ngx-bootstrap/locale';
 import { LoginComponent } from './login/login.component';
@@ -32,7 +32,10 @@ import localeDe from '@angular/common/locales/de';
 import {registerLocaleData} from '@angular/common';
 import {ApiInterceptor} from './model/api-interceptor';
 import {JwtTokenStoreService} from './model/jwt-token-store.service';
-import {SharedModule} from './shared/shared.module';
+import {AlertStackComponent} from './components/alert-stack/alert-stack.component';
+import {PaginatorComponent} from './components/paginator/paginator.component';
+import {ToggleButtonComponent} from './components/toggle-button/toggle-button.component';
+import {TimesPipe} from './components/times.pipe';
 
 
 defineLocale('de', deLocale);
@@ -92,7 +95,12 @@ const appRoutes: Routes = [
     ShipmentEditComponent,
     OrderDataComponent,
     LoginComponent,
-    ProductComponent
+    ProductComponent,
+    AlertStackComponent,
+    PaginatorComponent,
+    SideNavComponent,
+    ToggleButtonComponent,
+    TimesPipe
   ],
   imports: [
     RouterModule.forRoot(
@@ -106,7 +114,6 @@ const appRoutes: Routes = [
     AlertModule.forRoot(),
     BsDatepickerModule.forRoot(),
     CollapseModule.forRoot(),
-    SharedModule.forRoot()
   ],
   providers: [
     GlulamOrderService,

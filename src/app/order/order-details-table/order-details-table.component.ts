@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {GlulamDetail, GlulamModel} from '../model/glulam.model';
-import {GlulamOrderService} from '../model/glulam-order.service';
-import {GluelamCalculatorService} from '../model/gluelam-calculator.service';
+import {GlulamDetail, GlulamModel} from '../../model/glulam.model';
+import {GlulamOrderService} from '../../model/glulam-order.service';
+import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
 
 @Component({
   selector: 'app-order-details-table',
