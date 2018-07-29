@@ -61,7 +61,18 @@
 
           <div *ngIf="gluelamList">
 
-            <div class="table-responsive">
+            <ol class="list-items handCursor">
+              <li class="list-items-row" *ngFor="let item of gluelamList.items; let i = index;" (click)="select(i)"
+                  [ngClass]="selectedIndex === i ? 'selectedItem' : ''">
+                <div class="row">
+                  <div class="col-md-6">{{item.date | date:'fullDate'}}</div>
+                  <div class="col-md-12">{{item.customer}}</div>
+                  <div class="col-md-6 text-right">{{item.elementNumber}}</div>
+                </div>
+              </li>
+            </ol>
+
+            <!--<div class="table-responsive">
               <table class="table table-hover">
                 <thead>
                 <tr>
@@ -80,7 +91,7 @@
                 </tbody>
               </table>
 
-            </div>
+            </div>-->
 
             <div class="text-right">
               <app-paginator [count]="gluelamList.totalCount" [totalPages]="totalPages"></app-paginator>
