@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SideNavModel} from '../shared/side-nav/side-nav-model';
-import {Shipment, ShipmentType} from '../model/shipments.model';
-import {ShipmentsService} from '../model/shipments.service';
+import {SideNavModel} from '../../components/side-nav/side-nav-model';
+import {Shipment, ShipmentType} from '../../model/shipments.model';
+import {ShipmentsService} from '../../model/shipments.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/combineLatest';
-import {AlertStackModel} from '../shared/alert-stack/alert-stack.model';
+import {AlertStackModel} from '../../components/alert-stack/alert-stack.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({

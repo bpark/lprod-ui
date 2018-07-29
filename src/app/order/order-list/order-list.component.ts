@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SideNavModel} from '../shared/side-nav/side-nav-model';
-import {GlulamOrderService} from '../model/glulam-order.service';
-import {GluelamList} from '../model/glulam.model';
+import {SideNavModel} from '../../components/side-nav/side-nav-model';
+import {GlulamOrderService} from '../../model/glulam-order.service';
+import {GluelamList} from '../../model/glulam.model';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute} from '@angular/router';
-import {AlertStackModel} from '../shared/alert-stack/alert-stack.model';
-import {Observable} from 'rxjs/Observable';
+import {AlertStackModel} from '../../components/alert-stack/alert-stack.model';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/takeUntil';
 

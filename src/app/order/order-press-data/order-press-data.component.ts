@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {GlulamOrderService} from '../model/glulam-order.service';
-import {GluelamTypes, GlulamModel} from '../model/glulam.model';
-import {GluelamCalculatorService} from '../model/gluelam-calculator.service';
+import {GlulamOrderService} from '../../model/glulam-order.service';
+import {GluelamTypes, GlulamModel} from '../../model/glulam.model';
+import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
 
 @Component({
   selector: 'app-order-press-data',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {GlulamOrderService} from '../model/glulam-order.service';
-import {GluelamTypes, GlulamModel} from '../model/glulam.model';
+import {GlulamOrderService} from '../../model/glulam-order.service';
+import {GluelamTypes, GlulamModel} from '../../model/glulam.model';
 
 @Component({
   selector: 'app-order-summary',

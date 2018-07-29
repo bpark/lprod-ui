@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GlulamOrderService} from '../model/glulam-order.service';
-import {GluelamTypes, GlulamModel} from '../model/glulam.model';
-import {ShipmentsService} from '../model/shipments.service';
-import {Shipment, ShipmentType} from '../model/shipments.model';
+import {GlulamOrderService} from '../../model/glulam-order.service';
+import {GluelamTypes, GlulamModel} from '../../model/glulam.model';
+import {ShipmentsService} from '../../model/shipments.service';
+import {Shipment, ShipmentType} from '../../model/shipments.model';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({

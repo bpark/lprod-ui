@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {GlulamModel} from '../model/glulam.model';
-import {GlulamOrderService} from '../model/glulam-order.service';
+import {GlulamModel} from '../../model/glulam.model';
+import {GlulamOrderService} from '../../model/glulam-order.service';
 import {BsLocaleService} from 'ngx-bootstrap';
 
 @Component({

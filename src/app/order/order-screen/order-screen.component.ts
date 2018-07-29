@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SideNavModel} from '../shared/side-nav/side-nav-model';
+import {SideNavModel} from '../../components/side-nav/side-nav-model';
 import {ActivatedRoute} from '@angular/router';
-import {GlulamOrderService} from '../model/glulam-order.service';
+import {GlulamOrderService} from '../../model/glulam-order.service';
 import {Subscription} from 'rxjs/Subscription';
-import {GlulamModel} from '../model/glulam.model';
-import {GluelamCalculatorService} from '../model/gluelam-calculator.service';
+import {GlulamModel} from '../../model/glulam.model';
+import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
 
 @Component({
   selector: 'app-order-screen',
