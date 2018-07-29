@@ -3,6 +3,10 @@
   padding-right: 0;
 }
 
+.screen-row {
+  margin-right: 0 !important;
+}
+
 .nopadding {
   padding: 0 !important;
   margin: 0 !important;
