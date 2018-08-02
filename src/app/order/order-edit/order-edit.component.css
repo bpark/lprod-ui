@@ -1,0 +1,13 @@
+input.form-control, textarea.form-control {
+  margin-top: 0;
+  max-width: 100%;
+  min-width: 0;
+}
+
+select.form-control {
+  max-width: 100%;
+}
+
+.light-bg {
+  background-color: rgba(0,120,215, 0.2);
+}

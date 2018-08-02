@@ -24,7 +24,6 @@
       <div class="row">
         <div class="col-md-24">
 
-
           <div class="row">
             <div class="col-md-24 nopadding">
               <nav class="navbar navbar-inverse">
@@ -76,7 +75,7 @@
 
               <div class="row">
                 <div class="col-md-6">
-                  <small><label for="laminationStrength">Lammellenstärke gehobelt</label></small>
+                  <small><label for="laminationStrength">Lammellenstärke</label></small>
                   <input type="text" class="form-control" id="laminationStrength" placeholder="">
                 </div>
                 <div class="col-md-6">
@@ -109,6 +108,107 @@
                 </div>
               </div>
 
+              <div class="row">
+                <div class="col-md-24">
+                  <h4>Leim/Härter</h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <small><label for="glue">Leimsorte</label></small>
+                  <div class="combobox">
+                    <select class="form-control" id="glue" >
+                      <option selected>Leim 1</option>
+                      <option>Leim 2</option>
+                      <option>Leim 3</option>
+                      <option>Leim 4</option>
+                      <option>Leim 5</option>
+                      <option>Leim 6</option>
+                    </select>
+                  </div>
+                </div>
+                  <div class="col-md-12">
+                    <small><label for="hardenertype">Härtersorte</label></small>
+                    <div class="combobox">
+                      <select class="form-control" id="hardenertype">
+                        <option>Härter 1</option>
+                        <option>Härter 2</option>
+                        <option>Härter 3</option>
+                        <option>Härter 4</option>
+                        <option>Härter 5</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <h4>Leimbinderdaten</h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <small><label for="width">Breite</label></small>
+                  <input type="number" class="form-control" id="width" step="0.5" min="0" max="20">
+                </div>
+                <div class="col-md-6">
+                  <small><label for="addlength">Zusatzlänge</label></small>
+                  <input type="text" class="form-control" id="addlength">
+                </div>
+                <div class="col-md-6">
+                  <small><label for="glueamount">Leimmenge</label></small>
+                  <input type="text" class="form-control" id="glueamount">
+                </div>
+                <div class="col-md-6">
+                  <small><label for="hardener">Härter in %</label></small>
+                  <input type="text" class="form-control" id="hardener">
+                </div>
+              </div>
+
+              <ol class="list-items">
+                <li class="list-items-row">
+                  <div class="row text-t9">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">Stück</div>
+                    <div class="col-md-3">Höhe</div>
+                    <div class="col-md-3">Länge</div>
+                    <div class="col-md-3">Lamellen</div>
+                    <div class="col-md-3">Fläche</div>
+                    <div class="col-md-3">Fläche ges.</div>
+                    <div class="col-md-3">Vol MQ</div>
+                  </div>
+                </li>
+                <li class="list-items-row list-items-hover">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <strong>1</strong>
+                    </div>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" id="detailsamount">
+                    </div>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" id="detailsheight">
+                    </div>
+                    <div class="col-md-3">
+                      <input type="text" class="form-control" id="detailslength">
+                    </div>
+                    <div class="col-md-3">
+                      <input disabled type="text" class="form-control" id="detailslamella">
+                    </div>
+                    <div class="col-md-3">
+                      <input disabled type="text" class="form-control" id="detailsquare">
+                    </div>
+                    <div class="col-md-3">
+                      <input disabled type="text" class="form-control" id="detailquareTotal">
+                    </div>
+                    <div class="col-md-3">
+                      <input disabled type="text" class="form-control" id="detailsvolume">
+                    </div>
+                  </div>
+                </li>
+              </ol>
             </div>
           </div>
 
