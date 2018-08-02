@@ -36,6 +36,7 @@ import {AlertStackComponent} from './components/alert-stack/alert-stack.componen
 import {PaginatorComponent} from './components/paginator/paginator.component';
 import {ToggleButtonComponent} from './components/toggle-button/toggle-button.component';
 import {TimesPipe} from './components/times.pipe';
+import { OrderEditComponent } from './order/order-edit/order-edit.component';
 
 
 defineLocale('de', deLocale);
@@ -51,6 +52,7 @@ const appRoutes: Routes = [
       {path: 'gluelam', component: OrderListComponent},
       {path: 'shipments', component: ShipmentGlueComponent},
       {path: 'shipments/:shipmentId', component: ShipmentEditComponent},
+      {path: 'bigorders/:orderId', component: OrderEditComponent},
       {
         path: 'orders/:orderId',
         component: OrderScreenComponent,
@@ -100,7 +102,8 @@ const appRoutes: Routes = [
     PaginatorComponent,
     SideNavComponent,
     ToggleButtonComponent,
-    TimesPipe
+    TimesPipe,
+    OrderEditComponent
   ],
   imports: [
     RouterModule.forRoot(
