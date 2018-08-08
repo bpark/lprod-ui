@@ -1,3 +1,7 @@
+export abstract class BaseEntity {
+  id: number;
+}
+
 export class CalculationParameters {
   static maxPressHeight = 2100; // mm
   static additionalWidth = 1; // cm
@@ -23,8 +27,7 @@ export class CalculationResult {
   lamination: number;
 }
 
-export class GlulamDetail {
-  id: number;
+export class GlulamDetail extends BaseEntity {
   amount = 0;
   height = 0;
   length = 0;
@@ -40,15 +43,14 @@ export interface GluelamList {
   items: Gluelam[];
 }
 
-export interface Gluelam {
+export interface Gluelam extends BaseEntity {
   id: number;
   date: Date;
   customer: string;
   elementNumber: string;
 }
 
-export class GlulamModel {
-  id: number;
+export class GlulamModel extends BaseEntity {
   pressData: PressData = new PressData();
   glueData: GlueData = new GlueData();
   gluelamData: GluelamData = new GluelamData();
