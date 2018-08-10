@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SideNavModel} from '../../components/side-nav/side-nav-model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {GluelamTypes} from '../../model/glulam.model';
 
 @Component({
   selector: 'app-order-edit',
@@ -44,6 +45,8 @@ export class OrderEditComponent implements OnInit {
   };
 
   orderForm: FormGroup;
+
+  gluelamTypes = GluelamTypes.getInstance();
 
   constructor(private formBuilder: FormBuilder) { }
 

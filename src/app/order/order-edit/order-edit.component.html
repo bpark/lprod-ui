@@ -87,8 +87,7 @@
                   <small><label for="lam">Qualität</label></small>
                   <div class="combobox">
                     <select class="form-control" id="lam" formControlName="quality">
-                      <option selected>Qal1</option>
-                      <option>Qal2</option>
+                      <option *ngFor="let item of gluelamTypes.quality" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -96,8 +95,7 @@
                   <small><label for="press">Presse</label></small>
                   <div class="combobox">
                     <select class="form-control" id="press" formControlName="press">
-                      <option selected>16m</option>
-                      <option>24m</option>
+                      <option *ngFor="let item of gluelamTypes.pressTypes" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -105,9 +103,7 @@
                   <small><label for="wood">Holzart</label></small>
                   <div class="combobox">
                     <select class="form-control" id="wood" formControlName="woodType">
-                      <option selected>Lärche</option>
-                      <option>Fichte</option>
-                      <option>Kiefer</option>
+                      <option *ngFor="let item of gluelamTypes.woodTypes" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -124,12 +120,7 @@
                   <small><label for="glue">Leimsorte</label></small>
                   <div class="combobox">
                     <select class="form-control" id="glue" formControlName="glueTypeId">
-                      <option selected>Leim 1</option>
-                      <option>Leim 2</option>
-                      <option>Leim 3</option>
-                      <option>Leim 4</option>
-                      <option>Leim 5</option>
-                      <option>Leim 6</option>
+                      <option *ngFor="let item of gluelamTypes.glueTypes" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -137,12 +128,7 @@
                     <small><label for="hardenertype">Härtersorte</label></small>
                     <div class="combobox">
                       <select class="form-control" id="hardenertype" formControlName="hardenerTypeId">
-                        <option>Härter 1</option>
-                        <option>Härter 2</option>
-                        <option>Härter 3</option>
-                        <option>Härter 4</option>
-                        <option>Härter 5</option>
-                        <option>Härter 6</option>
+                        <option *ngFor="let item of gluelamTypes.hardenerTypes" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
                       </select>
                     </div>
                   </div>

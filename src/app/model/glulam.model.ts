@@ -34,11 +34,9 @@ export class GlulamDetailEntity extends BaseEntity {
   show = true;
 }
 
-
-export class CalculationParameters {
-  static maxPressHeight = 2100; // mm
-  static additionalWidth = 1; // cm
-  static additionalLength = 1; // cm
+export interface EnumType {
+  id: number;
+  name: string;
 }
 
 export class GluelamTypes {
@@ -54,6 +52,12 @@ export class GluelamTypes {
   public static getInstance(): GluelamTypes {
     return GluelamTypes.instance;
   }
+}
+
+export class CalculationParameters {
+  static maxPressHeight = 2100; // mm
+  static additionalWidth = 1; // cm
+  static additionalLength = 1; // cm
 }
 
 export class CalculationResult {
@@ -112,7 +116,3 @@ export class GluelamData {
   hardenerPercentage = 20.00;
 }
 
-export interface EnumType {
-  id: number;
-  name: string;
-}
