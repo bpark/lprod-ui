@@ -11,7 +11,7 @@ export class GluelamBaseEntity extends BaseEntity {
 export class GluelamEntity extends GluelamBaseEntity {
 
   laminationStrength = 33.6;
-  coverLamination = 0;
+  quality = 0;
   press = 0;
   woodType = 0;
   glueTypeId: number;

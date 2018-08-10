@@ -20,6 +20,9 @@
         </div>
       </div>
     </div>
+
+    <form [formGroup]="orderForm" novalidate>
+
     <div class="col-md-19">
       <div class="row">
         <div class="col-md-24">
@@ -30,6 +33,7 @@
                 <div class="navbar-global theme-default">
                   <div class="container-fluid">
                     <ul class="nav navbar-nav">
+                      <li><a [routerLink]="" (click)="save()"><span class="glyph glyph-expand"></span> Speichern</a></li>
                     </ul>
                   </div>
                 </div>
@@ -49,11 +53,11 @@
               <div class="row">
                 <div class="col-md-8">
                   <small><label for="customer">Auftraggeber</label></small>
-                  <input type="text" class="form-control" id="customer" placeholder="Auftraggeber" required minlength="4" maxlength="50">
+                  <input type="text" class="form-control" id="customer" placeholder="Auftraggeber" formControlName="customer">
                 </div>
                 <div class="col-md-8">
                   <small><label for="customer">Bauteilnummer</label></small>
-                  <input type="text" class="form-control" id="elementNumber" placeholder="Bauteilnr" required minlength="2" maxlength="50">
+                  <input type="text" class="form-control" id="elementNumber" placeholder="Bauteilnr" formControlName="elementNumber">
                 </div>
                 <div class="col-md-8">
                   <small><label for="pressdate">Datum</label></small>
@@ -63,7 +67,8 @@
                          #dp="bsDatepicker"
                          placeholder="Datum"
                          [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-dark-blue' }"
-                         bsDatepicker>
+                         bsDatepicker
+                         formControlName="date">
                 </div>
               </div>
 
@@ -76,12 +81,12 @@
               <div class="row">
                 <div class="col-md-6">
                   <small><label for="laminationStrength">Lammellenstärke</label></small>
-                  <input type="text" class="form-control" id="laminationStrength" placeholder="">
+                  <input type="text" class="form-control" id="laminationStrength" placeholder="" formControlName="laminationStrength">
                 </div>
                 <div class="col-md-6">
                   <small><label for="lam">Qualität</label></small>
                   <div class="combobox">
-                    <select class="form-control" id="lam">
+                    <select class="form-control" id="lam" formControlName="quality">
                       <option selected>Qal1</option>
                       <option>Qal2</option>
                     </select>
@@ -90,16 +95,16 @@
                 <div class="col-md-6">
                   <small><label for="press">Presse</label></small>
                   <div class="combobox">
-                    <select class="form-control" id="press">
+                    <select class="form-control" id="press" formControlName="press">
                       <option selected>16m</option>
-                      <option selected>24m</option>
+                      <option>24m</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <small><label for="wood">Holzart</label></small>
                   <div class="combobox">
-                    <select class="form-control" id="wood">
+                    <select class="form-control" id="wood" formControlName="woodType">
                       <option selected>Lärche</option>
                       <option>Fichte</option>
                       <option>Kiefer</option>
@@ -118,7 +123,7 @@
                 <div class="col-md-12">
                   <small><label for="glue">Leimsorte</label></small>
                   <div class="combobox">
-                    <select class="form-control" id="glue" >
+                    <select class="form-control" id="glue" formControlName="glueTypeId">
                       <option selected>Leim 1</option>
                       <option>Leim 2</option>
                       <option>Leim 3</option>
@@ -131,7 +136,7 @@
                   <div class="col-md-12">
                     <small><label for="hardenertype">Härtersorte</label></small>
                     <div class="combobox">
-                      <select class="form-control" id="hardenertype">
+                      <select class="form-control" id="hardenertype" formControlName="hardenerTypeId">
                         <option>Härter 1</option>
                         <option>Härter 2</option>
                         <option>Härter 3</option>
@@ -152,19 +157,19 @@
               <div class="row">
                 <div class="col-md-6">
                   <small><label for="width">Breite</label></small>
-                  <input type="number" class="form-control" id="width" step="0.5" min="0" max="20">
+                  <input type="text" class="form-control" id="width" formControlName="width">
                 </div>
                 <div class="col-md-6">
                   <small><label for="addlength">Zusatzlänge</label></small>
-                  <input type="text" class="form-control" id="addlength">
+                  <input type="text" class="form-control" id="addlength" formControlName="additionalLength">
                 </div>
                 <div class="col-md-6">
                   <small><label for="glueamount">Leimmenge</label></small>
-                  <input type="text" class="form-control" id="glueamount">
+                  <input type="text" class="form-control" id="glueamount" formControlName="glueAmount">
                 </div>
                 <div class="col-md-6">
                   <small><label for="hardener">Härter in %</label></small>
-                  <input type="text" class="form-control" id="hardener">
+                  <input type="text" class="form-control" id="hardener" formControlName="hardenerPercentage">
                 </div>
               </div>
 
@@ -216,5 +221,8 @@
         </div>
       </div>
     </div>
+
+    </form>
+
   </div>
 </div>
