@@ -2,6 +2,39 @@ export abstract class BaseEntity {
   id: number;
 }
 
+export class GluelamBaseEntity extends BaseEntity {
+  date: Date;
+  customer: string;
+  elementNumber: string;
+}
+
+export class GluelamEntity extends GluelamBaseEntity {
+
+  laminationStrength = 33.6;
+  coverLamination = 0;
+  press = 0;
+  woodType = 0;
+  glueTypeId: number;
+  hardenerTypeId: number;
+  width = 8.5;
+  additionalLength = 10.00;
+  glueAmount = 380.00;
+  hardenerPercentage = 20.00;
+
+}
+
+export class GlulamDetailEntity extends BaseEntity {
+  amount = 0;
+  height = 0;
+  length = 0;
+  lamella = 0;
+  square = 0;
+  squareTotal = 0;
+  volume = 0;
+  show = true;
+}
+
+
 export class CalculationParameters {
   static maxPressHeight = 2100; // mm
   static additionalWidth = 1; // cm
