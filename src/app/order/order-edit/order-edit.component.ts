@@ -13,10 +13,10 @@ export class OrderEditComponent implements OnInit {
   sideNavModel: SideNavModel = {
     title: 'Leimbinder',
     items: [{
-      id: 1,
-      link: './customer',
-      label: 'Auftragsdaten'
-    },
+        id: 1,
+        link: './customer',
+        label: 'Auftragsdaten'
+      },
       {
         id: 2,
         link: './pressdata',
