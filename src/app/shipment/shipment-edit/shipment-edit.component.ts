@@ -72,7 +72,7 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
       this.shipment = new Shipment();
       this.shipment.shipmentType = this.shipmentType;
     } else {
-      this.subscription = this.shipmentService.getShipment(shipmentId).subscribe(result => {
+      this.subscription = this.shipmentService.get(shipmentId).subscribe(result => {
         this.shipment = result;
         this.shipmentForm.patchValue({
           name: result.name,
@@ -98,9 +98,9 @@ export class ShipmentEditComponent implements OnInit, OnDestroy {
       this.shipment.selectable = this.shipmentForm.controls.selectable.value;
       console.log('shipment: ', this.shipment);
       if (this.shipment.id) {
-        this.handleResponse(this.shipmentService.updateShipment(this.shipment));
+        this.handleResponse(this.shipmentService.update(this.shipment));
       } else {
-        this.handleResponse(this.shipmentService.createShipment(this.shipment));
+        this.handleResponse(this.shipmentService.create(this.shipment));
       }
     }
   }

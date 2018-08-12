@@ -41,5 +41,18 @@ app.get('/api/gluelams/', function(req, res){
   });
 });
 
+app.get('/api/gluelams/:id', function(req, res){
+  fs.readFile('bin/gluelams.json', function(err, data) {
+    if (err) {
+      throw err;
+    } else {
+      let gluelams = JSON.parse(data);
+      const id = parseInt(req.params.id);
+      const dataItem = gluelams.items[id - 1];
+      res.send(dataItem);
+    }
+  });
+});
+
 var httpServer = http.createServer(app);
 httpServer.listen(3000);

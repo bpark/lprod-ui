@@ -13,9 +13,9 @@ export class GlulamOrderService {
   private static createConnectionUrl(id?: number): string {
     if (!environment.production) {
       if (id) {
-        return 'assets/singleorder.json';
+        return 'http://localhost:3000/api/gluelams/' + id;
       } else {
-        return 'assets/gluelams.json';
+        return 'http://localhost:3000/api/gluelams';
       }
     } else {
       if (id) {

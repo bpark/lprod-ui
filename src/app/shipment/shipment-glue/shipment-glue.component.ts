@@ -67,7 +67,7 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
   }
 
   delete(): void {
-    this.shipmentsService.deleteShipment(this.selectedId, this.shipmentType).subscribe(
+    this.shipmentsService.delete(this.selectedId).subscribe(
       result => {
         this.alertStackModel = AlertStackModel.withSuccessMessage('Der Datensatz wurde erfolgreich gelöscht');
         this.getItems(this.page, this.pageSize, this.shipmentType);
@@ -83,7 +83,7 @@ export class ShipmentGlueComponent implements OnInit, OnDestroy {
     this.select(index);
     const shipment = this.shipmentsList.items.find(s => s.id === this.selectedId);
     shipment.selectable = !shipment.selectable;
-    this.shipmentsService.updateShipment(shipment).subscribe(
+    this.shipmentsService.update(shipment).subscribe(
       result => {
       },
       (error: HttpErrorResponse) => {
