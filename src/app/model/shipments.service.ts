@@ -19,9 +19,9 @@ export class ShipmentsService {
       }
     } else {
       if (id) {
-        return 'https://lprod-v1.appspot.com/api/shipments/' + id;
+        return 'http://localhost:3000/api/shipments/' + id;
       } else {
-        return 'https://lprod-v1.appspot.com/api/shipments';
+        return 'http://localhost:3000/api/shipments';
       }
     }
   }
