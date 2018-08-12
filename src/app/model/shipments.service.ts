@@ -10,23 +10,27 @@ import {AbstractRepository} from './abstract-repository';
 @Injectable()
 export class ShipmentsService extends AbstractRepository<Shipment> {
 
+  private static readonly apiPath = 'shipments';
+  private static readonly shipmentType = 'shipmentType';
+  private static readonly selectable = 'selectable';
+
   constructor(protected http: HttpClient,
               protected jwtTokenStore: JwtTokenStoreService) {
-    super(http, jwtTokenStore, 'shipments');
+    super(http, jwtTokenStore, ShipmentsService.apiPath);
   }
 
   getShipments(page: number, pageSize: number, shipmentType: ShipmentType): Observable<ShipmentsList> {
     const queryParams = new HttpParams()
-      .set('shipmentType', String(shipmentType));
+      .set(ShipmentsService.shipmentType, String(shipmentType));
 
     return super.list(page, pageSize, queryParams);
   }
 
   getSelectableShipments(shipmentType: ShipmentType): Observable<ShipmentsList> {
     const queryParams = new HttpParams()
-      .set('selectable', String(true))
-      .set('shipmentType', String(shipmentType));
-    return this.list(1, 20, queryParams);
+      .set(ShipmentsService.selectable, String(true))
+      .set(ShipmentsService.shipmentType, String(shipmentType));
+    return super.list(1, 20, queryParams);
   }
 
 }

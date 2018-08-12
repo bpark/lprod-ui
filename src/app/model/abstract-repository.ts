@@ -6,13 +6,16 @@ import {BaseEntity, BaseEntityList} from './base-entity';
 
 export class AbstractRepository<T extends BaseEntity> {
 
+  private static readonly page = 'page';
+  private static readonly pageSize = 'pageSize';
+
   constructor(protected http: HttpClient, protected jwtTokenStore: JwtTokenStoreService, private apiUrl: string) {
   }
 
   list<S extends BaseEntityList<T>>(page: number, pageSize: number, queryParams?: HttpParams): Observable<S> {
     let httpParams = new HttpParams()
-      .set('page', String(page))
-      .set('pageSize', String(pageSize));
+      .set(AbstractRepository.page, String(page))
+      .set(AbstractRepository.pageSize, String(pageSize));
 
     if (queryParams !== undefined) {
       queryParams.keys().forEach(key => {
