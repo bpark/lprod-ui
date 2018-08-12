@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpParams } from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 import {Shipment, ShipmentsList, ShipmentType} from './shipments.model';
-import {observable} from 'rxjs/symbol/observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/share';
 import {JwtTokenStoreService} from './jwt-token-store.service';
