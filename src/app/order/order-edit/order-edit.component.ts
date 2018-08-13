@@ -71,12 +71,17 @@ export class OrderEditComponent implements OnInit {
     this.details.valueChanges.subscribe(value => {
       const groups = value as {[key: string]: any};
       const last = groups[groups.length - 1];
-      console.log(last.detailsAmount);
-      console.log(last.detailsHeight);
-      console.log(last.detailsLength);
 
-      if (last.detailsAmount != null && last.detailsHeight != null && last.detailsLength != null) {
+      if (last.detailsAmount !== '' && last.detailsHeight !== '' && last.detailsLength !== '') {
         this.details.push(this.buildDetailGroup());
+      }
+
+      if (groups.length > 1) {
+        const nextToLast = groups[groups.length - 2];
+        console.log(nextToLast.detailsLength);
+        if (last.detailsAmount === '' && last.detailsHeight === '' && last.detailsLength === '' && nextToLast.detailsLength === '') {
+          this.details.removeAt(groups.length - 1);
+        }
       }
     });
   }
@@ -104,9 +109,9 @@ export class OrderEditComponent implements OnInit {
 
   buildDetailGroup(): FormGroup {
     return this.formBuilder.group({
-      detailsAmount: [],
-      detailsHeight: [],
-      detailsLength: []
+      detailsAmount: [''],
+      detailsHeight: [''],
+      detailsLength: ['']
     });
   }
 
