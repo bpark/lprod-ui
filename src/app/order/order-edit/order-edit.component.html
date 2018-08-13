@@ -159,6 +159,29 @@
                 </div>
               </div>
 
+              <!--
+              <div formArrayName="tags">
+                    <div class="row">
+                        <button class="col-md-offset-1 col-md-1 btn btn-default"
+                                type="button"
+                                (click)="addTag()">Add Tag
+                        </button>
+                    </div>
+                    <div class="form-group"
+                        *ngFor="let tag of tags.controls; let i=index" >
+                        <label class="col-md-2 control-label" [attr.for]="i">Tag</label>
+
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                    [id]="i"
+                                    type="text"
+                                    placeholder="Tag"
+                                    [formControlName]="i" />
+                        </div>
+                    </div>
+                </div>
+              -->
+
               <ol class="list-items">
                 <li class="list-items-row">
                   <div class="row text-t9">
@@ -172,19 +195,19 @@
                     <div class="col-md-3">Vol MQ</div>
                   </div>
                 </li>
-                <li class="list-items-row list-items-hover">
-                  <div class="row">
+                <li class="list-items-row list-items-hover" formArrayName="details">
+                  <div class="row" [formGroupName]="i" *ngFor="let detail of details.controls; let i=index">
                     <div class="col-md-3">
-                      <strong>1</strong>
+                      <strong>{{i}}</strong>
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="detailsamount">
+                      <input type="text" class="form-control" [id]="'detailsamount_' + i" [formControlName]="'detailsAmount'">
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="detailsheight">
+                      <input type="text" class="form-control" [id]="'detailsheight_' + i" [formControlName]="'detailsHeight'">
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" id="detailslength">
+                      <input type="text" class="form-control" [id]="'detailslength_' + i" [formControlName]="'detailsLength'">
                     </div>
                     <div class="col-md-3">
                       <input disabled type="text" class="form-control" id="detailslamella">

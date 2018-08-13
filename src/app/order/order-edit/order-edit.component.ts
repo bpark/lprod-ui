@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SideNavModel} from '../../components/side-nav/side-nav-model';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GluelamTypes} from '../../model/glulam.model';
 
 @Component({
@@ -65,6 +65,7 @@ export class OrderEditComponent implements OnInit {
       additionalLength: [10.00, Validators.required],
       glueAmount: [380.00, Validators.required],
       hardenerPercentage: [20.00, Validators.required],
+      details: this.formBuilder.array([this.buildDetailGroup()]),
     });
   }
 
@@ -82,6 +83,22 @@ export class OrderEditComponent implements OnInit {
     console.log(this.orderForm.controls.additionalLength.value);
     console.log(this.orderForm.controls.glueAmount.value);
     console.log(this.orderForm.controls.hardenerPercentage.value);
+    console.log(this.orderForm.controls.details.get('0').get('detailsAmount').value);
+    console.log(this.orderForm.controls.details.get('0').get('detailsHeight').value);
+    console.log(this.orderForm.controls.details.get('0').get('detailsLength').value);
+    // console.log(this.orderForm.controls.details);
+  }
+
+  buildDetailGroup(): FormGroup {
+    return this.formBuilder.group({
+      detailsAmount: [],
+      detailsHeight: [],
+      detailsLength: []
+    });
+  }
+
+  get details(): FormArray {
+    return <FormArray>this.orderForm.controls.details; // .get('details');
   }
 
 }
