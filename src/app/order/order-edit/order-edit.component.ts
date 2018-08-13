@@ -67,6 +67,18 @@ export class OrderEditComponent implements OnInit {
       hardenerPercentage: [20.00, Validators.required],
       details: this.formBuilder.array([this.buildDetailGroup()]),
     });
+
+    this.details.valueChanges.subscribe(value => {
+      const groups = value as {[key: string]: any};
+      const last = groups[groups.length - 1];
+      console.log(last.detailsAmount);
+      console.log(last.detailsHeight);
+      console.log(last.detailsLength);
+
+      if (last.detailsAmount != null && last.detailsHeight != null && last.detailsLength != null) {
+        this.details.push(this.buildDetailGroup());
+      }
+    });
   }
 
   save() {
@@ -83,10 +95,11 @@ export class OrderEditComponent implements OnInit {
     console.log(this.orderForm.controls.additionalLength.value);
     console.log(this.orderForm.controls.glueAmount.value);
     console.log(this.orderForm.controls.hardenerPercentage.value);
-    console.log(this.orderForm.controls.details.get('0').get('detailsAmount').value);
-    console.log(this.orderForm.controls.details.get('0').get('detailsHeight').value);
-    console.log(this.orderForm.controls.details.get('0').get('detailsLength').value);
-    // console.log(this.orderForm.controls.details);
+    // console.log(this.orderForm.controls.details.get('0').get('detailsAmount').value);
+    // console.log(this.orderForm.controls.details.get('0').get('detailsHeight').value);
+    // console.log(this.orderForm.controls.details.get('0').get('detailsLength').value);
+    console.log(this.details.length);
+    console.log(this.details);
   }
 
   buildDetailGroup(): FormGroup {
