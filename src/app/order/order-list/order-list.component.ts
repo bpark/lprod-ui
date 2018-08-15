@@ -28,7 +28,6 @@ export class OrderListComponent implements OnInit, OnDestroy {
   loading = false;
 
   gluelamList: GluelamList;
-  errors: boolean;
   page: number;
   pageSize: number;
   totalPages: number;
@@ -54,7 +53,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
 
   getOrders(page: number, pageSize: number): void {
 
-    const dataObservable = this.gluelamOrderService.getGluelamOrders(page, pageSize);
+    const dataObservable = this.gluelamOrderService.getOrders(page, pageSize);
     dataObservable.subscribe(
       result => {
         this.loading = false;
@@ -67,17 +66,10 @@ export class OrderListComponent implements OnInit, OnDestroy {
       }
     );
 
-    /*
-    Observable.create(obs => {
-      obs.next(true);
-      obs.complete();
-    }).takeUntil(dataObservable).delay(200).subscribe(loading => {
-      this.loading = loading;
-    });*/
   }
 
   deleteOrder() {
-    this.gluelamOrderService.deleteGluelamOrder(this.selectedId);
+    this.gluelamOrderService.delete(this.selectedId);
     this.getOrders(this.page, this.pageSize);
   }
 

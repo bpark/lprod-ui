@@ -1,11 +1,14 @@
-export abstract class BaseEntity {
-  id: number;
-}
+import {BaseEntity} from './base-entity';
 
 export class GluelamBaseEntity extends BaseEntity {
   date: Date;
   customer: string;
   elementNumber: string;
+}
+
+export interface GluelamBaseEntityList {
+  totalCount: number;
+  items: GluelamBaseEntity[];
 }
 
 export class GluelamEntity extends GluelamBaseEntity {
@@ -63,6 +66,8 @@ export class CalculationParameters {
 export class CalculationResult {
   lamination: number;
 }
+
+// ---- old
 
 export class GlulamDetail extends BaseEntity {
   amount = 0;

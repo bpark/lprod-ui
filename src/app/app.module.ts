@@ -6,23 +6,16 @@ import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AlertModule, BsDatepickerModule, CollapseModule} from 'ngx-bootstrap';
 import {SideNavComponent} from './components/side-nav/side-nav.component';
-import {OrderScreenComponent} from './order/order-screen/order-screen.component';
-import {OrderPressDataComponent} from './order/order-press-data/order-press-data.component';
 import {OrderResultComponent} from './order/order-result/order-result.component';
 import {NavbarComponent} from './navbar/navbar.component';
-import {OrderGlueComponent} from './order/order-glue/order-glue.component';
-import {OrderDetailsComponent} from './order/order-details/order-details.component';
-import {RouterModule, Routes, UrlSegment} from '@angular/router';
-import {OrderDetailsTableComponent} from './order/order-details-table/order-details-table.component';
+import {RouterModule, Routes} from '@angular/router';
 import {GlulamOrderService} from './model/glulam-order.service';
-import { OrderNavButtonsComponent } from './order/order-nav-buttons/order-nav-buttons.component';
 import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ShipmentGlueComponent } from './shipment/shipment-glue/shipment-glue.component';
 import {ShipmentsService} from './model/shipments.service';
 import { ShipmentEditComponent } from './shipment/shipment-edit/shipment-edit.component';
-import { OrderDataComponent } from './order/order-data/order-data.component';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { deLocale } from 'ngx-bootstrap/locale';
 import { LoginComponent } from './login/login.component';
@@ -52,20 +45,7 @@ const appRoutes: Routes = [
       {path: 'gluelam', component: OrderListComponent},
       {path: 'shipments', component: ShipmentGlueComponent},
       {path: 'shipments/:shipmentId', component: ShipmentEditComponent},
-      {path: 'bigorders/:orderId', component: OrderEditComponent},
-      {
-        path: 'orders/:orderId',
-        component: OrderScreenComponent,
-        children: [
-          {path: '', redirectTo: 'customer', pathMatch: 'full'},
-          {path: 'customer', component: OrderDataComponent},
-          {path: 'glue', component: OrderGlueComponent},
-          {path: 'pressdata', component: OrderPressDataComponent},
-          {path: 'details', component: OrderDetailsComponent},
-          {path: 'detailstbl', component: OrderDetailsTableComponent},
-          {path: 'summary', component: OrderSummaryComponent}
-        ]
-      }
+      {path: 'orders/:orderId', component: OrderEditComponent}
     ]
   },
   {
@@ -83,19 +63,12 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    OrderScreenComponent,
-    OrderPressDataComponent,
     OrderResultComponent,
     NavbarComponent,
-    OrderGlueComponent,
-    OrderDetailsComponent,
-    OrderDetailsTableComponent,
-    OrderNavButtonsComponent,
     OrderSummaryComponent,
     OrderListComponent,
     ShipmentGlueComponent,
     ShipmentEditComponent,
-    OrderDataComponent,
     LoginComponent,
     ProductComponent,
     AlertStackComponent,

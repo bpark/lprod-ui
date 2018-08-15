@@ -14,33 +14,8 @@ export class OrderEditComponent implements OnInit {
     title: 'Leimbinder',
     items: [{
         id: 1,
-        link: './customer',
-        label: 'Auftragsdaten'
-      },
-      {
-        id: 2,
-        link: './pressdata',
-        label: 'Pressdaten'
-      },
-      {
-        id: 3,
-        link: './glue',
-        label: 'Leim/Härter'
-      },
-      {
-        id: 4,
-        link: './details',
-        label: 'Leimbinderdaten'
-      },
-      {
-        id: 5,
-        link: './detailstbl',
-        label: 'Details'
-      },
-      {
-        id: 6,
-        link: './summary',
-        label: 'Übersicht'
+        link: './',
+        label: 'Bearbeiten'
       }]
   };
 
