@@ -1,5 +1,6 @@
 input.form-control, textarea.form-control {
   margin-top: 0;
+  margin-bottom: 0;
   max-width: 100%;
   min-width: 0;
 }

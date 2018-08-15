@@ -46,7 +46,7 @@
 
               <div class="row">
                 <div class="col-md-24">
-                  <h4>Auftragsdaten</h4>
+                  <h5>Auftragsdaten</h5>
                 </div>
               </div>
 
@@ -74,7 +74,7 @@
 
               <div class="row">
                 <div class="col-md-24">
-                  <h4>Pressdaten</h4>
+                  <h5>Pressdaten</h5>
                 </div>
               </div>
 
@@ -111,7 +111,7 @@
 
               <div class="row">
                 <div class="col-md-24">
-                  <h4>Leim/Härter</h4>
+                  <h5>Leim/Härter</h5>
                 </div>
               </div>
 
@@ -136,7 +136,7 @@
 
               <div class="row">
                 <div class="col-md-24">
-                  <h4>Leimbinderdaten</h4>
+                  <h5>Leimbinderdaten</h5>
                 </div>
               </div>
 
@@ -159,29 +159,6 @@
                 </div>
               </div>
 
-              <!--
-              <div formArrayName="tags">
-                    <div class="row">
-                        <button class="col-md-offset-1 col-md-1 btn btn-default"
-                                type="button"
-                                (click)="addTag()">Add Tag
-                        </button>
-                    </div>
-                    <div class="form-group"
-                        *ngFor="let tag of tags.controls; let i=index" >
-                        <label class="col-md-2 control-label" [attr.for]="i">Tag</label>
-
-                        <div class="col-md-8">
-                            <input class="form-control"
-                                    [id]="i"
-                                    type="text"
-                                    placeholder="Tag"
-                                    [formControlName]="i" />
-                        </div>
-                    </div>
-                </div>
-              -->
-
               <ol class="list-items">
                 <li class="list-items-row">
                   <div class="row text-t9">
@@ -198,7 +175,7 @@
                 <li class="list-items-row list-items-hover" formArrayName="details">
                   <div class="row" [formGroupName]="i" *ngFor="let detail of details.controls; let i=index">
                     <div class="col-md-3">
-                      <strong>{{i}}</strong>
+                      <strong>{{i + 1}}</strong>
                     </div>
                     <div class="col-md-3">
                       <input type="text" class="form-control" [id]="'detailsamount_' + i" [formControlName]="'detailsAmount'">
