@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {SideNavModel} from '../../components/side-nav/side-nav-model';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GluelamTypes} from '../../model/glulam.model';
+import {ActivatedRoute, Router} from '@angular/router';
+import {GlulamOrderService} from '../../model/glulam-order.service';
 
 @Component({
   selector: 'app-order-edit',
@@ -23,7 +25,10 @@ export class OrderEditComponent implements OnInit {
 
   gluelamTypes = GluelamTypes.getInstance();
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private orderService: GlulamOrderService) { }
 
   ngOnInit() {
     this.orderForm = this.formBuilder.group({
@@ -59,6 +64,8 @@ export class OrderEditComponent implements OnInit {
         }
       }
     });
+
+    this.loadOrder();
   }
 
   save() {
@@ -82,7 +89,11 @@ export class OrderEditComponent implements OnInit {
     console.log(this.details);
   }
 
-  buildDetailGroup(): FormGroup {
+  get details(): FormArray {
+    return <FormArray>this.orderForm.controls.details; // .get('details');
+  }
+
+  private buildDetailGroup(): FormGroup {
     return this.formBuilder.group({
       detailsAmount: [''],
       detailsHeight: [''],
@@ -90,8 +101,16 @@ export class OrderEditComponent implements OnInit {
     });
   }
 
-  get details(): FormArray {
-    return <FormArray>this.orderForm.controls.details; // .get('details');
-  }
+  private loadOrder(): void {
+    const orderId = +this.route.snapshot.paramMap.get('orderId');
+    console.log('orderid: ', orderId);
+    if (orderId === -1) {
 
+    } else {
+      this.orderService.get(orderId).subscribe(orderEntity => {
+        const value = Object.assign({}, orderEntity);
+        this.orderForm.patchValue(value);
+      });
+    }
+  }
 }

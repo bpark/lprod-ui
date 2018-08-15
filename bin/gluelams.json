@@ -11,7 +11,8 @@
       "id": 2,
       "date": "2012-04-23T18:25:43.511Z",
       "customer": "Northrop Grumman Ltd 2",
-      "elementNumber": "NZ-2345"
+      "elementNumber": "NZ-2345",
+      "laminationStrength": 22
     },
     {
       "id": 3,
