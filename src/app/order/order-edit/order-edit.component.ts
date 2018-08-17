@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SideNavModel} from '../../components/side-nav/side-nav-model';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {GluelamTypes, GlulamDetailEntity} from '../../model/glulam.model';
+import {GluelamTypes} from '../../model/glulam.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlulamOrderService} from '../../model/glulam-order.service';
 
