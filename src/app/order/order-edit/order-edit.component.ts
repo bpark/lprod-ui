@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SideNavModel} from '../../components/side-nav/side-nav-model';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {GluelamTypes} from '../../model/glulam.model';
+import {GluelamTypes, GlulamDetailEntity} from '../../model/glulam.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlulamOrderService} from '../../model/glulam-order.service';
 
@@ -97,20 +97,25 @@ export class OrderEditComponent implements OnInit {
     return this.formBuilder.group({
       detailsAmount: [''],
       detailsHeight: [''],
-      detailsLength: ['']
+      detailsLength: [''],
+      detailsLamella: [{value: '', disabled: true}],
+      detailsSquare: [{value: '', disabled: true}],
+      detailsSquareTotal: [{value: '', disabled: true}],
+      detailsVolume: [{value: '', disabled: true}]
     });
   }
 
   private loadOrder(): void {
     const orderId = +this.route.snapshot.paramMap.get('orderId');
-    console.log('orderid: ', orderId);
     if (orderId === -1) {
 
     } else {
       this.orderService.get(orderId).subscribe(orderEntity => {
         const value = Object.assign({}, orderEntity);
         this.orderForm.patchValue(value);
+        this.details.setValue(orderEntity.details);
       });
     }
   }
+
 }

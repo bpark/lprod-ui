@@ -12,7 +12,36 @@
       "date": "2012-04-23T18:25:43.511Z",
       "customer": "Northrop Grumman Ltd 2",
       "elementNumber": "NZ-2345",
-      "laminationStrength": 22
+      "laminationStrength": 22,
+      "quality": 0,
+      "press": 0,
+      "woodType": 0,
+      "glueTypeId": 0,
+      "hardenerTypeId": 0,
+      "width": 8.5,
+      "additionalLength": 10.0,
+      "glueAmount": 380,
+      "hardenerPercentage": 20.0,
+      "details": [
+        {
+          "detailsAmount": 1,
+          "detailsHeight": 10,
+          "detailsLength": 10,
+          "detailsLamella": 3,
+          "detailsSquare": 20,
+          "detailsSquareTotal": "20",
+          "detailsVolume": 300
+        },
+        {
+          "detailsAmount": 2,
+          "detailsHeight": 10,
+          "detailsLength": 10,
+          "detailsLamella": 3,
+          "detailsSquare": 20,
+          "detailsSquareTotal": "20",
+          "detailsVolume": 300
+        }
+      ]
     },
     {
       "id": 3,

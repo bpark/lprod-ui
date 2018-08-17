@@ -12,3 +12,8 @@ select.form-control {
 .light-bg {
   background-color: rgba(0,120,215, 0.2);
 }
+
+.result-col {
+  padding-left: 50px;
+  padding-right: 50px;
+}

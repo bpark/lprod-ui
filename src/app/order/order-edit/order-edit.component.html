@@ -187,21 +187,95 @@
                       <input type="text" class="form-control" [id]="'detailslength_' + i" [formControlName]="'detailsLength'">
                     </div>
                     <div class="col-md-3">
-                      <input disabled type="text" class="form-control" id="detailslamella">
+                      <input type="text" class="form-control" [id]="'detailslamella_' + i" [formControlName]="'detailsLamella'">
                     </div>
                     <div class="col-md-3">
-                      <input disabled type="text" class="form-control" id="detailsquare">
+                      <input type="text" class="form-control" [id]="'detailsquare_' + i" [formControlName]="'detailsSquare'">
                     </div>
                     <div class="col-md-3">
-                      <input disabled type="text" class="form-control" id="detailquareTotal">
+                      <input type="text" class="form-control" [id]="'detailquareTotal_' + i" [formControlName]="'detailsSquareTotal'">
                     </div>
                     <div class="col-md-3">
-                      <input disabled type="text" class="form-control" id="detailsvolume">
+                      <input type="text" class="form-control" [id]="'detailsvolume_' + i" [formControlName]="'detailsVolume'">
                     </div>
                   </div>
                 </li>
               </ol>
             </div>
+
+            <div class="col-md-8 result-col">
+
+              <div class="row">
+                <div class="col-md-24">
+                  <h5>Ergebnis</h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <small><label for="remaininglamella">Restlammellen [Stück]</label></small>
+                  <input type="text" class="form-control" id="remaininglamella" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <small><label for="maxlen">Maximale Presslänge [m]</label></small>
+                  <input type="text" class="form-control" id="maxlen" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <small><label for="klength">Keilzinklänge [m]</label></small>
+                  <input type="text" class="form-control" id="klength" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <small><label for="boards">Bretter +% [Stück]</label></small>
+                  <input type="text" class="form-control" id="boards" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <small><label for="production">Produktion [MQ]</label></small>
+                  <input type="text" class="form-control" id="production" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <small><label for="resglue">Leim [kg]</label></small>
+                  <input type="text" class="form-control" id="resglue" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <small><label for="reshardener">Härter [kg]</label></small>
+                  <input type="text" class="form-control" id="reshardener" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <small><label for="presspressure">Pressdruck [N/mm²]</label></small>
+                  <input type="text" class="form-control" id="presspressure" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-24">
+                  <small><label for="quality">Leimbinder Qualität</label></small>
+                  <input type="text" class="form-control" id="quality" disabled>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
         </div>

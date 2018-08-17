@@ -12,7 +12,6 @@ export interface GluelamBaseEntityList {
 }
 
 export class GluelamEntity extends GluelamBaseEntity {
-
   laminationStrength = 33.6;
   quality = 0;
   press = 0;
@@ -23,18 +22,17 @@ export class GluelamEntity extends GluelamBaseEntity {
   additionalLength = 10.00;
   glueAmount = 380.00;
   hardenerPercentage = 20.00;
-
+  details: GlulamDetailEntity[] = [];
 }
 
 export class GlulamDetailEntity extends BaseEntity {
-  amount = 0;
-  height = 0;
-  length = 0;
-  lamella = 0;
-  square = 0;
-  squareTotal = 0;
-  volume = 0;
-  show = true;
+  detailsAmount = 0;
+  detailsHeight = 0;
+  detailsLength = 0;
+  detailsLamella = 0;
+  detailsSquare = 0;
+  detailsSquareTotal = 0;
+  detailsVolume = 0;
 }
 
 export interface EnumType {
