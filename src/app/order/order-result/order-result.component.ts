@@ -17,9 +17,9 @@ export class OrderResultComponent implements OnInit {
               private gluelamCalculatorService: GluelamCalculatorService) { }
 
   ngOnInit() {
-    this.glulamModel = this.glulamOrderService.glulamModel;
-    this.gluelamCalculatorService.calculate(this.glulamModel);
-    this.calculationResult = this.gluelamCalculatorService.calculationResult;
+    // this.glulamModel = this.glulamOrderService.glulamModel;
+    // this.gluelamCalculatorService.calculate(this.glulamModel);
+    // this.calculationResult = this.gluelamCalculatorService.calculationResult;
   }
 
 }
