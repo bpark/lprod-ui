@@ -10,7 +10,6 @@ import {OrderResultComponent} from './order/order-result/order-result.component'
 import {NavbarComponent} from './navbar/navbar.component';
 import {RouterModule, Routes} from '@angular/router';
 import {GlulamOrderService} from './model/glulam-order.service';
-import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ShipmentGlueComponent } from './shipment/shipment-glue/shipment-glue.component';
@@ -65,7 +64,6 @@ const appRoutes: Routes = [
     AppComponent,
     OrderResultComponent,
     NavbarComponent,
-    OrderSummaryComponent,
     OrderListComponent,
     ShipmentGlueComponent,
     ShipmentEditComponent,
