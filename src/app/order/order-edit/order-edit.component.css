@@ -17,3 +17,11 @@ select.form-control {
   padding-left: 50px;
   padding-right: 50px;
 }
+
+input.form-control:disabled, input.form-control[disabled], textarea.form-control:disabled, textarea.form-control[disabled] {
+  transition: none;
+  color: #000000;
+  background-color: rgba(230, 230, 230, 0.8);
+  border-color: rgba(0, 0, 0, 0.6);
+  cursor: default;
+}
