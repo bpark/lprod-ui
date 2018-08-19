@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CalculationParameters, CalculationResult, GlulamDetail, GlulamModel} from './glulam.model';
+import {CalculationParameters, CalculationResult, GlulamDetail, GlulamDetailEntity, GlulamModel} from './glulam.model';
 
 @Injectable()
 export class GluelamCalculatorService {
@@ -14,10 +14,10 @@ export class GluelamCalculatorService {
     this.calculationResult.lamination = Math.floor(CalculationParameters.maxPressHeight / glulamModel.pressData.laminationStrength);
   }
 
-  calculateDetail(detail: GlulamDetail, glulamModel: GlulamModel) {
-    const inputDetailLength = detail.length;
-    const inputDetailAmount = detail.amount;
-    const inputDetailHeight = detail.height;
+  calculateDetail(amount: number, length: number, height: number, glulamModel: GlulamModel): GlulamDetailEntity {
+    const inputDetailLength = length;
+    const inputDetailAmount = amount;
+    const inputDetailHeight = height;
 
     const singleLamella = Math.round(inputDetailHeight * 10 / glulamModel.pressData.laminationStrength);
 
@@ -33,9 +33,17 @@ export class GluelamCalculatorService {
 
     this.calculationResult.lamination -= outputDetailLamella;  // TODO: error if negative
 
-    detail.lamella = outputDetailLamella;
-    detail.square = outputDetailSquare;
-    detail.squareTotal = outputDetailTotalSquare;
-    detail.volume = outputRowVolume;
+    const detail = new GlulamDetailEntity();
+
+    detail.detailsLength = inputDetailLength;
+    detail.detailsAmount = inputDetailAmount;
+    detail.detailsHeight = inputDetailHeight;
+
+    detail.detailsLamella = outputDetailLamella;
+    detail.detailsSquare = outputDetailSquare;
+    detail.detailsSquareTotal = outputDetailTotalSquare;
+    detail.detailsVolume = outputRowVolume;
+
+    return detail;
   }
 }
