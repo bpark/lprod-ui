@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <form [formGroup]="orderForm" novalidate>
+    <form [formGroup]="orderForm" novalidate *ngIf="orderEntity">
 
     <div class="col-md-19">
       <div class="row">
@@ -145,21 +145,21 @@
                   <small><label for="width">Breite [cm]</label></small>
                   <div class="combobox">
                     <select class="form-control" id="width" [formControlName]="'width'">
-                      <option *ngFor="let item of gluelamTypes.spreads" [ngValue]="item">{{item}}</option>
+                      <option *ngFor="let item of gluelamTypes.spreads" [ngValue]="item">{{item | decimal}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <small><label for="addlength">Zusatzlänge [mm]</label></small>
-                  <input type="text" class="form-control" id="addlength" formControlName="additionalLength">
+                  <input type="text" class="form-control" id="addlength" formControlName="additionalLength" appDecimal>
                 </div>
                 <div class="col-md-6">
                   <small><label for="glueamount">Leimmenge [g]</label></small>
-                  <input type="text" class="form-control" id="glueamount" formControlName="glueAmount">
+                  <input type="text" class="form-control" id="glueamount" formControlName="glueAmount" appDecimal>
                 </div>
                 <div class="col-md-6">
                   <small><label for="hardener">Härter [%]</label></small>
-                  <input type="text" class="form-control" id="hardener" formControlName="hardenerPercentage">
+                  <input type="text" class="form-control" id="hardener" formControlName="hardenerPercentage" appDecimal>
                 </div>
               </div>
 

@@ -29,6 +29,8 @@ import {PaginatorComponent} from './components/paginator/paginator.component';
 import {ToggleButtonComponent} from './components/toggle-button/toggle-button.component';
 import {TimesPipe} from './components/times.pipe';
 import { OrderEditComponent } from './order/order-edit/order-edit.component';
+import { DecimalPipe } from './components/decimal.pipe';
+import { DecimalDirective } from './components/decimal.directive';
 
 
 defineLocale('de', deLocale);
@@ -74,7 +76,9 @@ const appRoutes: Routes = [
     SideNavComponent,
     ToggleButtonComponent,
     TimesPipe,
-    OrderEditComponent
+    OrderEditComponent,
+    DecimalPipe,
+    DecimalDirective
   ],
   imports: [
     RouterModule.forRoot(
@@ -94,6 +98,7 @@ const appRoutes: Routes = [
     ShipmentsService,
     LoginService,
     JwtTokenStoreService,
+    DecimalPipe,
     { provide: LOCALE_ID, useValue: 'de' },
     {
       provide: HTTP_INTERCEPTORS,

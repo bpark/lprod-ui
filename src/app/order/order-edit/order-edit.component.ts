@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {SideNavModel} from '../../components/side-nav/side-nav-model';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {GluelamTypes} from '../../model/glulam.model';
+import {GluelamEntity, GluelamTypes, GlulamDetailEntity} from '../../model/glulam.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlulamOrderService} from '../../model/glulam-order.service';
+import {Observable} from '../../../../node_modules/rxjs/Observable';
 
 @Component({
   selector: 'app-order-edit',
@@ -22,6 +23,7 @@ export class OrderEditComponent implements OnInit {
   };
 
   orderForm: FormGroup;
+  orderEntity: GluelamEntity;
 
   gluelamTypes = GluelamTypes.getInstance();
 
@@ -109,9 +111,11 @@ export class OrderEditComponent implements OnInit {
     const orderId = +this.route.snapshot.paramMap.get('orderId');
     console.log('orderId: ', orderId);
     if (orderId === -1) {
-
+      this.orderEntity = new GluelamEntity();
+      this.orderEntity.details.push(new GlulamDetailEntity());
     } else {
       this.orderService.get(orderId).subscribe(orderEntity => {
+        this.orderEntity = orderEntity;
         const value = Object.assign({}, orderEntity);
         this.orderForm.patchValue(value);
         this.details.setValue(orderEntity.details);
