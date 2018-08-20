@@ -49,6 +49,7 @@ export class GluelamTypes {
   glueTypes: EnumType[] = [{id: 0, name: 'BASF 683 flüssig'}];
   hardenerTypes: EnumType[] = [{id: 0, name: 'BASF 683 flüssig'}];
   woodTypes: EnumType[] = [{id: 0, name: 'Fichte'}, {id: 1, name: 'Lärche'}, {id: 2, name: 'Kiefer'}];
+  spreads: number[] = [8.5, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0, 22.0, 24.0, 26.0, 28.0];
 
   public static getInstance(): GluelamTypes {
     return GluelamTypes.instance;
