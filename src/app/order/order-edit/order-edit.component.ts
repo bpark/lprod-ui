@@ -107,6 +107,7 @@ export class OrderEditComponent implements OnInit {
 
   private loadOrder(): void {
     const orderId = +this.route.snapshot.paramMap.get('orderId');
+    console.log('orderId: ', orderId);
     if (orderId === -1) {
 
     } else {
