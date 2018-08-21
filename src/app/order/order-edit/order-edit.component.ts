@@ -51,7 +51,7 @@ export class OrderEditComponent implements OnInit {
       additionalLength: [10.00, Validators.required],
       glueAmount: [380.00, Validators.required],
       hardenerPercentage: [20.00, Validators.required],
-      details: this.formBuilder.array([this.buildDetailGroup()]),
+      details: this.formBuilder.array([]),
     });
 
     this.orderForm.controls.laminationStrength.valueChanges.subscribe(value => {
@@ -64,22 +64,21 @@ export class OrderEditComponent implements OnInit {
       const last = groups[groups.length - 1];
 
       if (last.detailsAmount !== '' && last.detailsHeight !== '' && last.detailsLength !== '') {
-        this.detailsIndex++;
-        this.details.push(this.buildDetailGroup());
+        this.addRow();
       }
 
       if (groups.length > 1) {
         const nextToLast = groups[groups.length - 2];
         console.log(nextToLast.detailsLength);
         if (last.detailsAmount === '' && last.detailsHeight === '' && last.detailsLength === '' && nextToLast.detailsLength === '') {
-          this.details.removeAt(groups.length - 1);
-          this.detailsIndex--;
+          this.removeRow();
         }
       }
 
     });
 
     this.loadOrder();
+
   }
 
   save() {
@@ -135,15 +134,16 @@ export class OrderEditComponent implements OnInit {
       this.orderEntity = new GluelamEntity();
       this.orderEntity.details.push(new GlulamDetailEntity());
       this.calculatorService.calculate(this.orderEntity.laminationStrength);
+      this.details.push(this.buildDetailGroup());
     } else {
       this.orderService.get(orderId).subscribe(orderEntity => {
         this.orderEntity = orderEntity;
-        const value = Object.assign({}, orderEntity);
-        this.orderForm.patchValue(value);
+        this.mapGluelamEntityToForm(orderEntity);
+        orderEntity.details.forEach(detail => {
+          const control = this.addRow();
+          this.mapGluelamDetailEntityToForm(control, detail);
+        });
         this.details.push(this.buildDetailGroup());
-        this.details.push(this.buildDetailGroup());
-        this.details.push(this.buildDetailGroup());
-        // this.details.setValue(orderEntity.details, {emitEvent: false});
         this.calculatorService.calculate(this.orderEntity.laminationStrength);
       });
     }
@@ -172,6 +172,49 @@ export class OrderEditComponent implements OnInit {
           detailsVolume: detail.detailsVolume
         }, {emitEvent: false});
     }
+  }
+
+  private mapGluelamEntityToForm(orderEntity: GluelamEntity): void {
+    this.orderForm.patchValue({
+      date: orderEntity.date,
+      customer: orderEntity.customer,
+      elementNumber: orderEntity.elementNumber,
+      laminationStrength: orderEntity.laminationStrength,
+      quality: orderEntity.quality,
+      press: orderEntity.press,
+      woodType: orderEntity.woodType,
+      glueTypeId: orderEntity.glueTypeId,
+      hardenerTypeId: orderEntity.hardenerTypeId,
+      width: orderEntity.width,
+      additionalLength: orderEntity.additionalLength,
+      glueAmount: orderEntity.glueAmount,
+      hardenerPercentage: orderEntity.hardenerPercentage
+    }, {emitEvent: false});
+  }
+
+  private mapGluelamDetailEntityToForm(formGroup: FormGroup, detail: GlulamDetailEntity): void {
+    formGroup.patchValue({
+      detailsAmount: detail.detailsAmount,
+      detailsHeight: detail.detailsHeight,
+      detailsLength: detail.detailsLength,
+      detailsLamella: detail.detailsLamella,
+      detailsSquare: detail.detailsSquare,
+      detailsSquareTotal: detail.detailsSquareTotal,
+      detailsVolume: detail.detailsVolume,
+    }, {emitEvent: false});
+  }
+
+  private addRow(): FormGroup {
+    this.detailsIndex++;
+    const control = this.buildDetailGroup();
+    this.details.push(control);
+
+    return control;
+  }
+
+  private removeRow(): void {
+    this.details.removeAt(this.details.length - 1);
+    this.detailsIndex--;
   }
 
 }
