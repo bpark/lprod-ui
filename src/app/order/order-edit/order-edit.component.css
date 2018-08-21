@@ -25,3 +25,14 @@ input.form-control:disabled, input.form-control[disabled], textarea.form-control
   border-color: rgba(0, 0, 0, 0.6);
   cursor: default;
 }
+
+.has-error .help-block {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #D02E00;
+}
+
+.form-group {
+  margin-bottom: 0;
+}

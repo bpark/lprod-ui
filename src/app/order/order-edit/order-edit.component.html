@@ -51,16 +51,16 @@
               </div>
 
               <div class="row">
-                <div class="col-md-8">
-                  <small><label for="customer">Auftraggeber</label></small>
+                <div class="col-md-8 form-group">
+                  <label for="customer">Auftraggeber</label>
                   <input type="text" class="form-control" id="customer" placeholder="Auftraggeber" formControlName="customer">
                 </div>
-                <div class="col-md-8">
-                  <small><label for="customer">Bauteilnummer</label></small>
+                <div class="col-md-8 form-group">
+                  <label for="customer">Bauteilnummer</label>
                   <input type="text" class="form-control" id="elementNumber" placeholder="Bauteilnr" formControlName="elementNumber">
                 </div>
-                <div class="col-md-8">
-                  <small><label for="pressdate">Datum</label></small>
+                <div class="col-md-8 form-group">
+                  <label for="pressdate">Datum</label>
                   <input id="pressdate"
                          type="text"
                          class="form-control"
@@ -79,28 +79,28 @@
               </div>
 
               <div class="row">
-                <div class="col-md-6">
-                  <small><label for="laminationStrength">Lammellenstärke [mm]</label></small>
+                <div class="col-md-6 form-group">
+                  <label for="laminationStrength">Lammellenstärke [mm]</label>
                   <input type="text" class="form-control" id="laminationStrength" placeholder="" formControlName="laminationStrength">
                 </div>
-                <div class="col-md-6">
-                  <small><label for="lam">Qualität</label></small>
+                <div class="col-md-6 form-group">
+                  <label for="lam">Qualität</label>
                   <div class="combobox">
                     <select class="form-control" id="lam" [formControlName]="'quality'">
                       <option *ngFor="let item of gluelamTypes.quality" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <small><label for="press">Presse</label></small>
+                <div class="col-md-6 form-group">
+                  <label for="press">Presse</label>
                   <div class="combobox">
                     <select class="form-control" id="press" [formControlName]="'press'">
                       <option *ngFor="let item of gluelamTypes.pressTypes" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <small><label for="wood">Holzart</label></small>
+                <div class="col-md-6 form-group">
+                  <label for="wood">Holzart</label>
                   <div class="combobox">
                     <select class="form-control" id="wood" [formControlName]="'woodType'">
                       <option *ngFor="let item of gluelamTypes.woodTypes" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
@@ -116,16 +116,16 @@
               </div>
 
               <div class="row">
-                <div class="col-md-12">
-                  <small><label for="glue">Leimsorte</label></small>
+                <div class="col-md-12 form-group">
+                  <label for="glue">Leimsorte</label>
                   <div class="combobox">
                     <select class="form-control" id="glue" [formControlName]="'glueTypeId'">
                       <option *ngFor="let item of gluelamTypes.glueTypes" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
                     </select>
                   </div>
                 </div>
-                  <div class="col-md-12">
-                    <small><label for="hardenertype">Härtersorte</label></small>
+                  <div class="col-md-12 form-group">
+                    <label for="hardenertype">Härtersorte</label>
                     <div class="combobox">
                       <select class="form-control" id="hardenertype" [formControlName]="'hardenerTypeId'">
                         <option *ngFor="let item of gluelamTypes.hardenerTypes" [ngValue]="item.id" [selected]="0">{{item.name}}</option>
@@ -141,24 +141,25 @@
               </div>
 
               <div class="row">
-                <div class="col-md-6">
-                  <small><label for="width">Breite [cm]</label></small>
+                <div class="col-md-6 form-group">
+                  <label for="width">Breite [cm]</label>
                   <div class="combobox">
                     <select class="form-control" id="width" [formControlName]="'width'">
                       <option *ngFor="let item of gluelamTypes.spreads" [ngValue]="item">{{item | number:'1.2-2':'en-US'}}</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <small><label for="addlength">Zusatzlänge [mm]</label></small>
+                <div class="col-md-6 form-group has-error has-feedback">
+                  <label for="addlength" class="control-label">Zusatzlänge [mm]</label>
                   <input type="text" class="form-control" id="addlength" formControlName="additionalLength" appDecimal>
+                  <small><span class="help-block"></span></small>
                 </div>
-                <div class="col-md-6">
-                  <small><label for="glueamount">Leimmenge [g]</label></small>
+                <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':!orderForm.controls.glueAmount.valid}">
+                  <label for="glueamount" class="control-label">Leimmenge [g]</label>
                   <input type="text" class="form-control" id="glueamount" formControlName="glueAmount" appDecimal>
                 </div>
-                <div class="col-md-6">
-                  <small><label for="hardener">Härter [%]</label></small>
+                <div class="col-md-6 form-group">
+                  <label for="hardener">Härter [%]</label>
                   <input type="text" class="form-control" id="hardener" formControlName="hardenerPercentage" appDecimal>
                 </div>
               </div>
