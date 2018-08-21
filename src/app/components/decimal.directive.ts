@@ -1,12 +1,16 @@
-import {Directive, ElementRef, HostListener, OnInit} from '@angular/core';
-import {DecimalPipe} from './decimal.pipe';
+import {Directive, DoCheck, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {DecimalPipe} from '@angular/common';
 
 @Directive({
   selector: '[appDecimal]'
 })
-export class DecimalDirective implements OnInit {
+export class DecimalDirective implements OnInit, DoCheck {
 
   private el: any;
+
+  @Input() digitsInfo = '1.2-2';
+
+  private previousValue: any;
 
   constructor(
     private elementRef: ElementRef,
@@ -17,17 +21,25 @@ export class DecimalDirective implements OnInit {
   }
 
   ngOnInit() {
-    this.el.value = this.decimalPipe.transform(this.el.value);
-  }
-
-  @HostListener('focus', ['$event.target.value'])
-  onFocus(value) {
-    // this.el.value = this.decimalPipe.parse(value); // opossite of transform
+    if (this.el.value !== undefined && this.el.value !== '') {
+      this.el.value = this.decimalPipe.transform(this.el.value, this.digitsInfo, 'en-US');
+    }
   }
 
   @HostListener('blur', ['$event.target.value'])
   onBlur(value) {
-    this.el.value = this.decimalPipe.transform(value);
+    if (this.el.value !== undefined && this.el.value !== '') {
+      this.el.value = this.decimalPipe.transform(value, this.digitsInfo, 'en-US');
+    }
+  }
+
+  ngDoCheck(): void {
+    if (this.el.disabled) {
+      if (this.el.value !== undefined && this.el.value !== ''  && this.previousValue !== this.el.value) {
+        this.el.value = this.decimalPipe.transform(this.el.value, this.digitsInfo, 'en-US');
+        this.previousValue = this.el.value;
+      }
+    }
   }
 
 }

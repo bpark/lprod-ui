@@ -21,7 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductComponent } from './product/product.component';
 import {LoginService} from './login/login.service';
 import localeDe from '@angular/common/locales/de';
-import {registerLocaleData} from '@angular/common';
+import {DecimalPipe, registerLocaleData} from '@angular/common';
 import {ApiInterceptor} from './model/api-interceptor';
 import {JwtTokenStoreService} from './model/jwt-token-store.service';
 import {AlertStackComponent} from './components/alert-stack/alert-stack.component';
@@ -29,7 +29,6 @@ import {PaginatorComponent} from './components/paginator/paginator.component';
 import {ToggleButtonComponent} from './components/toggle-button/toggle-button.component';
 import {TimesPipe} from './components/times.pipe';
 import { OrderEditComponent } from './order/order-edit/order-edit.component';
-import { DecimalPipe } from './components/decimal.pipe';
 import { DecimalDirective } from './components/decimal.directive';
 import {GluelamCalculatorService} from './model/gluelam-calculator.service';
 
@@ -78,7 +77,6 @@ const appRoutes: Routes = [
     ToggleButtonComponent,
     TimesPipe,
     OrderEditComponent,
-    DecimalPipe,
     DecimalDirective
   ],
   imports: [

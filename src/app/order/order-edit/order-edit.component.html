@@ -145,7 +145,7 @@
                   <small><label for="width">Breite [cm]</label></small>
                   <div class="combobox">
                     <select class="form-control" id="width" [formControlName]="'width'">
-                      <option *ngFor="let item of gluelamTypes.spreads" [ngValue]="item">{{item | decimal}}</option>
+                      <option *ngFor="let item of gluelamTypes.spreads" [ngValue]="item">{{item | number:'1.2-2':'en-US'}}</option>
                     </select>
                   </div>
                 </div>
@@ -200,7 +200,7 @@
                       <input type="text" class="form-control" [id]="'detailquareTotal_' + i" [formControlName]="'detailsSquareTotal'">
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" [id]="'detailsvolume_' + i" [formControlName]="'detailsVolume'">
+                      <input type="text" class="form-control" [id]="'detailsvolume_' + i" [formControlName]="'detailsVolume'" appDecimal digitsInfo="1.4-4">
                     </div>
                   </div>
                 </li>

@@ -157,7 +157,7 @@ export class OrderEditComponent implements OnInit {
         calculationInputData.length = group.detailsLength;
         calculationInputData.width = this.orderForm.controls.width.value;
         calculationInputData.laminationStrength = this.orderForm.controls.laminationStrength.value;
-        calculationInputData.additionalLength = this.orderForm.controls.additionalLength.value;
+        calculationInputData.additionalLength = +this.orderForm.controls.additionalLength.value;
         const detail = this.calculatorService.calculateDetail(calculationInputData);
         if (this.orderEntity.details.length - 1 > index) {
           this.orderEntity.details.push(detail);
@@ -165,12 +165,7 @@ export class OrderEditComponent implements OnInit {
           this.orderEntity.details[index] = detail;
         }
         const lastGroup = this.details.at(index) as FormGroup;
-        lastGroup.patchValue({
-          detailsLamella: detail.detailsLamella,
-          detailsSquare: detail.detailsSquare,
-          detailsSquareTotal: detail.detailsSquareTotal,
-          detailsVolume: detail.detailsVolume
-        }, {emitEvent: false});
+        this.mapGluelamDetailEntityToForm(lastGroup, detail);
     }
   }
 
