@@ -64,8 +64,8 @@ export class OrderEditComponent implements OnInit {
       const last = groups[groups.length - 1];
 
       if (last.detailsAmount !== '' && last.detailsHeight !== '' && last.detailsLength !== '') {
-        this.details.push(this.buildDetailGroup());
         this.detailsIndex++;
+        this.details.push(this.buildDetailGroup());
       }
 
       if (groups.length > 1) {
