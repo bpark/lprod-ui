@@ -152,11 +152,11 @@ export class OrderEditComponent implements OnInit {
   private calculate(group: {[key: string]: any}, index: number): void {
       if (group.detailsAmount !== '' && group.detailsHeight !== '' && group.detailsLength !== '') {
         const calculationInputData = new CalculationInputData();
-        calculationInputData.amount = group.detailsAmount;
-        calculationInputData.height = group.detailsHeight;
-        calculationInputData.length = group.detailsLength;
-        calculationInputData.width = this.orderForm.controls.width.value;
-        calculationInputData.laminationStrength = this.orderForm.controls.laminationStrength.value;
+        calculationInputData.amount = +group.detailsAmount;
+        calculationInputData.height = +group.detailsHeight;
+        calculationInputData.length = +group.detailsLength;
+        calculationInputData.width = +this.orderForm.controls.width.value;
+        calculationInputData.laminationStrength = +this.orderForm.controls.laminationStrength.value;
         calculationInputData.additionalLength = +this.orderForm.controls.additionalLength.value;
         const detail = this.calculatorService.calculateDetail(calculationInputData);
         if (this.orderEntity.details.length - 1 > index) {
