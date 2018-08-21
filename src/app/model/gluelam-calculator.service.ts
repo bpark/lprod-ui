@@ -10,26 +10,26 @@ export class GluelamCalculatorService {
     this.calculationResult = new CalculationResult();
   }
 
-  calculate(glulamModel: GlulamModel) {
-    this.calculationResult.lamination = Math.floor(CalculationParameters.maxPressHeight / glulamModel.pressData.laminationStrength);
+  calculate(laminationStrength: number) {
+    this.calculationResult.lamination = Math.floor(CalculationParameters.maxPressHeight / laminationStrength);
   }
 
-  calculateDetail(amount: number, length: number, height: number, glulamModel: GlulamModel): GlulamDetailEntity {
-    const inputDetailLength = length;
-    const inputDetailAmount = amount;
-    const inputDetailHeight = height;
+  calculateDetail(calculationInputData): GlulamDetailEntity {
+    const inputDetailLength = calculationInputData.length;
+    const inputDetailAmount = calculationInputData.amount;
+    const inputDetailHeight = calculationInputData.height;
 
-    const singleLamella = Math.round(inputDetailHeight * 10 / glulamModel.pressData.laminationStrength);
+    const singleLamella = Math.round(inputDetailHeight * 10 / calculationInputData.laminationStrength);
 
-    const totalLength = inputDetailLength * 100 + glulamModel.gluelamData.additionalLength;
-    const totalWidht = glulamModel.gluelamData.width + 1;
+    const totalLength = inputDetailLength * 100 + calculationInputData.additionalLength;
+    const totalWidht = calculationInputData.width + 1;
     const singleSquare = totalLength * totalWidht * (singleLamella - 1);
 
     const outputDetailLamella = singleLamella * inputDetailAmount;
     const outputDetailSquare = singleSquare / 10000;
     const outputDetailTotalSquare = inputDetailAmount * singleSquare / 10000;
 
-    const outputRowVolume = glulamModel.gluelamData.width * inputDetailHeight * inputDetailLength * inputDetailAmount / 10000;
+    const outputRowVolume = calculationInputData.width * inputDetailHeight * inputDetailLength * inputDetailAmount / 10000;
 
     this.calculationResult.lamination -= outputDetailLamella;  // TODO: error if negative
 
@@ -40,10 +40,23 @@ export class GluelamCalculatorService {
     detail.detailsHeight = inputDetailHeight;
 
     detail.detailsLamella = outputDetailLamella;
-    detail.detailsSquare = outputDetailSquare;
-    detail.detailsSquareTotal = outputDetailTotalSquare;
-    detail.detailsVolume = outputRowVolume;
+    detail.detailsSquare = GluelamCalculatorService.roundNumber(outputDetailSquare, 2);
+    detail.detailsSquareTotal = GluelamCalculatorService.roundNumber(outputDetailTotalSquare, 2);
+    detail.detailsVolume = GluelamCalculatorService.roundNumber(outputRowVolume, 4);
 
     return detail;
+  }
+
+  private static roundNumber(num, scale): number {
+    if (!('' + num).includes('e')) {
+      return +(Math.round(parseFloat(num + 'e+' + scale)) + 'e-' + scale);
+    } else {
+      const arr = ('' + num).split('e');
+      let sig = '';
+      if (+arr[1] + scale > 0) {
+        sig = '+';
+      }
+      return +(Math.round(parseFloat(+arr[0] + 'e' + sig + (+arr[1] + scale))) + 'e-' + scale);
+    }
   }
 }

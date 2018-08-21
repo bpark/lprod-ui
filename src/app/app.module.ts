@@ -31,6 +31,7 @@ import {TimesPipe} from './components/times.pipe';
 import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { DecimalPipe } from './components/decimal.pipe';
 import { DecimalDirective } from './components/decimal.directive';
+import {GluelamCalculatorService} from './model/gluelam-calculator.service';
 
 
 defineLocale('de', deLocale);
@@ -99,6 +100,7 @@ const appRoutes: Routes = [
     LoginService,
     JwtTokenStoreService,
     DecimalPipe,
+    GluelamCalculatorService,
     { provide: LOCALE_ID, useValue: 'de' },
     {
       provide: HTTP_INTERCEPTORS,

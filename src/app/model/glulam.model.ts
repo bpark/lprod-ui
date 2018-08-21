@@ -66,6 +66,15 @@ export class CalculationResult {
   lamination: number;
 }
 
+export class CalculationInputData {
+  amount: number;
+  length: number;
+  height: number;
+  laminationStrength: number;
+  additionalLength: number;
+  width: number;
+}
+
 // ---- old
 
 export class GlulamDetail extends BaseEntity {
