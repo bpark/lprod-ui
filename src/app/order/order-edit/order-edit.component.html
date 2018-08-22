@@ -157,6 +157,7 @@
                 <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':!orderForm.controls.glueAmount.valid}">
                   <label for="glueamount" class="control-label">Leimmenge [g]</label>
                   <input type="text" class="form-control" id="glueamount" formControlName="glueAmount" appDecimal>
+                  <small *ngIf="!orderForm.controls.glueAmount.valid"><span class="help-block">help </span></small>
                 </div>
                 <div class="col-md-6 form-group">
                   <label for="hardener">Härter [%]</label>

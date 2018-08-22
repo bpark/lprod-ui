@@ -27,12 +27,12 @@ input.form-control:disabled, input.form-control[disabled], textarea.form-control
 }
 
 .has-error .help-block {
-  display: block;
+  position: absolute;
   margin-top: 0;
   margin-bottom: 0;
   color: #D02E00;
 }
 
 .form-group {
-  margin-bottom: 0;
+  margin-bottom: 7px;
 }
