@@ -14,7 +14,8 @@ import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
 export class OrderEditComponent implements OnInit {
 
   private static readonly calculationFormElements = ['laminationStrength', 'width', 'additionalLength', 'glueAmount', 'hardenerPercentage'];
-  private static readonly inputFormElements = ['date', 'customer', 'elementNumber'];
+  private static readonly inputFormElements = ['date', 'customer', 'elementNumber', 'laminationStrength',
+                                               'width', 'additionalLength', 'glueAmount', 'hardenerPercentage'];
 
   sideNavModel: SideNavModel = {
     title: 'Leimbinder',
@@ -57,21 +58,7 @@ export class OrderEditComponent implements OnInit {
       details: this.formBuilder.array([]),
     });
 
-    OrderEditComponent.calculationFormElements.forEach(element => {
-      this.orderForm.get(element).valueChanges.subscribe((value: number) => {
-        console.log('value is ', value);
-        this.calculatorService.calculate(value);
-      });
-    });
-
-    OrderEditComponent.inputFormElements.forEach(element => {
-      const control = this.orderForm.get(element);
-      control.valueChanges.subscribe(value => {
-        if ((control.touched || control.dirty) && control.errors) {
-          console.log(control.errors);
-        }
-      });
-    });
+    this.registerInputValueChanges();
 
     this.details.valueChanges.subscribe(value => {
 
@@ -119,6 +106,29 @@ export class OrderEditComponent implements OnInit {
 
   get details(): FormArray {
     return <FormArray>this.orderForm.controls.details; // .get('details');
+  }
+
+  private registerInputValueChanges(): void {
+    OrderEditComponent.inputFormElements.forEach(element => {
+
+      const control = this.orderForm.get(element);
+
+      control.valueChanges.filter(value => {
+        const hasError = (control.touched || control.dirty) && control.errors;
+        if (hasError) {
+          console.log(control.errors);
+        }
+        return !hasError;
+      })
+
+      .filter(value => OrderEditComponent.calculationFormElements.includes(element))
+
+      .subscribe(value => {
+        console.log('value is ', value);
+        this.calculatorService.calculate(value);
+      });
+
+    });
   }
 
   private buildDetailGroup(): FormGroup {
