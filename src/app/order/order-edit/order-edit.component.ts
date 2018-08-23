@@ -13,6 +13,9 @@ import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
 })
 export class OrderEditComponent implements OnInit {
 
+  private static readonly calculationFormElements = ['laminationStrength', 'width', 'additionalLength', 'glueAmount', 'hardenerPercentage'];
+  private static readonly inputFormElements = ['date', 'customer', 'elementNumber'];
+
   sideNavModel: SideNavModel = {
     title: 'Leimbinder',
     items: [{
@@ -54,8 +57,20 @@ export class OrderEditComponent implements OnInit {
       details: this.formBuilder.array([]),
     });
 
-    this.orderForm.controls.laminationStrength.valueChanges.subscribe(value => {
-      this.calculatorService.calculate(value as number);
+    OrderEditComponent.calculationFormElements.forEach(element => {
+      this.orderForm.get(element).valueChanges.subscribe((value: number) => {
+        console.log('value is ', value);
+        this.calculatorService.calculate(value);
+      });
+    });
+
+    OrderEditComponent.inputFormElements.forEach(element => {
+      const control = this.orderForm.get(element);
+      control.valueChanges.subscribe(value => {
+        if ((control.touched || control.dirty) && control.errors) {
+          console.log(control.errors);
+        }
+      });
     });
 
     this.details.valueChanges.subscribe(value => {
