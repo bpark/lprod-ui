@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SideNavModel} from '../../components/side-nav/side-nav-model';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CalculationInputData, GluelamEntity, GluelamTypes, GlulamDetailEntity} from '../../model/glulam.model';
+import {GluelamEntity, GluelamTypes, GlulamDetailEntity} from '../../model/glulam.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlulamOrderService} from '../../model/glulam-order.service';
 import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
@@ -28,7 +28,6 @@ export class OrderEditComponent implements OnInit {
 
   orderForm: FormGroup;
   orderEntity: GluelamEntity;
-  calculationResult = this.calculatorService.calculationResult;
 
   gluelamTypes = GluelamTypes.getInstance();
 
@@ -125,7 +124,7 @@ export class OrderEditComponent implements OnInit {
 
       .subscribe(value => {
         console.log('value is ', value);
-        this.calculatorService.calculate(value);
+        this.calculatorService.calculate(this.orderEntity);
       });
 
     });
@@ -155,12 +154,16 @@ export class OrderEditComponent implements OnInit {
   private loadOrder(): void {
     const orderId = +this.route.snapshot.paramMap.get('orderId');
     console.log('orderId: ', orderId);
+
     if (orderId === -1) {
+
       this.orderEntity = new GluelamEntity();
       this.orderEntity.details.push(new GlulamDetailEntity());
-      this.calculatorService.calculate(this.orderEntity.laminationStrength);
+      this.calculatorService.calculate(this.orderEntity);
       this.details.push(this.buildDetailGroup());
+
     } else {
+
       this.orderService.get(orderId).subscribe(orderEntity => {
         this.orderEntity = orderEntity;
         this.mapGluelamEntityToForm(orderEntity);
@@ -169,28 +172,39 @@ export class OrderEditComponent implements OnInit {
           this.mapGluelamDetailEntityToForm(control, detail);
         });
         this.details.push(this.buildDetailGroup());
-        this.calculatorService.calculate(this.orderEntity.laminationStrength);
+        this.calculatorService.calculate(this.orderEntity);
       });
+
     }
   }
 
   private calculate(group: {[key: string]: any}, index: number): void {
       if (group.detailsAmount !== '' && group.detailsHeight !== '' && group.detailsLength !== '') {
-        const calculationInputData = new CalculationInputData();
-        calculationInputData.amount = +group.detailsAmount;
-        calculationInputData.height = +group.detailsHeight;
-        calculationInputData.length = +group.detailsLength;
-        calculationInputData.width = +this.orderForm.controls.width.value;
-        calculationInputData.laminationStrength = +this.orderForm.controls.laminationStrength.value;
-        calculationInputData.additionalLength = +this.orderForm.controls.additionalLength.value;
-        const detail = this.calculatorService.calculateDetail(calculationInputData);
+
+        this.orderEntity.width = +this.orderForm.controls.width.value;
+        this.orderEntity.laminationStrength = +this.orderForm.controls.laminationStrength.value;
+        this.orderEntity.additionalLength = +this.orderForm.controls.additionalLength.value;
+
+        const detail = new GlulamDetailEntity();
+        detail.detailsAmount = +group.detailsAmount;
+        detail.detailsHeight = +group.detailsHeight;
+        detail.detailsLength = +group.detailsLength;
+
         if (this.orderEntity.details.length - 1 > index) {
           this.orderEntity.details.push(detail);
         } else {
           this.orderEntity.details[index] = detail;
         }
-        const lastGroup = this.details.at(index) as FormGroup;
-        this.mapGluelamDetailEntityToForm(lastGroup, detail);
+
+        this.calculatorService.calculate(this.orderEntity);
+
+        this.details.controls.forEach((formGroup: FormGroup, i) => {
+          console.log('looping through form ', i);
+          if (i < this.orderEntity.details.length) {
+            this.mapGluelamDetailEntityToForm(formGroup, this.orderEntity.details[i]);
+          }
+        });
+
     }
   }
 

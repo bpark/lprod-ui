@@ -23,6 +23,7 @@ export class GluelamEntity extends GluelamBaseEntity {
   glueAmount = 380.00;
   hardenerPercentage = 20.00;
   details: GlulamDetailEntity[] = [];
+  result: GlulamResultEntity = new GlulamResultEntity();
 }
 
 export class GlulamDetailEntity extends BaseEntity {
@@ -33,6 +34,10 @@ export class GlulamDetailEntity extends BaseEntity {
   detailsSquare = 0;
   detailsSquareTotal = 0;
   detailsVolume = 0;
+}
+
+export class GlulamResultEntity extends BaseEntity {
+  lamination = 0;
 }
 
 export interface EnumType {
@@ -64,15 +69,6 @@ export class CalculationParameters {
 
 export class CalculationResult {
   lamination: number;
-}
-
-export class CalculationInputData {
-  amount: number;
-  length: number;
-  height: number;
-  laminationStrength: number;
-  additionalLength: number;
-  width: number;
 }
 
 // ---- old

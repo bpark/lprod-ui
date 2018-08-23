@@ -1,50 +1,10 @@
 import { Injectable } from '@angular/core';
-import {CalculationParameters, CalculationResult, GlulamDetail, GlulamDetailEntity, GlulamModel} from './glulam.model';
+import {CalculationParameters, CalculationResult, GluelamEntity, GlulamDetail, GlulamDetailEntity, GlulamModel} from './glulam.model';
 
 @Injectable()
 export class GluelamCalculatorService {
 
-  calculationResult: CalculationResult;
-
   constructor() {
-    this.calculationResult = new CalculationResult();
-  }
-
-  calculate(laminationStrength: number) {
-    this.calculationResult.lamination = Math.floor(CalculationParameters.maxPressHeight / laminationStrength);
-  }
-
-  calculateDetail(calculationInputData): GlulamDetailEntity {
-    const inputDetailLength = calculationInputData.length;
-    const inputDetailAmount = calculationInputData.amount;
-    const inputDetailHeight = calculationInputData.height;
-
-    const singleLamella = Math.round(inputDetailHeight * 10 / calculationInputData.laminationStrength);
-
-    const totalLength = inputDetailLength * 100 + calculationInputData.additionalLength;
-    const totalWidht = calculationInputData.width + 1;
-    const singleSquare = totalLength * totalWidht * (singleLamella - 1);
-
-    const outputDetailLamella = singleLamella * inputDetailAmount;
-    const outputDetailSquare = singleSquare / 10000;
-    const outputDetailTotalSquare = inputDetailAmount * singleSquare / 10000;
-
-    const outputRowVolume = calculationInputData.width * inputDetailHeight * inputDetailLength * inputDetailAmount / 10000;
-
-    this.calculationResult.lamination -= outputDetailLamella;  // TODO: error if negative
-
-    const detail = new GlulamDetailEntity();
-
-    detail.detailsLength = inputDetailLength;
-    detail.detailsAmount = inputDetailAmount;
-    detail.detailsHeight = inputDetailHeight;
-
-    detail.detailsLamella = outputDetailLamella;
-    detail.detailsSquare = GluelamCalculatorService.roundNumber(outputDetailSquare, 2);
-    detail.detailsSquareTotal = GluelamCalculatorService.roundNumber(outputDetailTotalSquare, 2);
-    detail.detailsVolume = GluelamCalculatorService.roundNumber(outputRowVolume, 4);
-
-    return detail;
   }
 
   private static roundNumber(num, scale): number {
@@ -59,4 +19,41 @@ export class GluelamCalculatorService {
       return +(Math.round(parseFloat(+arr[0] + 'e' + sig + (+arr[1] + scale))) + 'e-' + scale);
     }
   }
+
+  calculate(gluelamEntity: GluelamEntity) {
+    gluelamEntity.result.lamination = Math.floor(CalculationParameters.maxPressHeight / gluelamEntity.laminationStrength);
+
+    gluelamEntity.details.forEach(detail => {
+      this.calculateDetail(gluelamEntity, detail);
+
+      gluelamEntity.result.lamination  -= detail.detailsLamella;  // TODO: error if negative
+    });
+
+    console.log('calculated: ', gluelamEntity);
+  }
+
+  private calculateDetail(gluelamEntity: GluelamEntity, gluelamDetailEntity: GlulamDetailEntity) {
+    const inputDetailLength = gluelamDetailEntity.detailsLength;
+    const inputDetailAmount = gluelamDetailEntity.detailsAmount;
+    const inputDetailHeight = gluelamDetailEntity.detailsHeight;
+
+    const singleLamella = Math.round(inputDetailHeight * 10 / gluelamEntity.laminationStrength);
+
+    const totalLength = inputDetailLength * 100 + gluelamEntity.additionalLength;
+    const totalWidht = gluelamEntity.width + 1;
+    const singleSquare = totalLength * totalWidht * (singleLamella - 1);
+
+    const outputDetailLamella = singleLamella * inputDetailAmount;
+    const outputDetailSquare = singleSquare / 10000;
+    const outputDetailTotalSquare = inputDetailAmount * singleSquare / 10000;
+
+    const outputRowVolume = gluelamEntity.width * inputDetailHeight * inputDetailLength * inputDetailAmount / 10000;
+
+    gluelamDetailEntity.detailsLamella = outputDetailLamella;
+    gluelamDetailEntity.detailsSquare = GluelamCalculatorService.roundNumber(outputDetailSquare, 2);
+    gluelamDetailEntity.detailsSquareTotal = GluelamCalculatorService.roundNumber(outputDetailTotalSquare, 2);
+    gluelamDetailEntity.detailsVolume = GluelamCalculatorService.roundNumber(outputRowVolume, 4);
+
+  }
+
 }
