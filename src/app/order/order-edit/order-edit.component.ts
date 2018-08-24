@@ -120,10 +120,13 @@ export class OrderEditComponent implements OnInit {
         return !hasError;
       })
 
-      .filter(value => OrderEditComponent.calculationFormElements.includes(element))
+      .filter(value => {
+        console.log('value is ', value);
+        this.orderEntity[element] = value;
+        return OrderEditComponent.calculationFormElements.includes(element);
+      })
 
       .subscribe(value => {
-        console.log('value is ', value);
         this.calculatorService.calculate(this.orderEntity);
       });
 
@@ -199,7 +202,6 @@ export class OrderEditComponent implements OnInit {
         this.calculatorService.calculate(this.orderEntity);
 
         this.details.controls.forEach((formGroup: FormGroup, i) => {
-          console.log('looping through form ', i);
           if (i < this.orderEntity.details.length) {
             this.mapGluelamDetailEntityToForm(formGroup, this.orderEntity.details[i]);
           }

@@ -41,7 +41,10 @@
           "detailsSquareTotal": "20",
           "detailsVolume": 300
         }
-      ]
+      ],
+      "result": {
+        "lamination": 63
+      }
     },
     {
       "id": 3,

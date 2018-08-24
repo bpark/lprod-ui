@@ -81,7 +81,7 @@
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label for="laminationStrength">Lammellenstärke [mm]</label>
-                  <input type="text" class="form-control" id="laminationStrength" placeholder="" formControlName="laminationStrength">
+                  <input type="text" class="form-control" id="laminationStrength" placeholder="" formControlName="laminationStrength" appDecimal digitsInfo="1.2-2">
                 </div>
                 <div class="col-md-6 form-group">
                   <label for="lam">Qualität</label>
@@ -187,19 +187,19 @@
                       <input type="text" class="form-control" [id]="'detailsamount_' + i" [formControlName]="'detailsAmount'">
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" [id]="'detailsheight_' + i" [formControlName]="'detailsHeight'">
+                      <input type="text" class="form-control" [id]="'detailsheight_' + i" [formControlName]="'detailsHeight'" appDecimal digitsInfo="1.1-1">
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" [id]="'detailslength_' + i" [formControlName]="'detailsLength'">
+                      <input type="text" class="form-control" [id]="'detailslength_' + i" [formControlName]="'detailsLength'" appDecimal digitsInfo="1.2-2">
                     </div>
                     <div class="col-md-3">
                       <input type="text" class="form-control" [id]="'detailslamella_' + i" [formControlName]="'detailsLamella'">
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" [id]="'detailsquare_' + i" [formControlName]="'detailsSquare'">
+                      <input type="text" class="form-control" [id]="'detailsquare_' + i" [formControlName]="'detailsSquare'" appDecimal digitsInfo="1.2-2">
                     </div>
                     <div class="col-md-3">
-                      <input type="text" class="form-control" [id]="'detailquareTotal_' + i" [formControlName]="'detailsSquareTotal'">
+                      <input type="text" class="form-control" [id]="'detailquareTotal_' + i" [formControlName]="'detailsSquareTotal'" appDecimal digitsInfo="1.2-2">
                     </div>
                     <div class="col-md-3">
                       <input type="text" class="form-control" [id]="'detailsvolume_' + i" [formControlName]="'detailsVolume'" appDecimal digitsInfo="1.4-4">
