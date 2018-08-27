@@ -5,6 +5,7 @@ import {GluelamEntity, GluelamTypes, GlulamDetailEntity} from '../../model/glula
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlulamOrderService} from '../../model/glulam-order.service';
 import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
+import {ValidationErrorMessages} from './form-definition';
 
 @Component({
   selector: 'app-order-edit',
@@ -31,6 +32,8 @@ export class OrderEditComponent implements OnInit {
 
   gluelamTypes = GluelamTypes.getInstance();
 
+  errors = new Map<string, string>();
+
   private detailsIndex = 0;
 
   constructor(private formBuilder: FormBuilder,
@@ -52,7 +55,7 @@ export class OrderEditComponent implements OnInit {
       hardenerTypeId: [0, Validators.required],
       width: [8.5, Validators.required],
       additionalLength: [10.00, Validators.required],
-      glueAmount: [380.00, Validators.required],
+      glueAmount: [380.00, [Validators.required, Validators.min(10)]],
       hardenerPercentage: [20.00, Validators.required],
       details: this.formBuilder.array([]),
     });
@@ -115,7 +118,10 @@ export class OrderEditComponent implements OnInit {
       control.valueChanges.filter(value => {
         const hasError = (control.touched || control.dirty) && control.errors;
         if (hasError) {
-          console.log(control.errors);
+          const errorText = ValidationErrorMessages.getErrorText(element, Object.keys(control.errors)[0]);
+          this.errors.set(element, errorText);
+        } else {
+          this.errors.delete(element);
         }
         return !hasError;
       })

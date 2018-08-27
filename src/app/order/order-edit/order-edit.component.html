@@ -154,10 +154,10 @@
                   <input type="text" class="form-control" id="addlength" formControlName="additionalLength" appDecimal>
                   <small><span class="help-block"></span></small>
                 </div>
-                <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':!orderForm.controls.glueAmount.valid}">
+                <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('glueAmount')}">
                   <label for="glueamount" class="control-label">Leimmenge [g]</label>
                   <input type="text" class="form-control" id="glueamount" formControlName="glueAmount" appDecimal>
-                  <small *ngIf="!orderForm.controls.glueAmount.valid"><span class="help-block">help </span></small>
+                  <small *ngIf="errors.has('glueAmount')"><span class="help-block">{{errors.get('glueAmount')}} </span></small>
                 </div>
                 <div class="col-md-6 form-group">
                   <label for="hardener">Härter [%]</label>
