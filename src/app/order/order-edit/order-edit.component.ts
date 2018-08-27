@@ -5,7 +5,7 @@ import {GluelamEntity, GluelamTypes, GlulamDetailEntity} from '../../model/glula
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlulamOrderService} from '../../model/glulam-order.service';
 import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
-import {ValidationErrorMessages} from './form-definition';
+import {ValidationErrorMessages} from './validation-error-messages';
 
 @Component({
   selector: 'app-order-edit',
