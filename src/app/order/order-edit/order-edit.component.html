@@ -79,9 +79,10 @@
               </div>
 
               <div class="row">
-                <div class="col-md-6 form-group">
+                <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('laminationStrength')}">
                   <label for="laminationStrength">Lammellenstärke [mm]</label>
                   <input type="text" class="form-control" id="laminationStrength" placeholder="" formControlName="laminationStrength" appDecimal digitsInfo="1.2-2">
+                  <small *ngIf="errors.has('laminationStrength')"><span class="help-block">{{errors.get('laminationStrength')}} </span></small>
                 </div>
                 <div class="col-md-6 form-group">
                   <label for="lam">Qualität</label>
@@ -149,19 +150,26 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-6 form-group has-error has-feedback">
-                  <label for="addlength" class="control-label">Zusatzlänge [mm]</label>
-                  <input type="text" class="form-control" id="addlength" formControlName="additionalLength" appDecimal>
-                  <small><span class="help-block"></span></small>
+
+                <!-- Zusatzlänge -->
+                <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('additionalLength')}">
+                  <label for="additionalLength" class="control-label">Zusatzlänge [mm]</label>
+                  <input type="text" class="form-control" id="additionalLength" formControlName="additionalLength" appDecimal>
+                  <small *ngIf="errors.has('additionalLength')"><span class="help-block">{{errors.get('additionalLength')}} </span></small>
                 </div>
+
+                <!-- Leimmenge -->
                 <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('glueAmount')}">
-                  <label for="glueamount" class="control-label">Leimmenge [g]</label>
-                  <input type="text" class="form-control" id="glueamount" formControlName="glueAmount" appDecimal>
+                  <label for="glueAmount" class="control-label">Leimmenge [g]</label>
+                  <input type="text" class="form-control" id="glueAmount" formControlName="glueAmount" appDecimal>
                   <small *ngIf="errors.has('glueAmount')"><span class="help-block">{{errors.get('glueAmount')}} </span></small>
                 </div>
-                <div class="col-md-6 form-group">
-                  <label for="hardener">Härter [%]</label>
-                  <input type="text" class="form-control" id="hardener" formControlName="hardenerPercentage" appDecimal>
+
+                <!-- Härter Prozent -->
+                <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('hardenerPercentage')}">
+                  <label for="hardenerPercentage" class="control-label">Härter [%]</label>
+                  <input type="text" class="form-control" id="hardenerPercentage" formControlName="hardenerPercentage" appDecimal>
+                  <small *ngIf="errors.has('hardenerPercentage')"><span class="help-block">{{errors.get('hardenerPercentage')}} </span></small>
                 </div>
               </div>
 
