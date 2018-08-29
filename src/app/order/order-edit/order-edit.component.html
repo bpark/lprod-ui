@@ -51,17 +51,19 @@
               </div>
 
               <div class="row">
-                <div class="col-md-8 form-group">
-                  <label for="customer">Auftraggeber</label>
+                <div class="col-md-8 form-group" [ngClass]="{'has-error has-feedback':errors.has('customer')}">
+                  <label for="customer" class="control-label">Auftraggeber</label>
                   <input type="text" class="form-control" id="customer" placeholder="Auftraggeber" formControlName="customer">
+                  <small *ngIf="errors.has('customer')"><span class="help-block">{{errors.get('customer')}} </span></small>
                 </div>
-                <div class="col-md-8 form-group">
-                  <label for="customer">Bauteilnummer</label>
+                <div class="col-md-8 form-group" [ngClass]="{'has-error has-feedback':errors.has('elementNumber')}">
+                  <label for="elementNumber" class="control-label">Bauteilnummer</label>
                   <input type="text" class="form-control" id="elementNumber" placeholder="Bauteilnr" formControlName="elementNumber">
+                  <small *ngIf="errors.has('elementNumber')"><span class="help-block">{{errors.get('elementNumber')}} </span></small>
                 </div>
-                <div class="col-md-8 form-group">
-                  <label for="pressdate">Datum</label>
-                  <input id="pressdate"
+                <div class="col-md-8 form-group" [ngClass]="{'has-error has-feedback':errors.has('date')}">
+                  <label for="date" class="control-label">Datum</label>
+                  <input id="date"
                          type="text"
                          class="form-control"
                          #dp="bsDatepicker"
@@ -69,6 +71,7 @@
                          [bsConfig]="{ dateInputFormat: 'DD.MM.YYYY', containerClass: 'theme-dark-blue' }"
                          bsDatepicker
                          formControlName="date">
+                  <small *ngIf="errors.has('date')"><span class="help-block">{{errors.get('date')}} </span></small>
                 </div>
               </div>
 
@@ -80,7 +83,7 @@
 
               <div class="row">
                 <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('laminationStrength')}">
-                  <label for="laminationStrength">Lammellenstärke [mm]</label>
+                  <label for="laminationStrength" class="control-label">Lammellenstärke [mm]</label>
                   <input type="text" class="form-control" id="laminationStrength" placeholder="" formControlName="laminationStrength" appDecimal digitsInfo="1.2-2">
                   <small *ngIf="errors.has('laminationStrength')"><span class="help-block">{{errors.get('laminationStrength')}} </span></small>
                 </div>

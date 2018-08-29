@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {GlulamOrderService} from '../../model/glulam-order.service';
 import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
 import {ValidationErrorMessages} from './validation-error-messages';
+import {DateValidator} from '../../components/date.validator';
 
 @Component({
   selector: 'app-order-edit',
@@ -44,9 +45,9 @@ export class OrderEditComponent implements OnInit {
 
   ngOnInit() {
     this.orderForm = this.formBuilder.group({
-      date: [new Date(), Validators.required],
-      customer: ['', Validators.required],
-      elementNumber: ['', Validators.required],
+      date: [new Date(), [Validators.required, DateValidator.ptDate]],
+      customer: ['', [Validators.required, Validators.maxLength(100)]],
+      elementNumber: ['', [Validators.required, Validators.maxLength(50)]],
       laminationStrength: [33.6, [Validators.required, Validators.min(0), Validators.max(100)]],
       quality: [0, Validators.required],
       press: [0, Validators.required],

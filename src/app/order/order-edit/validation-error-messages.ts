@@ -22,6 +22,21 @@ export class ValidationErrorMessages {
     max: 'Der Wert darf nicht größer als 100 sein'
   };
 
+  private static customer = {
+    required: 'Die Eingabe darf nicht leer sein',
+    maxLength: 'Max. 100 Zeichen erlaubt'
+  };
+
+  private static elementNumber = {
+    required: 'Die Eingabe darf nicht leer sein',
+    maxLength: 'Max. 50 Zeichen erlaubt'
+  };
+
+  private static date = {
+    required: 'Die Eingabe darf nicht leer sein',
+    ptDate: 'Das Datum ist ungültig'
+  };
+
   static getErrorText(id: string, error: string) {
     const definition = this[id];
     console.log('definition: ', definition);
