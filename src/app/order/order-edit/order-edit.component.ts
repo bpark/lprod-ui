@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {GlulamOrderService} from '../../model/glulam-order.service';
 import {GluelamCalculatorService} from '../../model/gluelam-calculator.service';
 import {ValidationErrorMessages} from './validation-error-messages';
-import {DateValidator} from '../../components/date.validator';
+import {LbValidators} from '../../components/validators';
 
 @Component({
   selector: 'app-order-edit',
@@ -45,7 +45,7 @@ export class OrderEditComponent implements OnInit {
 
   ngOnInit() {
     this.orderForm = this.formBuilder.group({
-      date: [new Date(), [Validators.required, DateValidator.ptDate]],
+      date: [new Date(), [Validators.required, LbValidators.ptDate]],
       customer: ['', [Validators.required, Validators.maxLength(100)]],
       elementNumber: ['', [Validators.required, Validators.maxLength(50)]],
       laminationStrength: [33.6, [Validators.required, Validators.min(0), Validators.max(100)]],
@@ -55,9 +55,9 @@ export class OrderEditComponent implements OnInit {
       glueTypeId: [0, Validators.required],
       hardenerTypeId: [0, Validators.required],
       width: [8.5, Validators.required],
-      additionalLength: [10.00, [Validators.required, Validators.min(5)]],
-      glueAmount: [380.00, [Validators.required, Validators.min(10)]],
-      hardenerPercentage: [20.00, [Validators.required, Validators.min(0), Validators.max(100)]],
+      additionalLength: [10.00, [Validators.required, LbValidators.numeric, Validators.min(5)]],
+      glueAmount: [380.00, [Validators.required, LbValidators.numeric, Validators.min(10)]],
+      hardenerPercentage: [20.00, [Validators.required, LbValidators.numeric, Validators.min(0), Validators.max(100)]],
       details: this.formBuilder.array([]),
     });
 

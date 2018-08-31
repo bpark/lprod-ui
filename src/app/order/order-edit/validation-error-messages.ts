@@ -2,16 +2,19 @@ export class ValidationErrorMessages {
 
   private static glueAmount = {
     required: 'Die Eingabe darf nicht leer sein',
+    numeric: 'Die Eingabe muss numerisch sein',
     min: 'Der Wert muss gößer 10 sein'
   };
 
   private static additionalLength = {
     required: 'Die Eingabe darf nicht leer sein',
+    numeric: 'Die Eingabe muss numerisch sein',
     min: 'Der Wert muss gößer 5 sein'
   };
 
   private static hardenerPercentage = {
     required: 'Die Eingabe darf nicht leer sein',
+    numeric: 'Die Eingabe muss numerisch sein',
     min: 'Der Wert muss gößer oder gleich 0 sein',
     max: 'Der Wert darf nicht größer als 100 sein'
   };
