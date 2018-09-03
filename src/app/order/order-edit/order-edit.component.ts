@@ -18,6 +18,7 @@ export class OrderEditComponent implements OnInit {
   private static readonly calculationFormElements = ['laminationStrength', 'width', 'additionalLength', 'glueAmount', 'hardenerPercentage'];
   private static readonly inputFormElements = ['date', 'customer', 'elementNumber', 'laminationStrength',
                                                'width', 'additionalLength', 'glueAmount', 'hardenerPercentage'];
+  private static readonly detailsFormElements = ['detailsAmount', 'detailsHeight', 'detailsLength'];
 
   sideNavModel: SideNavModel = {
     title: 'Leimbinder',
@@ -142,7 +143,7 @@ export class OrderEditComponent implements OnInit {
 
   private buildDetailGroup(): FormGroup {
     const group = this.formBuilder.group({
-      detailsAmount: [''],
+      detailsAmount: ['', [LbValidators.numeric]],
       detailsHeight: [''],
       detailsLength: [''],
       detailsLamella: [{value: '', disabled: true}],
@@ -155,7 +156,21 @@ export class OrderEditComponent implements OnInit {
 
     group.valueChanges.subscribe(value => {
       const changes = value as {[key: string]: any};
-      this.calculate(changes, index);
+      let elementErrors = false;
+      OrderEditComponent.detailsFormElements.forEach(element => {
+        const control = group.get(element);
+        const hasError = (control.touched || control.dirty) && control.errors;
+        if (hasError) {
+          const errorText = ValidationErrorMessages.getErrorText(element, Object.keys(control.errors)[0]);
+          this.errors.set(element + '_' + index, errorText);
+          elementErrors = true;
+        } else {
+          this.errors.delete(element + '_' + index);
+        }
+      });
+      if (!elementErrors) {
+        this.calculate(changes, index);
+      }
     });
 
     return group;

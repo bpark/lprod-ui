@@ -40,6 +40,10 @@ export class ValidationErrorMessages {
     ptDate: 'Das Datum ist ungültig'
   };
 
+  private static detailsAmount = {
+    numeric: 'Die Eingabe muss numerisch sein'
+  };
+
   static getErrorText(id: string, error: string) {
     const definition = this[id];
     console.log('definition: ', definition);

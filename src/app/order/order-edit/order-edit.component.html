@@ -194,8 +194,9 @@
                     <div class="col-md-3">
                       <strong>{{i + 1}}</strong>
                     </div>
-                    <div class="col-md-3">
-                      <input type="text" class="form-control" [id]="'detailsamount_' + i" [formControlName]="'detailsAmount'">
+                    <div class="col-md-3" [ngClass]="{'has-error has-feedback':errors.has('detailsAmount_' + i)}">
+                      <input type="text" class="form-control" [id]="'detailsAmount_' + i" [formControlName]="'detailsAmount'">
+                      <small *ngIf="errors.has('detailsAmount_' + i)"><span class="help-block">{{errors.get('detailsAmount_' + i)}} </span></small>
                     </div>
                     <div class="col-md-3">
                       <input type="text" class="form-control" [id]="'detailsheight_' + i" [formControlName]="'detailsHeight'" appDecimal digitsInfo="1.1-1">
