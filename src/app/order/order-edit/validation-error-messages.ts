@@ -41,6 +41,17 @@ export class ValidationErrorMessages {
   };
 
   private static detailsAmount = {
+    required: 'Die Eingabe darf nicht leer sein',
+    numeric: 'Die Eingabe muss numerisch sein'
+  };
+
+  private static detailsHeight = {
+    required: 'Die Eingabe darf nicht leer sein',
+    numeric: 'Die Eingabe muss numerisch sein'
+  };
+
+  private static detailsLength = {
+    required: 'Die Eingabe darf nicht leer sein',
     numeric: 'Die Eingabe muss numerisch sein'
   };
 

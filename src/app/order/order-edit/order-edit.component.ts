@@ -143,9 +143,9 @@ export class OrderEditComponent implements OnInit {
 
   private buildDetailGroup(): FormGroup {
     const group = this.formBuilder.group({
-      detailsAmount: ['', [LbValidators.numeric]],
-      detailsHeight: [''],
-      detailsLength: [''],
+      detailsAmount: ['', [Validators.required, LbValidators.numeric]],
+      detailsHeight: ['', [Validators.required, LbValidators.numeric]],
+      detailsLength: ['', [Validators.required, LbValidators.numeric]],
       detailsLamella: [{value: '', disabled: true}],
       detailsSquare: [{value: '', disabled: true}],
       detailsSquareTotal: [{value: '', disabled: true}],

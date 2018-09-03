@@ -198,11 +198,13 @@
                       <input type="text" class="form-control" [id]="'detailsAmount_' + i" [formControlName]="'detailsAmount'">
                       <small *ngIf="errors.has('detailsAmount_' + i)"><span class="help-block">{{errors.get('detailsAmount_' + i)}} </span></small>
                     </div>
-                    <div class="col-md-3">
-                      <input type="text" class="form-control" [id]="'detailsheight_' + i" [formControlName]="'detailsHeight'" appDecimal digitsInfo="1.1-1">
+                    <div class="col-md-3" [ngClass]="{'has-error has-feedback':errors.has('detailsHeight_' + i)}">
+                      <input type="text" class="form-control" [id]="'detailsHeight_' + i" [formControlName]="'detailsHeight'" appDecimal digitsInfo="1.1-1">
+                      <small *ngIf="errors.has('detailsHeight_' + i)"><span class="help-block">{{errors.get('detailsHeight_' + i)}} </span></small>
                     </div>
-                    <div class="col-md-3">
-                      <input type="text" class="form-control" [id]="'detailslength_' + i" [formControlName]="'detailsLength'" appDecimal digitsInfo="1.2-2">
+                    <div class="col-md-3" [ngClass]="{'has-error has-feedback':errors.has('detailsLength_' + i)}">
+                      <input type="text" class="form-control" [id]="'detailsLength_' + i" [formControlName]="'detailsLength'" appDecimal digitsInfo="1.2-2">
+                      <small *ngIf="errors.has('detailsLength_' + i)"><span class="help-block">{{errors.get('detailsLength_' + i)}} </span></small>
                     </div>
                     <div class="col-md-3">
                       <input type="text" class="form-control" [id]="'detailslamella_' + i" [formControlName]="'detailsLamella'">
