@@ -31,7 +31,7 @@ app.get('/api/shipments/:id', function(req, res){
   });
 });
 
-app.get('/api/gluelams/', function(req, res){
+app.get('/api/orders/', function(req, res){
   fs.readFile('bin/gluelams.json', function(err, data) {
     if (err) {
       throw err;
@@ -41,7 +41,7 @@ app.get('/api/gluelams/', function(req, res){
   });
 });
 
-app.get('/api/gluelams/:id', function(req, res){
+app.get('/api/orders/:id', function(req, res){
   fs.readFile('bin/gluelams.json', function(err, data) {
     if (err) {
       throw err;

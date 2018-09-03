@@ -8,7 +8,7 @@ import {AbstractRepository} from './abstract-repository';
 @Injectable()
 export class GlulamOrderService extends AbstractRepository<GluelamEntity> {
 
-  private static readonly apiPath = 'gluelams';
+  private static readonly apiPath = 'orders';
 
   constructor(protected http: HttpClient,
               protected jwtTokenStore: JwtTokenStoreService) {

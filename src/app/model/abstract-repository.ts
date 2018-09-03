@@ -89,6 +89,12 @@ export class AbstractRepository<T extends BaseEntity> {
       } else {
         return 'https://lprod-v1.appspot.com/api/' + this.apiUrl;
       }
+      /*
+      if (id) {
+        return 'http://localhost:8080/api/' + this.apiUrl + '/' + id;
+      } else {
+        return 'http://localhost:8080/api/' + this.apiUrl;
+      }*/
     }
   }
 }
