@@ -129,7 +129,6 @@ export class OrderEditComponent implements OnInit {
       })
 
       .filter(value => {
-        console.log('value is ', value);
         this.orderEntity[element] = value;
         return OrderEditComponent.calculationFormElements.includes(element);
       })
