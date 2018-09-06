@@ -214,7 +214,7 @@ export class OrderEditComponent implements OnInit {
         detail.detailsHeight = +group.detailsHeight;
         detail.detailsLength = +group.detailsLength;
 
-        if (this.orderEntity.details.length - 1 > index) {
+        if (index > this.orderEntity.details.length - 1) {
           this.orderEntity.details.push(detail);
         } else {
           this.orderEntity.details[index] = detail;
