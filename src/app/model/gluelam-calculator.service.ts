@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {CalculationParameters, CalculationResult, GluelamEntity, GlulamDetail, GlulamDetailEntity, GlulamModel} from './glulam.model';
+import {Injectable} from '@angular/core';
+import {CalculationParameters, GluelamEntity, GlulamDetailEntity} from './glulam.model';
 
 @Injectable()
 export class GluelamCalculatorService {
@@ -27,6 +27,8 @@ export class GluelamCalculatorService {
       this.calculateDetail(gluelamEntity, detail);
 
       gluelamEntity.result.lamination  -= detail.detailsLamella;  // TODO: error if negative
+      gluelamEntity.result.cotterlength = gluelamEntity.result.cotterlength +
+         (detail.detailsLength + gluelamEntity.additionalLength / 100) * detail.detailsLamella;
     });
 
     console.log('calculated: ', gluelamEntity);

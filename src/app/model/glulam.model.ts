@@ -38,6 +38,7 @@ export class GlulamDetailEntity extends BaseEntity {
 
 export class GlulamResultEntity extends BaseEntity {
   lamination = 0;
+  cotterlength = 0;
 }
 
 export interface EnumType {
