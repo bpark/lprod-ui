@@ -23,12 +23,13 @@ export class GluelamCalculatorService {
   calculate(gluelamEntity: GluelamEntity) {
     gluelamEntity.result.lamination = Math.floor(CalculationParameters.maxPressHeight / gluelamEntity.laminationStrength);
 
+    gluelamEntity.result.cotterlength = 0;
     gluelamEntity.details.forEach(detail => {
       this.calculateDetail(gluelamEntity, detail);
 
       gluelamEntity.result.lamination  -= detail.detailsLamella;  // TODO: error if negative
-      gluelamEntity.result.cotterlength = gluelamEntity.result.cotterlength +
-         (detail.detailsLength + gluelamEntity.additionalLength / 100) * detail.detailsLamella;
+      gluelamEntity.result.cotterlength = (gluelamEntity.result.cotterlength +
+         (detail.detailsLength + gluelamEntity.additionalLength / 100)) * detail.detailsLamella;
     });
 
     console.log('calculated: ', gluelamEntity);
