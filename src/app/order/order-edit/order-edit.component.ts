@@ -101,9 +101,6 @@ export class OrderEditComponent implements OnInit {
     console.log(this.orderForm.controls.additionalLength.value);
     console.log(this.orderForm.controls.glueAmount.value);
     console.log(this.orderForm.controls.hardenerPercentage.value);
-    // console.log(this.orderForm.controls.details.get('0').get('detailsAmount').value);
-    // console.log(this.orderForm.controls.details.get('0').get('detailsHeight').value);
-    // console.log(this.orderForm.controls.details.get('0').get('detailsLength').value);
     console.log(this.details.length);
     console.log(this.details);
   }
