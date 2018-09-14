@@ -20,6 +20,8 @@ export class OrderEditComponent implements OnInit {
                                                'width', 'additionalLength', 'glueAmount', 'hardenerPercentage'];
   private static readonly detailsFormElements = ['detailsAmount', 'detailsHeight', 'detailsLength'];
 
+  private static readonly updateOnMode = 'blur';
+
   sideNavModel: SideNavModel = {
     title: 'Leimbinder',
     items: [{
@@ -56,9 +58,18 @@ export class OrderEditComponent implements OnInit {
       glueTypeId: [0, Validators.required],
       hardenerTypeId: [0, Validators.required],
       width: [8.5, Validators.required],
-      additionalLength: [10.00, [Validators.required, LbValidators.numeric, Validators.min(5)]],
-      glueAmount: [380.00, [Validators.required, LbValidators.numeric, Validators.min(10)]],
-      hardenerPercentage: [20.00, [Validators.required, LbValidators.numeric, Validators.min(0), Validators.max(100)]],
+      additionalLength: [10.00, {
+          validators: [Validators.required, LbValidators.numeric, Validators.min(5)],
+          updateOn: OrderEditComponent.updateOnMode
+        }],
+      glueAmount: [380.00, {
+        validators: [Validators.required, LbValidators.numeric, Validators.min(10)],
+        updateOn: OrderEditComponent.updateOnMode
+      }],
+      hardenerPercentage: [20.00, {
+        validators: [Validators.required, LbValidators.numeric, Validators.min(0), Validators.max(100)],
+        updateOn: OrderEditComponent.updateOnMode
+      }],
       details: this.formBuilder.array([]),
     });
 
