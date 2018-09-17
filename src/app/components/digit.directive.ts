@@ -7,7 +7,7 @@ export class DigitDirective {
 
   private regex: RegExp;
   // private regex: RegExp = new RegExp(/^\d*\.?\d{0,2}$/g);
-  private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', '-'];
+  private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', '-', 'ArrowLeft', 'ArrowRight'];
 
   constructor(private el: ElementRef) {
   }
@@ -15,6 +15,7 @@ export class DigitDirective {
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     // Allow Backspace, tab, end, and home keys
+    console.log('key: ', event.key);
     if (this.specialKeys.indexOf(event.key) !== -1) {
       return;
     }
