@@ -150,9 +150,9 @@ export class OrderEditComponent implements OnInit {
 
   private buildDetailGroup(): FormGroup {
     const group = this.formBuilder.group({
-      detailsAmount: ['', [Validators.required, LbValidators.numeric]],
-      detailsHeight: ['', [Validators.required, LbValidators.numeric]],
-      detailsLength: ['', [Validators.required, LbValidators.numeric]],
+      detailsAmount: ['', {validators: [Validators.required, LbValidators.numeric]}],
+      detailsHeight: ['', {validators: [Validators.required, LbValidators.numeric]}],
+      detailsLength: ['', {validators: [Validators.required, LbValidators.numeric]}],
       detailsLamella: [{value: '', disabled: true}],
       detailsSquare: [{value: '', disabled: true}],
       detailsSquareTotal: [{value: '', disabled: true}],
@@ -168,6 +168,7 @@ export class OrderEditComponent implements OnInit {
         const control = group.get(element);
         const hasError = (control.touched || control.dirty) && control.errors;
         if (hasError) {
+          console.log('errors: ', control.errors);
           const errorText = ValidationErrorMessages.getErrorText(element, Object.keys(control.errors)[0]);
           this.errors.set(element + '_' + index, errorText);
           elementErrors = true;
@@ -259,9 +260,9 @@ export class OrderEditComponent implements OnInit {
 
   private mapGluelamDetailEntityToForm(formGroup: FormGroup, detail: GlulamDetailEntity): void {
     formGroup.patchValue({
-      detailsAmount: detail.detailsAmount,
-      detailsHeight: detail.detailsHeight,
-      detailsLength: detail.detailsLength,
+      detailsAmount: formGroup.controls.detailsAmount.value === '' ? detail.detailsAmount : formGroup.controls.detailsAmount.value,
+      detailsHeight: formGroup.controls.detailsHeight.value === '' ? detail.detailsHeight : formGroup.controls.detailsHeight.value,
+      detailsLength: formGroup.controls.detailsLength.value === '' ? detail.detailsLength : formGroup.controls.detailsLength.value,
       detailsLamella: detail.detailsLamella,
       detailsSquare: detail.detailsSquare,
       detailsSquareTotal: detail.detailsSquareTotal,

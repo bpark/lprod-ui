@@ -31,6 +31,7 @@ import {TimesPipe} from './components/times.pipe';
 import { OrderEditComponent } from './order/order-edit/order-edit.component';
 import { DecimalDirective } from './components/decimal.directive';
 import {GluelamCalculatorService} from './model/gluelam-calculator.service';
+import { DigitDirective } from './components/digit.directive';
 
 
 defineLocale('de', deLocale);
@@ -77,7 +78,8 @@ const appRoutes: Routes = [
     ToggleButtonComponent,
     TimesPipe,
     OrderEditComponent,
-    DecimalDirective
+    DecimalDirective,
+    DigitDirective
   ],
   imports: [
     RouterModule.forRoot(
