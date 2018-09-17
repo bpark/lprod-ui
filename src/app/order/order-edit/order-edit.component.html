@@ -199,7 +199,7 @@
                       <small *ngIf="errors.has('detailsAmount_' + i)"><span class="help-block">{{errors.get('detailsAmount_' + i)}} </span></small>
                     </div>
                     <div class="col-md-3" [ngClass]="{'has-error has-feedback':errors.has('detailsHeight_' + i)}">
-                      <input type="text" class="form-control" [id]="'detailsHeight_' + i" [formControlName]="'detailsHeight'" appDecimal digitsInfo="1.1-1" appDigit digitsPattern="2">
+                      <input type="text" class="form-control" [id]="'detailsHeight_' + i" [formControlName]="'detailsHeight'" appDecimal digitsInfo="1.1-1" appDigit digitsPattern="1">
                       <small *ngIf="errors.has('detailsHeight_' + i)"><span class="help-block">{{errors.get('detailsHeight_' + i)}} </span></small>
                     </div>
                     <div class="col-md-3" [ngClass]="{'has-error has-feedback':errors.has('detailsLength_' + i)}">
