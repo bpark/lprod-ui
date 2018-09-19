@@ -15,7 +15,7 @@ export class DigitDirective {
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     // Allow Backspace, tab, end, and home keys
-    console.log('key: ', event.key);
+    // console.log('key: ', event.key);
     if (this.specialKeys.indexOf(event.key) !== -1) {
       return;
     }
