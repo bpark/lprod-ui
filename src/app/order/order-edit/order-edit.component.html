@@ -157,21 +157,21 @@
                 <!-- Zusatzlänge -->
                 <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('additionalLength')}">
                   <label for="additionalLength" class="control-label">Zusatzlänge [mm]</label>
-                  <input type="text" class="form-control" id="additionalLength" formControlName="additionalLength" appDecimal>
+                  <input type="text" class="form-control" id="additionalLength" formControlName="additionalLength" appDecimal appDigit digitsPattern="2">
                   <small *ngIf="errors.has('additionalLength')"><span class="help-block">{{errors.get('additionalLength')}} </span></small>
                 </div>
 
                 <!-- Leimmenge -->
                 <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('glueAmount')}">
                   <label for="glueAmount" class="control-label">Leimmenge [g]</label>
-                  <input type="text" class="form-control" id="glueAmount" formControlName="glueAmount" appDecimal>
+                  <input type="text" class="form-control" id="glueAmount" formControlName="glueAmount" appDecimal appDigit digitsPattern="2">
                   <small *ngIf="errors.has('glueAmount')"><span class="help-block">{{errors.get('glueAmount')}} </span></small>
                 </div>
 
                 <!-- Härter Prozent -->
                 <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('hardenerPercentage')}">
                   <label for="hardenerPercentage" class="control-label">Härter [%]</label>
-                  <input type="text" class="form-control" id="hardenerPercentage" formControlName="hardenerPercentage" appDecimal>
+                  <input type="text" class="form-control" id="hardenerPercentage" formControlName="hardenerPercentage" appDecimal appDigit digitsPattern="2">
                   <small *ngIf="errors.has('hardenerPercentage')"><span class="help-block">{{errors.get('hardenerPercentage')}} </span></small>
                 </div>
               </div>
