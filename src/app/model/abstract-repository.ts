@@ -4,6 +4,9 @@ import {Observable} from 'rxjs/Observable';
 import {environment} from '../../environments/environment';
 import {BaseEntity, BaseEntityList} from './base-entity';
 
+/**
+ * Abstract entity repository.
+ */
 export class AbstractRepository<T extends BaseEntity> {
 
   private static readonly page = 'page';
