@@ -74,17 +74,6 @@ export class CalculationResult {
 
 // ---- old
 
-export class GlulamDetail extends BaseEntity {
-  amount = 0;
-  height = 0;
-  length = 0;
-  lamella = 0;
-  square = 0;
-  squareTotal = 0;
-  volume = 0;
-  show = true;
-}
-
 export interface GluelamList {
   totalCount: number;
   items: Gluelam[];
@@ -96,33 +85,3 @@ export interface Gluelam extends BaseEntity {
   customer: string;
   elementNumber: string;
 }
-
-export class GlulamModel extends BaseEntity {
-  pressData: PressData = new PressData();
-  glueData: GlueData = new GlueData();
-  gluelamData: GluelamData = new GluelamData();
-  gluelamDetail: GlulamDetail[] = [];
-}
-
-export class PressData {
-  date: Date = new Date();
-  customer: string;
-  elementNumber: string;
-  laminationStrength = 33.6;
-  coverLamination = 0;
-  press = 0;
-  woodType = 0;
-}
-
-export class GlueData {
-  glueTypeId: number;
-  hardenerTypeId: number;
-}
-
-export class GluelamData {
-  width = 8.5;
-  additionalLength = 10.00;
-  glueAmount = 380.00;
-  hardenerPercentage = 20.00;
-}
-
