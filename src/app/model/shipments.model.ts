@@ -11,5 +11,6 @@ export interface ShipmentsList extends BaseEntityList<Shipment> {
 }
 
 export enum ShipmentType {
-  glue = 'glue', hardener = 'hardener'
+  glue = 'glue',
+  hardener = 'hardener'
 }
