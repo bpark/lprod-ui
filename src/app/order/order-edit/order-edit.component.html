@@ -157,21 +157,21 @@
                 <!-- Zusatzlänge -->
                 <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('additionalLength')}">
                   <label for="additionalLength" class="control-label">Zusatzlänge [mm]</label>
-                  <input type="text" class="form-control" id="additionalLength" formControlName="additionalLength" appDecimal appDigit digitsPattern="2">
+                  <input type="text" class="form-control" id="additionalLength" formControlName="additionalLength" appDecimal>
                   <small *ngIf="errors.has('additionalLength')"><span class="help-block">{{errors.get('additionalLength')}} </span></small>
                 </div>
 
                 <!-- Leimmenge -->
                 <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('glueAmount')}">
                   <label for="glueAmount" class="control-label">Leimmenge [g]</label>
-                  <input type="text" class="form-control" id="glueAmount" formControlName="glueAmount" appDecimal appDigit digitsPattern="2">
+                  <input type="text" class="form-control" id="glueAmount" formControlName="glueAmount" appDecimal>
                   <small *ngIf="errors.has('glueAmount')"><span class="help-block">{{errors.get('glueAmount')}} </span></small>
                 </div>
 
                 <!-- Härter Prozent -->
                 <div class="col-md-6 form-group" [ngClass]="{'has-error has-feedback':errors.has('hardenerPercentage')}">
                   <label for="hardenerPercentage" class="control-label">Härter [%]</label>
-                  <input type="text" class="form-control" id="hardenerPercentage" formControlName="hardenerPercentage" appDecimal appDigit digitsPattern="2">
+                  <input type="text" class="form-control" id="hardenerPercentage" formControlName="hardenerPercentage" appDecimal>
                   <small *ngIf="errors.has('hardenerPercentage')"><span class="help-block">{{errors.get('hardenerPercentage')}} </span></small>
                 </div>
               </div>
@@ -199,11 +199,11 @@
                       <small *ngIf="errors.has('detailsAmount_' + i)"><span class="help-block">{{errors.get('detailsAmount_' + i)}} </span></small>
                     </div>
                     <div class="col-md-3" [ngClass]="{'has-error has-feedback':errors.has('detailsHeight_' + i)}">
-                      <input type="text" class="form-control" [id]="'detailsHeight_' + i" [formControlName]="'detailsHeight'" appDecimal digitsInfo="1.1-1" appDigit digitsPattern="1">
+                      <input type="text" class="form-control" [id]="'detailsHeight_' + i" [formControlName]="'detailsHeight'" appDecimal digitsInfo="1.1-1">
                       <small *ngIf="errors.has('detailsHeight_' + i)"><span class="help-block">{{errors.get('detailsHeight_' + i)}} </span></small>
                     </div>
                     <div class="col-md-3" [ngClass]="{'has-error has-feedback':errors.has('detailsLength_' + i)}">
-                      <input type="text" class="form-control" [id]="'detailsLength_' + i" [formControlName]="'detailsLength'" appDecimal digitsInfo="1.2-2" appDigit digitsPattern="2">
+                      <input type="text" class="form-control" [id]="'detailsLength_' + i" [formControlName]="'detailsLength'" appDecimal digitsInfo="1.2-2">
                       <small *ngIf="errors.has('detailsLength_' + i)"><span class="help-block">{{errors.get('detailsLength_' + i)}} </span></small>
                     </div>
                     <div class="col-md-3">
